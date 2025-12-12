@@ -15,7 +15,7 @@ platforms:
 dates:
     release: "2023-02-10"
 vars:
-    GRADLE_DIGEST: sha256:d01245de2daebc559be7079301214b931ef5370845e8c84965239c65b5fdfbaf
+    GRADLE_DIGEST: sha256:3a33c4fb779adeb67a5070fc7f15ca59fd4464738078bbbadba4ad0eaeba4414
     GRADLE_MAJOR_MINOR_VERSION: "8.14"
     GRADLE_MAJOR_VERSION: "8"
     GRADLE_VERSION: 8.14.3
@@ -40,7 +40,7 @@ contents:
             - opt/**
           uid: 0
           gid: 0
-        - name: dhi/pkg-gradle:8.14.3@sha256:d01245de2daebc559be7079301214b931ef5370845e8c84965239c65b5fdfbaf
+        - name: dhi/pkg-gradle:8.14.3@sha256:3a33c4fb779adeb67a5070fc7f15ca59fd4464738078bbbadba4ad0eaeba4414
           includes:
             - opt/**
             - usr/local/bin/**

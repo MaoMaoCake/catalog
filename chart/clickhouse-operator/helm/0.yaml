@@ -7,32 +7,33 @@ name: Clickhouse Operator Helm chart 0.x
 image: dhi/clickhouse-operator-chart
 variant: helm
 tags:
-    - 0.25.5
+    - 0.25.6
 platforms:
     - linux/amd64
 vars:
-    CHART_COMMIT_SHA: 9ab22d8331d79536325662e80a9df931ba0ad1e8
-    CLICKHOUSE_METRICS_EXPORTER_REFERENCE: dhi/clickhouse-metrics-exporter:0.25.5-debian13@sha256:ccde362ecd5a9ad8f898032eb23e495eefb81d8075c473fd5402f988a558cff3
+    CHART_COMMIT_SHA: 8d7dc3f2c0f6ef2e4e6be99792dd44cbefeb424c
+    CLICKHOUSE_METRICS_EXPORTER_REFERENCE: dhi/clickhouse-metrics-exporter:0.25.6-debian13@sha256:325abb75c3789fc102da4f62290dbf897c3f9ea8d80dafe2c910d457110c985d
     CLICKHOUSE_OPERATOR_IMAGE_TAG: 0.25.5
-    CLICKHOUSE_OPERATOR_REFERENCE: dhi/clickhouse-operator:0.25.5-debian13@sha256:9e5d74523697086d1a58e086a818124e5ca2fe426700e477d4e6492adf203ae4
+    CLICKHOUSE_OPERATOR_REFERENCE: dhi/clickhouse-operator:0.25.6-debian13@sha256:d2c02eb857cb4fc4b4585070ff0b1d94413c6931426770f23a8e8478c4a747a7
     CLICKHOUSE_SERVER_REFERENCE: dhi/clickhouse-server:25.8.12-debian13@sha256:cf26063b035975e7aaf8719bfffc8af63c7e3a147015143fd33b911d9834e812
     DHI_NAMESPACE: dhi
     DHI_PREFIX: ""
     DHI_REGISTRY: docker.io
     DHI_SKIP_CONTEXT_COPY: "true"
     HELM_REFERENCE: dhi/helm:3.19.3-debian13-dev@sha256:e5f5727e6d74131d8d9201c70de54c9431a562b749ccf6af0c56acbb39d2d73a
+    KUBECTL_REFERENCE: dhi/kubectl:1.34-alpine3.22-dev@sha256:2f378efdf5628d5383e4d1ac682892fda06ba7b7843be09b2e0a38f8cd1cc206
     SEMVER_MAJOR_MINOR_VERSION: "0.25"
     SEMVER_MAJOR_VERSION: "0"
-    SEMVER_VERSION: 0.25.5
-    VERSION: 0.25.5
+    SEMVER_VERSION: 0.25.6
+    VERSION: 0.25.6
 contents:
     builds:
         - name: clickhouse-operator-chart
           uses: dhi/helm:3.19.3-debian13-dev@sha256:e5f5727e6d74131d8d9201c70de54c9431a562b749ccf6af0c56acbb39d2d73a
           contents:
             files:
-                - url: git+https://github.com/Altinity/clickhouse-operator.git#release-0.25.5
-                  checksum: 9ab22d8331d79536325662e80a9df931ba0ad1e8
+                - url: git+https://github.com/Altinity/clickhouse-operator.git#release-0.25.6
+                  checksum: 8d7dc3f2c0f6ef2e4e6be99792dd44cbefeb424c
                   path: ${source.dir}/helm-charts
                   uid: 0
                   gid: 0
@@ -46,11 +47,13 @@ contents:
                     description: Docker Hardened Images Helm chart for ClickHouse Operator
                     images:
                         - name: clickhouse-operator
-                          ref: dhi/clickhouse-operator:0.25.5-debian13@sha256:9e5d74523697086d1a58e086a818124e5ca2fe426700e477d4e6492adf203ae4
+                          ref: dhi/clickhouse-operator:0.25.6-debian13@sha256:d2c02eb857cb4fc4b4585070ff0b1d94413c6931426770f23a8e8478c4a747a7
                         - name: clickhouse-metrics-exporter
-                          ref: dhi/clickhouse-metrics-exporter:0.25.5-debian13@sha256:ccde362ecd5a9ad8f898032eb23e495eefb81d8075c473fd5402f988a558cff3
+                          ref: dhi/clickhouse-metrics-exporter:0.25.6-debian13@sha256:325abb75c3789fc102da4f62290dbf897c3f9ea8d80dafe2c910d457110c985d
                         - name: clickhouse-server
                           ref: dhi/clickhouse-server:25.8.12-debian13@sha256:cf26063b035975e7aaf8719bfffc8af63c7e3a147015143fd33b911d9834e812
+                        - name: kubectl
+                          ref: dhi/kubectl:1.34-alpine3.22-dev@sha256:2f378efdf5628d5383e4d1ac682892fda06ba7b7843be09b2e0a38f8cd1cc206
                     name: clickhouse-operator-chart
                     notes: ${source.dir}/config/NOTES.txt
                     sourceUrl: https://github.com/cert-manager/cert-manager

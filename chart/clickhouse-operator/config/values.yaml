@@ -7,3 +7,8 @@ metrics:
   image:
     repository: ${clickhouse-metrics-exporter.registry}/${clickhouse-metrics-exporter.repository}
     tag: ${clickhouse-metrics-exporter.tag}@${clickhouse-metrics-exporter.digest}
+
+crdHook:
+  image:
+    repository: ${kubectl.registry}/${kubectl.repository}
+    tag: ${kubectl.tag}@${kubectl.digest}

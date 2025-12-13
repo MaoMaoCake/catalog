@@ -28,7 +28,7 @@ vars:
     DEBIAN_EPOCH_VERSION: 3.5.0
     GO_REF: dhi/golang:1.25.5-debian13-dev@sha256:8c2284d70af13cb934da5f05f5fa58a776aa963e88ebf542970ba09f4e3a0bbf
     GO_VERSION: 1.25.5
-    NODE_REF: dhi/node:22.21.1-debian13-dev@sha256:0563460136602881d23bf6ca87f228a1a297fe22544c076f8f60e5a6450e1956
+    NODE_REF: dhi/node:22.21.1-debian13-dev@sha256:b6a0c7bf7d47d3ec628966989b0e1c51275428f80e33630820d27c29424ed4f6
     NODE_VERSION: 22.21.1
     RELEASE_TYPE: lts
     VERSION: 3.5.0
@@ -60,7 +60,7 @@ contents:
                   uid: 0
                   gid: 0
             artifacts:
-                - name: dhi/node:22.21.1-debian13-dev@sha256:0563460136602881d23bf6ca87f228a1a297fe22544c076f8f60e5a6450e1956
+                - name: dhi/node:22.21.1-debian13-dev@sha256:b6a0c7bf7d47d3ec628966989b0e1c51275428f80e33630820d27c29424ed4f6
                   uid: 0
                   gid: 0
           pipeline:

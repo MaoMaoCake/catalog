@@ -16,7 +16,7 @@ vars:
     DHI_PREFIX: ""
     DHI_REGISTRY: docker.io
     DHI_SKIP_CONTEXT_COPY: "true"
-    HELM_REFERENCE: dhi/helm:3.19.3-debian13-dev@sha256:e5f5727e6d74131d8d9201c70de54c9431a562b749ccf6af0c56acbb39d2d73a
+    HELM_REFERENCE: dhi/helm:3.19.4-debian13-dev@sha256:5b1c0c9aeadb87a6f9de696998d851653e7d41ba1b93858b162b98747b1ea80b
     METRICS_SERVER_REFERENCE: dhi/metrics-server:0.8.0-debian13@sha256:9cf2216a43a121388da5d9b61f7af8e64b6206e5194a75887f91479e1e603978
     SEMVER_MAJOR_MINOR_VERSION: "3.13"
     SEMVER_MAJOR_VERSION: "3"
@@ -25,7 +25,7 @@ vars:
 contents:
     builds:
         - name: metrics-server-chart
-          uses: dhi/helm:3.19.3-debian13-dev@sha256:e5f5727e6d74131d8d9201c70de54c9431a562b749ccf6af0c56acbb39d2d73a
+          uses: dhi/helm:3.19.4-debian13-dev@sha256:5b1c0c9aeadb87a6f9de696998d851653e7d41ba1b93858b162b98747b1ea80b
           contents:
             files:
                 - url: git+https://github.com/kubernetes-sigs/metrics-server.git#metrics-server-helm-chart-3.13.0

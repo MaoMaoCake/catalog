@@ -36,7 +36,7 @@ vars:
     ML_COMMONS_DASHBOARDS_COMMIT_SHA: db98eb0d6dac2884054258e17e2d85d757df638e
     ML_COMMONS_DASHBOARDS_VERSION: 3.3.0.0
     NODE_BUILD_REF: dhi/node:20.19.6-debian13-dev@sha256:ca50222cb6c3f51479adafb630bcd0efc1bd814738a7c7d5f534bc9b5ec25c5e
-    NODE_RUNTIME_REF: dhi/node:20.19.6-debian13@sha256:86f348229b31c681577cf3db6a0a6d2526b0b83d4c613b7e42807560bf726943
+    NODE_RUNTIME_REF: dhi/node:20.19.6-debian13@sha256:c22aab4bebceb051b8fdccbb98eb926cd41b1e172253f407e5d8b47f8a2aaa01
     NODE_RUNTIME_VERSION: 20.19.6
     NOTIFICATIONS_DASHBOARDS_COMMIT_SHA: 886df223102c79cfa1ad305cf8558607fe4b501c
     NOTIFICATIONS_DASHBOARDS_VERSION: 3.3.0.0
@@ -453,7 +453,7 @@ contents:
               uid: 1000
               gid: 1000
     artifacts:
-        - name: dhi/node:20.19.6-debian13@sha256:86f348229b31c681577cf3db6a0a6d2526b0b83d4c613b7e42807560bf726943
+        - name: dhi/node:20.19.6-debian13@sha256:c22aab4bebceb051b8fdccbb98eb926cd41b1e172253f407e5d8b47f8a2aaa01
           includes:
             - opt/nodejs
           uid: 0

@@ -11,7 +11,7 @@ tags:
 platforms:
     - linux/amd64
 vars:
-    ALERTMANAGER_IMAGE_REFERENCE: dhi/alertmanager:0.30.0-debian13@sha256:049c16769e1d0dc60ea3ec67231c5a6429517b063d9a98cd38ca753ba072fef5
+    ALERTMANAGER_IMAGE_REFERENCE: dhi/alertmanager:0.30.0-debian13@sha256:e70a86d733d9dd86d245804bd09610667d77a191245ee781c02a3b9e2acc5085
     BUSYBOX_IMAGE_REFERENCE: dhi/busybox:1.37.0-alpine3.22@sha256:a1e4d4675dc1f8b4c9cdc0f62cb7e47623ca063c55665049a801d8d6d129f8b2
     CHART_COMMIT_SHA: fcac966ef229709039b1610ee19afcf17104f082
     DHI_NAMESPACE: dhi
@@ -19,7 +19,7 @@ vars:
     DHI_REGISTRY: docker.io
     DHI_SKIP_CONTEXT_COPY: "true"
     HELM_REFERENCE: dhi/helm:3.19.4-debian13-dev@sha256:5b1c0c9aeadb87a6f9de696998d851653e7d41ba1b93858b162b98747b1ea80b
-    PROMETHEUS_CONFIG_RELOADER_IMAGE_REFERENCE: dhi/prometheus-config-reloader:0.87.1-debian13@sha256:99adf75d497cddf1820b551e8bdb9292b8d523b3bc5b417216cb563b86c9044d
+    PROMETHEUS_CONFIG_RELOADER_IMAGE_REFERENCE: dhi/prometheus-config-reloader:0.87.1-debian13@sha256:181186c36a4a0974653cab58f03c2f35e113aeecaacc44b9fb6d7fe45ff5d927
     SEMVER_MAJOR_MINOR_VERSION: "1.9"
     SEMVER_MAJOR_VERSION: "1"
     SEMVER_VERSION: 1.9.0
@@ -52,9 +52,9 @@ contents:
                     description: Docker Hardened Images Helm chart for Prometheus AlertManager
                     images:
                         - name: alertmanager
-                          ref: dhi/alertmanager:0.30.0-debian13@sha256:049c16769e1d0dc60ea3ec67231c5a6429517b063d9a98cd38ca753ba072fef5
+                          ref: dhi/alertmanager:0.30.0-debian13@sha256:e70a86d733d9dd86d245804bd09610667d77a191245ee781c02a3b9e2acc5085
                         - name: prometheus-config-reloader
-                          ref: dhi/prometheus-config-reloader:0.87.1-debian13@sha256:99adf75d497cddf1820b551e8bdb9292b8d523b3bc5b417216cb563b86c9044d
+                          ref: dhi/prometheus-config-reloader:0.87.1-debian13@sha256:181186c36a4a0974653cab58f03c2f35e113aeecaacc44b9fb6d7fe45ff5d927
                         - name: busybox
                           ref: dhi/busybox:1.37.0-alpine3.22@sha256:a1e4d4675dc1f8b4c9cdc0f62cb7e47623ca063c55665049a801d8d6d129f8b2
                     name: alertmanager-chart

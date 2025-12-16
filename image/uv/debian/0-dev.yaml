@@ -162,8 +162,8 @@ paths:
 annotations:
     org.opencontainers.image.description: A minimal uv image - An extremely fast Python package installer and resolver
     org.opencontainers.image.licenses: MIT
-cmd:
-    - /bin/bash
+entrypoint:
+    - /usr/local/bin/uv
 tests:
     - name: Run base tests
       directory: test/go-testing/base

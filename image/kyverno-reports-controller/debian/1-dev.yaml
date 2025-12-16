@@ -144,8 +144,8 @@ environment:
 annotations:
     org.opencontainers.image.description: A minimal Kyverno Reports Controller image
     org.opencontainers.image.licenses: Apache-2.0
-cmd:
-    - /bin/bash
+entrypoint:
+    - /usr/local/bin/kyverno-reports-controller
 ports:
     - 9443/tcp
     - 8000/tcp

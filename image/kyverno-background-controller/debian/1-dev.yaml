@@ -146,8 +146,8 @@ environment:
 annotations:
     org.opencontainers.image.description: A minimal Kyverno Background Controller image
     org.opencontainers.image.licenses: Apache-2.0
-cmd:
-    - /bin/bash
+entrypoint:
+    - /usr/local/bin/kyverno-background-controller
 ports:
     - 9443/tcp
     - 443/tcp

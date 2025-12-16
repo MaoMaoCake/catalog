@@ -145,8 +145,9 @@ environment:
 annotations:
     org.opencontainers.image.description: A minimal Kyverno Policy Reporter image
     org.opencontainers.image.licenses: Apache-2.0
-cmd:
-    - /bin/bash
+entrypoint:
+    - /usr/local/bin/kyverno-policy-reporter
+    - run
 ports:
     - 8080/tcp
 tests:

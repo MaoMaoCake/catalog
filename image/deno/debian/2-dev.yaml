@@ -180,8 +180,8 @@ paths:
 annotations:
     org.opencontainers.image.description: A minimal Deno image
     org.opencontainers.image.licenses: MIT
-cmd:
-    - /bin/bash
+entrypoint:
+    - /usr/local/bin/deno
 tests:
     - name: Run base tests
       directory: test/go-testing/base

@@ -135,7 +135,6 @@ contents:
               runs: |
                 set -eux -o pipefail
 
-                mkdir -p ${target.dir}/usr
                 mkdir -p "${target.dir}/usr"
                 ls -la
                 PYTHON_DESTDIR=/usr/lib/python3/dist-packages

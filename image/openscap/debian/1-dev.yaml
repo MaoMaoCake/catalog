@@ -151,15 +151,14 @@ contents:
                 mkdir wheelhouse
                 unset SOURCE_DATE_EPOCH #TODO: Figure out why this breaks zip
                 pip wheel --wheel-dir=wheelhouse .
-                PYTHON_DESTDIR=${target.dir}/usr/lib/python3/dist-packages
-                pip install --no-index --find-links=wheelhouse --target=${PYTHON_DESTDIR} docker
+                PYTHON_DESTDIR="${target.dir}/usr/lib/python3/dist-packages"
+                pip install --no-index --find-links=wheelhouse --target="${PYTHON_DESTDIR}" docker
             - name: install openscap
               work-dir: ${source.dir}/openscap
               privileged: true
               runs: |
                 set -eux -o pipefail
 
-                mkdir -p ${target.dir}/usr
                 mkdir -p "${target.dir}/usr"
                 ls -la
                 PYTHON_DESTDIR=/usr/lib/python3/dist-packages

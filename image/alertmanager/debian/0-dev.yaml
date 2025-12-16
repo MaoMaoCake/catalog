@@ -75,6 +75,10 @@ contents:
               runs: |
                 set -eux -o pipefail
 
+                if [ "${target.fips}" = "true" ]; then
+                  export GODEBUG=fips140=on
+                fi
+
                 go test -race -count=1 -v $(go list ./... | grep -v './test')
             - name: build alertmanager
               uses: go/build@v1
@@ -107,6 +111,10 @@ contents:
               privileged: true
               runs: |
                 set -eux -o pipefail
+
+                if [ "${target.fips}" = "true" ]; then
+                  export GODEBUG=fips140=on
+                fi
 
                 ln -s "${target.dir}/usr/local/bin/alertmanager" ./alertmanager
                 ln -s "${target.dir}/usr/local/bin/amtool" ./amtool

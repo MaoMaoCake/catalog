@@ -20,7 +20,7 @@ vars:
     BASE_DIGEST: sha256:be441a641f2adb00fd4c0b05de4d919fffd8e791b8ac36f38a2018811d8d92cd
     BASE_TAG: 20250419-debian13
     COMMIT_SHA: a50aee4108dcf07f86b1b3e9dfa2bd6ee167f8a8
-    GO_DIGEST: sha256:8c2284d70af13cb934da5f05f5fa58a776aa963e88ebf542970ba09f4e3a0bbf
+    GO_REFERENCE: dhi/golang:1.25.5-debian13-dev@sha256:8c2284d70af13cb934da5f05f5fa58a776aa963e88ebf542970ba09f4e3a0bbf
     GO_VERSION: 1.25.5
     SEMVER_MAJOR_MINOR_VERSION: "0.87"
     SEMVER_MAJOR_VERSION: "0"
@@ -33,10 +33,10 @@ contents:
     builds:
         - name: prometheus-config-reloader
           uses: dhi/golang:1.25.5-debian13-dev@sha256:8c2284d70af13cb934da5f05f5fa58a776aa963e88ebf542970ba09f4e3a0bbf
-          privileged: true
           contents:
             files:
                 - url: git+https://github.com/prometheus-operator/prometheus-operator.git#v0.87.1
+                  checksum: a50aee4108dcf07f86b1b3e9dfa2bd6ee167f8a8
                   path: /go/src/github.com/prometheus-operator/prometheus-operator
                   spdx:
                     name: prometheus-operator
@@ -48,31 +48,25 @@ contents:
                   uid: 0
                   gid: 0
           pipeline:
-            - name: verify
-              uses: git/checkout@v1
-              with:
-                dir: /go/src/github.com/prometheus-operator/prometheus-operator
-                expected-commit: a50aee4108dcf07f86b1b3e9dfa2bd6ee167f8a8
             - name: update go dependencies
               uses: go/bump@v1
+              work-dir: /go/src/github.com/prometheus-operator/prometheus-operator
               with:
                 deps:
                     - golang.org/x/crypto@v0.45.0
-                dir: /go/src/github.com/prometheus-operator/prometheus-operator
                 download: true
             - name: build
-              runs: |
-                set -eux -o pipefail
-
-                GOLDFLAGS="-X github.com/prometheus/common/version.Version=0.87.1
-                           -X github.com/prometheus/common/version.Revision=a50aee4108dcf07f86b1b3e9dfa2bd6ee167f8a8
-                           -X github.com/prometheus/common/version.Branch=dhi
-                           -X github.com/prometheus/common/version.BuildUser=dhi
-                           -X github.com/prometheus/common/version.BuildDate=$(date -u -d @${SOURCE_DATE_EPOCH} +'%F-%T')"
-
-                CGO_ENABLED=0 go build -C /go/src/github.com/prometheus-operator/prometheus-operator \
-                  -ldflags="$GOLDFLAGS" \
-                  -o '${target.dir}/usr/local/bin/prometheus-config-reloader' ./cmd/prometheus-config-reloader/
+              uses: go/build@v1
+              work-dir: /go/src/github.com/prometheus-operator/prometheus-operator
+              with:
+                ldflags:
+                    - -X github.com/prometheus/common/version.Version=0.87.1
+                    - -X github.com/prometheus/common/version.Revision=a50aee4108dcf07f86b1b3e9dfa2bd6ee167f8a8
+                    - -X github.com/prometheus/common/version.Branch=dhi
+                    - -X github.com/prometheus/common/version.BuildUser=dhi
+                    - -X github.com/prometheus/common/version.BuildDate=$(date -u -d @${SOURCE_DATE_EPOCH} +'%F-%T')
+                output: ${target.dir}/usr/local/bin/prometheus-config-reloader
+                packages: ./cmd/prometheus-config-reloader/
           outputs:
             - source: ${target.dir}/usr/local/bin
               target: /usr/local/bin

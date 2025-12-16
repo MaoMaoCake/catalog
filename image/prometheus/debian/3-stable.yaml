@@ -56,6 +56,8 @@ contents:
                   gid: 0
             artifacts:
                 - name: dhi/node:22.21.1-debian13-dev@sha256:b6a0c7bf7d47d3ec628966989b0e1c51275428f80e33630820d27c29424ed4f6
+                  excludes:
+                    - usr/lib/ssl
                   uid: 0
                   gid: 0
           pipeline:

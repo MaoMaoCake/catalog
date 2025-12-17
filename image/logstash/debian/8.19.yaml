@@ -155,16 +155,11 @@ contents:
                 mkdir "$lz4_base_path/1.10.1"
                 cp "${source.dir}/patch/deps/lz4-java-1.10.1.jar" "$lz4_base_path/1.10.1"
           paths:
-            - type: file
-              path: ${source.dir}/patch/rack-8.19.patch
+            - type: directory
+              path: ${source.dir}/patch
               uid: 0
               gid: 0
-              source: image/logstash/patch/rack-8.19.patch
-            - type: file
-              path: ${source.dir}/patch/sinatra.patch
-              uid: 0
-              gid: 0
-              source: image/logstash/patch/sinatra.patch
+              source: image/logstash/patch
           outputs:
             - source: ${target.dir}/usr/share/logstash
               target: /usr/share/logstash

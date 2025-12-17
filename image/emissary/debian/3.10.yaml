@@ -103,7 +103,7 @@ contents:
               with:
                 deps:
                     - golang.org/x/oauth2@v0.27.0
-                    - k8s.io/kubernetes@v1.32.8
+                    - k8s.io/kubernetes@v1.32.10
                     - golang.org/x/net@v0.38.0
                 download: true
             - name: update python dependencies

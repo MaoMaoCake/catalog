@@ -6,6 +6,14 @@ but is designed for better memory safety while maintaining performance.
 
 For more details, visit https://doc.rust-lang.org/.
 
+## About Socket Firewall
+
+The `sfw-dev` variant comes with Socket Firewall Free preinstalled and configured. Socket Firewall Free is a lightweight
+tool that protects developer machines in real time, blocking malicious dependencies before they ever reach your laptop
+or build system. It works out of the box — no API key and no configuration required.
+
+For more details, visit https://github.com/SocketDev/sfw-free.
+
 ## About Docker Hardened Images
 
 Docker Hardened Images are built to meet the highest security and compliance standards. They provide a trusted

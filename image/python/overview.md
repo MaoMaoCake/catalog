@@ -8,6 +8,14 @@ Finally, Python is portable: it runs on many Unix variants, on the Mac, and on W
 
 For more information, visit https://docs.python.org/3/.
 
+## About Socket Firewall
+
+The `sfw-dev` variant comes with Socket Firewall Free preinstalled and configured. Socket Firewall Free is a lightweight
+tool that protects developer machines in real time, blocking malicious dependencies before they ever reach your laptop
+or build system. It works out of the box — no API key and no configuration required.
+
+For more details, visit https://github.com/SocketDev/sfw-free.
+
 ## About Docker Hardened Images
 
 Docker Hardened Images are built to meet the highest security and compliance standards. They provide a trusted

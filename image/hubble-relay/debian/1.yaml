@@ -9,24 +9,24 @@ variant: runtime
 tags:
     - "1"
     - "1.18"
-    - 1.18.4
+    - 1.18.5
     - 1-debian13
     - 1.18-debian13
-    - 1.18.4-debian13
+    - 1.18.5-debian13
 platforms:
     - linux/amd64
     - linux/arm64
 vars:
     BASE_DIGEST: sha256:be441a641f2adb00fd4c0b05de4d919fffd8e791b8ac36f38a2018811d8d92cd
     BASE_TAG: 20250419-debian13
-    COMMIT_SHA: afda2aa99d26f190de8944580ceadb64d9d14d38
+    COMMIT_SHA: 7d4d89321e17ea5b75eceb6dcb2ace1d4a6cfc5e
     GO_REFERENCE: dhi/golang:1.25.5-debian13-dev@sha256:8c2284d70af13cb934da5f05f5fa58a776aa963e88ebf542970ba09f4e3a0bbf
     GO_VERSION: 1.25.5
     GOPS_REFERENCE: dhi/pkg-gops:0.3.28@sha256:acab16123f72fc94ef6280b2763948d5013c31aca46e6692a7f7d3ca8d5035e7
     SEMVER_MAJOR_MINOR_VERSION: "1.18"
     SEMVER_MAJOR_VERSION: "1"
-    SEMVER_VERSION: 1.18.4
-    VERSION: 1.18.4
+    SEMVER_VERSION: 1.18.5
+    VERSION: 1.18.5
 contents:
     packages:
         - '!base-files'
@@ -35,15 +35,15 @@ contents:
           uses: dhi/golang:1.25.5-debian13-dev@sha256:8c2284d70af13cb934da5f05f5fa58a776aa963e88ebf542970ba09f4e3a0bbf
           contents:
             files:
-                - url: git+https://github.com/cilium/cilium.git#v1.18.4
-                  checksum: afda2aa99d26f190de8944580ceadb64d9d14d38
+                - url: git+https://github.com/cilium/cilium.git#v1.18.5
+                  checksum: 7d4d89321e17ea5b75eceb6dcb2ace1d4a6cfc5e
                   path: /go/src/github.com/cilium/cilium
                   spdx:
                     name: hubble-relay
-                    version: 1.18.4
+                    version: 1.18.5
                     packages:
                         - name: hubble-relay
-                          purl: pkg:golang/github.com/cilium/cilium@1.18.4
+                          purl: pkg:golang/github.com/cilium/cilium@1.18.5
                           license: Apache-2.0
                   uid: 0
                   gid: 0
@@ -65,7 +65,7 @@ contents:
               work-dir: /go/src/github.com/cilium/cilium/hubble-relay
               with:
                 ldflags:
-                    - -X github.com/cilium/cilium/pkg/version.ciliumVersion=v1.18.4
+                    - -X github.com/cilium/cilium/pkg/version.ciliumVersion=v1.18.5
                 output: ${target.dir}/usr/local/bin/hubble-relay
                 tags:
                     - osusergo

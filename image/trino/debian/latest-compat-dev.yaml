@@ -152,6 +152,13 @@ contents:
                 patches:
                     - /src/patch/ch-guava-grpc.patch
                     - /src/patch/lz4.patch
+            - name: maven patch
+              uses: mvn/patch@v1
+              with:
+                dependencies: ${source.dir}/patch/mvn-deps.json
+                dependencies-key: dependencyManagement.dependencies
+                downgrade: false
+                mvn-root: ${source.dir}/trino
             - name: opensearch plugin - maven patch
               uses: mvn/patch@v1
               with:
@@ -230,6 +237,11 @@ contents:
               uid: 0
               gid: 0
               source: image/trino/patch/minimal-plugins.json
+            - type: file
+              path: /src/patch/mvn-deps.json
+              uid: 0
+              gid: 0
+              source: image/trino/patch/mvn-deps.json
             - type: file
               path: /src/patch/opensearch-mvn-properties.json
               uid: 0

@@ -85,14 +85,14 @@ contents:
               runs: |
                 set -eux -o pipefail
 
-                mkdir -p "${target.dir}/envoy"
-                cp "${source.dir}/envoy-1.36.4-linux-${ARCH}" "${target.dir}/envoy/envoy"
-                chmod +x "${target.dir}/envoy/envoy"
+                mkdir -p "${target.dir}/usr/local/bin"
+                cp "${source.dir}/envoy-1.36.4-linux-${ARCH}" "${target.dir}/usr/local/bin/envoy"
           outputs:
-            - source: ${target.dir}/envoy/envoy
+            - source: ${target.dir}/usr/local/bin/envoy
               target: /usr/local/bin/envoy
               uid: 0
               gid: 0
+              mode: "0755"
             - source: /opt/docker/sbom
               target: /opt/docker/sbom
               uid: 0

@@ -9,23 +9,23 @@ variant: runtime
 tags:
     - "8"
     - "8.19"
-    - 8.19.8
+    - 8.19.9
     - 8-debian13
     - 8.19-debian13
-    - 8.19.8-debian13
+    - 8.19.9-debian13
 platforms:
     - linux/amd64
     - linux/arm64
 vars:
     BASE_DIGEST: sha256:be441a641f2adb00fd4c0b05de4d919fffd8e791b8ac36f38a2018811d8d92cd
     BASE_TAG: 20250419-debian13
-    COMMIT_SHA: 1806685c9ad5c94b987c6e7b43eb9b63d3926dec
+    COMMIT_SHA: 044579ba343a33f2594ab0af5d8778f23d813c7b
     GO_DIGEST: sha256:3e717c75bdd2e547755fc90963578c5424b77243f4c35f97ac025ca783a41b6a
     GO_VERSION: 1.24.11
     SEMVER_MAJOR_MINOR_VERSION: "8.19"
     SEMVER_MAJOR_VERSION: "8"
-    SEMVER_VERSION: 8.19.8
-    VERSION: 8.19.8
+    SEMVER_VERSION: 8.19.9
+    VERSION: 8.19.9
 contents:
     packages:
         - '!libelogind0'
@@ -37,8 +37,8 @@ contents:
           uses: dhi/golang:1.24.11-debian13-dev@sha256:3e717c75bdd2e547755fc90963578c5424b77243f4c35f97ac025ca783a41b6a
           contents:
             files:
-                - url: git+https://github.com/elastic/beats#v8.19.8
-                  checksum: 1806685c9ad5c94b987c6e7b43eb9b63d3926dec
+                - url: git+https://github.com/elastic/beats#v8.19.9
+                  checksum: 044579ba343a33f2594ab0af5d8778f23d813c7b
                   path: /go/src/github.com/elastic/beats
                   uid: 0
                   gid: 0
@@ -57,8 +57,8 @@ contents:
 
                 # Reproducible version metadata
                 # https://github.com/elastic/beats/issues/46314#issuecomment-3250659340
-                GOLDFLAGS="-X github.com/elastic/beats/v7/libbeat/version.commit=1806685c9ad5c94b987c6e7b43eb9b63d3926dec
-                          -X github.com/elastic/beats/v7/libbeat/version.version=8.19.8
+                GOLDFLAGS="-X github.com/elastic/beats/v7/libbeat/version.commit=044579ba343a33f2594ab0af5d8778f23d813c7b
+                          -X github.com/elastic/beats/v7/libbeat/version.version=8.19.9
                           -X github.com/elastic/beats/v7/libbeat/version.buildTime=$(date -u -d @${SOURCE_DATE_EPOCH} +'%F-%T')"
 
                 mkdir -p "${target.dir}/usr/share/filebeat"

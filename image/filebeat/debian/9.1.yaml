@@ -8,22 +8,22 @@ image: dhi/filebeat
 variant: runtime
 tags:
     - "9.1"
-    - 9.1.8
+    - 9.1.9
     - 9.1-debian13
-    - 9.1.8-debian13
+    - 9.1.9-debian13
 platforms:
     - linux/amd64
     - linux/arm64
 vars:
     BASE_DIGEST: sha256:be441a641f2adb00fd4c0b05de4d919fffd8e791b8ac36f38a2018811d8d92cd
     BASE_TAG: 20250419-debian13
-    COMMIT_SHA: f979ae28cc64cf0352a83418c70e3eb5e1744854
+    COMMIT_SHA: 18d7329ef5c55c5bb59ae4ddf55f08ff03e32600
     GO_DIGEST: sha256:3e717c75bdd2e547755fc90963578c5424b77243f4c35f97ac025ca783a41b6a
     GO_VERSION: 1.24.11
     SEMVER_MAJOR_MINOR_VERSION: "9.1"
     SEMVER_MAJOR_VERSION: "9"
-    SEMVER_VERSION: 9.1.8
-    VERSION: 9.1.8
+    SEMVER_VERSION: 9.1.9
+    VERSION: 9.1.9
 contents:
     packages:
         - '!libelogind0'
@@ -35,8 +35,8 @@ contents:
           uses: dhi/golang:1.24.11-debian13-dev@sha256:3e717c75bdd2e547755fc90963578c5424b77243f4c35f97ac025ca783a41b6a
           contents:
             files:
-                - url: git+https://github.com/elastic/beats#v9.1.8
-                  checksum: f979ae28cc64cf0352a83418c70e3eb5e1744854
+                - url: git+https://github.com/elastic/beats#v9.1.9
+                  checksum: 18d7329ef5c55c5bb59ae4ddf55f08ff03e32600
                   path: /go/src/github.com/elastic/beats
                   uid: 0
                   gid: 0
@@ -55,8 +55,8 @@ contents:
 
                 # Reproducible version metadata
                 # https://github.com/elastic/beats/issues/46314#issuecomment-3250659340
-                GOLDFLAGS="-X github.com/elastic/beats/v7/libbeat/version.commit=f979ae28cc64cf0352a83418c70e3eb5e1744854
-                          -X github.com/elastic/beats/v7/libbeat/version.version=9.1.8
+                GOLDFLAGS="-X github.com/elastic/beats/v7/libbeat/version.commit=18d7329ef5c55c5bb59ae4ddf55f08ff03e32600
+                          -X github.com/elastic/beats/v7/libbeat/version.version=9.1.9
                           -X github.com/elastic/beats/v7/libbeat/version.buildTime=$(date -u -d @${SOURCE_DATE_EPOCH} +'%F-%T')"
 
                 mkdir -p "${target.dir}/usr/share/filebeat"

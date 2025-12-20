@@ -26,7 +26,7 @@ vars:
     COMMIT_SHA: 5b033a4024429302440b72180472ae2d26b44086
     DEBIAN_TRIPLE: '#{ (target.arch == "amd64" ? "x86-64" : "aarch64") + "-linux-gnu" }'
     POETRY_VERSION: 2.1.3
-    PYTHON_BUILD_REFERENCE: dhi/python:3.11.14-debian13-dev@sha256:1a9611e0cc885420d72a9822bf257af23b4ea581915b2a4ef9a4186cd281cfdb
+    PYTHON_BUILD_REFERENCE: dhi/python:3.11.14-debian13-dev@sha256:d7540df22290d2430c41965ac478757706927d7d72d8263f69e464e346df8cbe
     PYTHON_MAJOR_MINOR_VERSION: "3.11"
     PYTHON_REFERENCE: dhi/python:3.11.14-debian13@sha256:fdcbbd0b853c4249b4a5a126cb63b530a7210912cfe6e225710922da74c10017
     PYTHON_VERSION: 3.11.14
@@ -56,7 +56,7 @@ contents:
         - util-linux
     builds:
         - name: kserve-storage-initializer
-          uses: dhi/python:3.11.14-debian13-dev@sha256:1a9611e0cc885420d72a9822bf257af23b4ea581915b2a4ef9a4186cd281cfdb
+          uses: dhi/python:3.11.14-debian13-dev@sha256:d7540df22290d2430c41965ac478757706927d7d72d8263f69e464e346df8cbe
           contents:
             packages:
                 - binutils-${DEBIAN_TRIPLE}

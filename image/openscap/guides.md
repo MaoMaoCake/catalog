@@ -10,7 +10,7 @@ For example:
 
 For the examples, you must first use `docker login dhi.io` to authenticate to the registry to pull the images.
 
-### Using the OpenSCAP Docker Hardened Image
+### Using the OpenSCAP Docker Hardened Image (General Use)
 
 This Docker Hardened Image is a drop-in replacement for the oscap CLI tool. It can evaluate both XCCDF benchmarks and
 OVAL definitions and generate the appropriate results.
@@ -19,10 +19,10 @@ OpenSCAP can also be used to validate the STIG posture for all Docker Hardened I
 
 #### Running OpenSCAP
 
-To test this image, you can run oscap and point it to the DHI GPOS SRG file:
+To test this image, you can run oscap and point it to the DHI GPOS SRG file that is embedded in the image itself:
 
-```bash
-docker run --rm -it --entrypoint oscap dhi.io/openscap:<tag> info /opt/docker/gpos/xml/scap/ssg/content/ssg-dhi-gpos-ds.xml
+```console
+docker run --rm -it dhi.io/openscap:<tag> info /opt/docker/gpos/xml/scap/ssg/content/ssg-dhi-gpos-ds.xml
 ```
 
 ```console
@@ -36,21 +36,22 @@ Stream: scap_org.open-scap_datastream_from_xccdf_all-resolved-xccdf-v3r2.xml
 Use the --profile option to obtain info about a given profile:
 
 ```console
-docker run --rm -it --entrypoint oscap dhi.io/openscap:<tag> info --profile <profile> <SCAP file>
+docker run --rm -it dhi.io/openscap:<tag> info --profile <profile> <SCAP file>
 ```
 
-To validate an OVAL or XCCDF file against its schema, use the oscap validate command and examine the exit code, for
-example:
+To evaluate content against a set of OVAL rules, use the oscap validate command and examine the exit code, for example:
 
 ```console
-docker run --rm -it --entrypoint oscap dhi.io/openscap:<tag> oval validate <SCAP file> && echo "ok" || echo "exit code = $? validation failure"
+docker run --rm -it -v $(pwd)/extra-content:/extra-content dhi.io/openscap:<tag> oval validate <SCAP file> && echo "ok" || echo "exit code = $? validation failure"
 ```
 
-Use the eval command to scan a system against a given profile.
+To customize evaluation even further you could mount the extra content to be evaluated, and customize the dictionary and
+STIG profile along with the output directories.
 
 ```console
 docker run --rm -it --entrypoint oscap dhi.io/openscap:<tag> \
   -v $(pwd)/out:/out \
+  -v $(pwd)/extra-content:/extra-content
   -v $(pwd)/stigs \
   xccdf eval --profile <profile> \
   --results /out/results.xml \
@@ -59,27 +60,72 @@ docker run --rm -it --entrypoint oscap dhi.io/openscap:<tag> \
   /stigs/<SCAP file>
 ```
 
-#### Running OpenSCAP on DHI images
+### Using the OpenSCAP Docker Hardened Image with DHI images
+
+Following are several sets of instructions that will help you scanning DHI images for compliance with all frameworks
+supporting oval rules, like for example STIG.
+
+#### Obtaining the DHI GPOS STIG Profile
+
+The DHI GPOS STIG Profile is can be obtained from the
+[OpenSCAP DHI](https://github.com/docker-hardened-images/catalog/blob/main/image/openscap/config/ssg-dhi-gpos-ds.xml)
+image at GitHub.
+
+#### Running OpenSCAP on a DHI image from registry
+
+Note: You need to use the `dev` variant for this functionality to work as it requires root access.
 
 You can use the oscap tool to evaluate the STIG posture on any of the DHI images. The OpenSCAP DHI image includes
-`oscap-docker` a Python utility that can be used to evaluate any running Docker container. You can point this tool to a
-running container, but if the image that you want to scan is not in running state then you can leverage image mounting,
-an experimental Docker feature that allows to mount a shell on top of an existing image. Once the shell is mounted,
-running a sleep command will make sure the container is running before running OpenSCAP.
+`oscap-docker` a Python utility that can be used to evaluate any Docker container or image. You can point this tool to a
+registry image and use an experimental Docker feature that allows to mount a shell on top of an existing image. This
+happens automatically if you invoke `oscap-docker` pointing to the image.
 
-Important: `oscap-docker` is only included in the `dev` variant of this DHI image as it does require root access to
-access the Docker unix socket.
+```console
+# The image must be pulled first
+docker pull dhi.io/airflow:3-fips
 
-Start by running the following command. Please make sure that you have pulled `busybox:uclibc` first.
+# Scan the image directly
+docker run --rm -it --pid=host -v "$HOME/.docker/run/docker.sock:/var/run/docker.sock" -v $(pwd)/out:/out --entrypoint oscap-docker dhi/openscap:<tag>-dev image dhi.io/airflow:3-fips xccdf eval --profile xccdf_dhi-gpos_profile_.check --results /out/oval-results.xml --report /out/compliance-report.html /opt/docker/gpos/xml/scap/ssg/content/ssg-dhi-gpos-ds.xml
+```
 
-```bash
+The above command scans the image against the DHI GPOS. You'll get an output like this:
+
+```console
+Creating a temporary container for the image...
+...
+Title   The operating system must prohibit user installation of
+system software without explicit privileged status.
+Rule    xccdf_mil.disa.stig_rule_SV-203716r982210_rule
+Ident   CCI-003980
+Result  pass
+
+Title   The operating system must include only approved
+trust anchors in trust stores or certificate stores managed by the
+organization.
+Rule    xccdf_mil.disa.stig_rule_SV-263659r982563_rule
+Ident   CCI-004909
+Result  pass
+
+Temporary container 61ac917501f0ed65f2c17abbb09bf8918db63764d7d78e0004852a335d2197ac cleaned
+Cleaning temporary extracted container...
+```
+
+A generated report will be available at `out/report.html` for you to browse. This report contains the evaluation results
+against the `Docker Hardened Image - Alpine 3.22/Debian 12/13 GPOS STIG Profile`.
+
+#### Running OpenSCAP on a DHI running container
+
+You can do the same technique on any running container. Below we use start the postgres FIPS image and mount busybox on
+top to run a sleep command immediately after. This allows us to have a latent container that we can scan:
+
+```console
 docker pull busybox:uclibc
 docker run --rm --name dhi_postgres_16-alpine3.22-fips -u 0:0 --mount type=image,source=busybox:uclibc,target=/busybox --entrypoint /busybox/bin/sleep dhi/postgres:16-alpine3.22-fips "infinite" &
 ```
 
 With the above command we have now the DHI image running sleep. We can now point DHI OpenSCAP to that container.
 
-```bash
+```console
 docker run --rm --pid=host -v "$HOME/.docker/run/docker.sock:/var/run/docker.sock" -v $(pwd)/out:/out dhi.io/openscap:<dev-tag> dhi_postgres_16-alpine3.22-fips
 ```
 
@@ -102,37 +148,14 @@ Rule    xccdf_._rule_V_263659
 Result  pass
 ```
 
-A generated report will be available at `out/report.html` for you to browse. This report contains the evaluation results
-against the `Docker Hardened Image - Alpine 3.22/Debian 12/13 GPOS STIG Profile`.
+#### Scanning a custom application built on top of a DHI image
 
-#### Obtaining the DHI GPOS STIG Profile
-
-The DHI GPOS STIG Profile is inside the image at can be easily obtained by extracting it from the image:
-
-```console
-docker create --name temp_container dhi.io/openscap:<tag>
-docker cp temp_container:opt/docker/gpos/xml/scap/ssg/content/ssg-dhi-gpos-ds.xml ./ssg-dhi-gpos-ds.xml
-docker rm temp_container
-```
-
-Or much simpler by taking advantage of the shell in the dev variant:
-
-```console
-mkdir stigs
-docker run --rm --entrypoint cat dhi.io/openscap:<dev-tag> /opt/docker/gpos/xml/scap/ssg/content/ssg-dhi-gpos-ds.xml > stigs/ssg-dhi-gpos-ds.xml
-```
-
-#### Running a specific STIG profile against a container image
-
-If you have got a STIG profile, like for example the one from the previous section, that you want to run on a container
-image we can follow the same procedure we executed earlier and take advantage of image mounting. This time we need to
-pass extra parameters so that oscap picks our local STIG profile (although in this example it will be the same).
-
-To make the example complete, first we will build an application on top of DHI's Python FIPS.
+Following with the above examples, we can download the DHI Stig profile and apply it to a custom application built on
+top of DHI. To make the example complete, first we will build an application on top of DHI's Python FIPS.
 
 Create a new directory and use the following Dockerfile to get started.
 
-```bash
+```Dockerfile
 # syntax=docker/dockerfile:1
 
 ## -----------------------------------------------------
@@ -204,6 +227,8 @@ Finally, run the following to execute the STIG profile that we downloaded earlie
 application that was just created.
 
 ```console
+mkdir -p out stigs
+wget https://raw.githubusercontent.com/docker-hardened-images/catalog/refs/heads/main/image/openscap/config/ssg-dhi-gpos-ds.xml -O stigs/ssg-dhi-gpos-ds.xml
 docker run --rm --pid=host \
            -v /var/run/docker.sock:/var/run/docker.sock \
            -v $(pwd)/out:/out \
@@ -242,6 +267,26 @@ Result  pass
 You can easily determine if the evaluation has passed or failed by looking at the report and find checks that have
 failed. For automated validation, inspecting the exit code of the docker run command is the most reliable way to find
 that there has been broken rules.
+
+#### Scanning a DHI image against other set of security rules
+
+DHI images or derivatives can be scanned against other set of rules following the same process described in the above
+examples. Simply replace the DHI security guide with your own file:
+
+```console
+docker run --rm --pid=host \
+           -v /var/run/docker.sock:/var/run/docker.sock \
+           -v $(pwd)/out:/out \
+           -v $(pwd)/stigs:/stigs \
+           --entrypoint oscap-docker \
+           dhi.io/openscap:<dev-tag> \
+           container my-running-app \
+           xccdf eval \
+           --profile xccdf_dhi-gpos_profile_.check \
+           --results /out/oval-results.xml \
+           --report /out/compliance-report.html \
+           /stigs/<SCAP File>
+```
 
 ## Non-hardened images vs Docker Hardened Images
 

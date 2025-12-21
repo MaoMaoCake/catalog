@@ -1,6 +1,11 @@
 #!/bin/bash
-
 set -e
+
+# Reexec as the mysql user if running as root.
+if [ "$(id -u)" -eq 0 ]; then
+	echo "ENTRYPOINT: Dropping root..."
+	exec gosu mysql docker-entrypoint.sh "$@"
+fi
 
 # Check if the first argument is mysqld (server mode)
 if [ "$1" = "mysqld" ]; then

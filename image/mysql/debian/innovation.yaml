@@ -18,6 +18,7 @@ dates:
     release: "2025-10-21"
 vars:
     ARCH: '#{ target.arch == "amd64" ? "x86_64" : "aarch64" }'
+    COMMIT_SHA: 056a391cdc1af9b17b5415aee243483d1bac532d
     DEBIAN_EPOCH_MAJOR_MINOR_VERSION: "9.5"
     DEBIAN_EPOCH_MAJOR_VERSION: "9"
     DEBIAN_EPOCH_VERSION: 9.5.0
@@ -40,55 +41,78 @@ contents:
           contents:
             packages:
                 - bash
+                - bison
+                - build-essential
+                - ca-certificates
+                - cmake
                 - coreutils
+                - diffutils
                 - gpg
                 - gpg-agent
                 - gzip
+                - libaio-dev
+                - libabsl-dev
+                - libboost-all-dev
+                - libncurses-dev
+                - libssl-dev
+                - libtirpc-dev
+                - libc-bin
+                - pkg-config
+                - sed
                 - tar
+                - wget
                 - xz-utils
+                - zlib1g-dev
             files:
-                - url: https://cdn.mysql.com/Downloads/MySQL-9.5/mysql-9.5.0-linux-glibc2.28-${ARCH}.tar.xz.asc
-                  path: ${source.dir}/sigs/mysql.tar.xz.asc
-                  uid: 0
-                  gid: 0
-                - url: https://cdn.mysql.com/Downloads/MySQL-9.5/mysql-9.5.0-linux-glibc2.28-${ARCH}.tar.xz
-                  path: ${source.dir}/mysql.tar.xz
+                - url: git+https://github.com/mysql/mysql-server#mysql-9.5.0
+                  checksum: 056a391cdc1af9b17b5415aee243483d1bac532d
+                  path: ${source.dir}/mysql
                   spdx:
                     name: mysql
                     version: 9.5.0
                     packages:
                         - name: mysql
-                          purl: pkg:dhi/mysql@9.5.0
+                          purl: pkg:github/mysql/mysql-server@9.5.0
                           license: GPL-2.0-only
                   uid: 0
                   gid: 0
           pipeline:
-            - name: install
+            - name: build
+              work-dir: ${source.dir}/mysql
               runs: |
                 set -eux -o pipefail
 
-                GNUPGHOME="$(mktemp -d)"
-                export GNUPGHOME
+                mkdir build && cd build
 
-                gpg --import "${source.dir}/key/mysql-key.asc"
-                gpg --batch --verify "${source.dir}/sigs/mysql.tar.xz.asc" mysql.tar.xz
+                CMAKE_FLAGS="-DCMAKE_INSTALL_PREFIX=${target.dir}/opt/mysql
+                  -DWITH_DEBUG=OFF
+                  -DWITH_UNIT_TESTS=OFF
+                  -DWITH_ARCHIVE_STORAGE_ENGINE=OFF
+                  -DWITH_BLACKHOLE_STORAGE_ENGINE=OFF
+                  -DWITH_FEDERATED_STORAGE_ENGINE=OFF
+                  -DWITH_EXAMPLE_STORAGE_ENGINE=OFF
+                  -DWITH_NDBCLUSTER_STORAGE_ENGINE=OFF
+                  -DWITH_ROUTER=OFF
+                  -DINSTALL_MYSQLTESTDIR=
+                  -DWITH_NDB=OFF"
 
-                mkdir -p "${target.dir}/opt/mysql-9.5.0"
-                tar -xvf mysql.tar.xz -C "${target.dir}/opt/mysql-9.5.0" --strip-components=1
-
-                if [ "${target.fips}" = "true" ]; then
-                  rm "${target.dir}/opt/mysql-9.5.0"/lib/private/libssl*
-                  rm "${target.dir}/opt/mysql-9.5.0"/lib/private/libcrypto*
+                # This is not an in later versions of Mysql
+                if [ "9.5" = "8.0" ]; then
+                  CMAKE_FLAGS="${CMAKE_FLAGS} -DWITH_BOOST=${source.dir}/boost"
                 fi
-          paths:
-            - type: file
-              path: ${source.dir}/key/mysql-key.asc
-              uid: 0
-              gid: 0
-              source: image/mysql/key/mysql-key.asc
+
+                cmake .. $CMAKE_FLAGS
+
+                make -j"$(nproc)"
+
+                make install
+            - name: strip
+              uses: strip@v1
+              with:
+                dir: ${target.dir}/opt/mysql/bin
           outputs:
-            - source: ${target.dir}/opt/mysql-9.5.0
-              target: /opt/mysql-9.5.0
+            - source: ${target.dir}/opt/mysql
+              target: /opt/mysql
               uid: 65532
               gid: 65532
             - source: /opt/docker/sbom/mysql
@@ -116,13 +140,8 @@ os-release:
     bug-report-url: https://docker.com/support/
 environment:
     MYSQLDATA: /var/lib/mysql
-    PATH: /opt/mysql-9.5.0/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+    PATH: /opt/mysql/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 paths:
-    - type: directory
-      path: /tmp
-      uid: 65532
-      gid: 65532
-      mode: "0755"
     - type: directory
       path: /var/lib/mysql-files
       uid: 65532

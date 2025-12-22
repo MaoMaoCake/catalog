@@ -19,6 +19,8 @@ platforms:
 vars:
     ARCH: '#{ target.arch == "amd64" ? "x64" : "aarch64" }'
     COMMIT_SHA: d1858919462342e8d7852ecfe3edb152e501028d
+    GOSU_REFERENCE: dhi/pkg-gosu:1.19-debian13@sha256:70bdd23b79275347618c96e0b88afbacf136378886d3932deeca323f5d180f95
+    GOSU_VERSION: "1.19"
     JRE_REF: dhi/eclipse-temurin:21.0.9.10-debian13@sha256:8be38a5a3942a69d6ac8a6040c54fb588b6fc29499fa44fec189d2438be4d6a8
     MAVEN_REF: dhi/maven:3.9.12-jdk21-debian13-dev@sha256:54dad2732e2c07f1377491e56c864c20635adf7ab2d60673a0e69455c3e1c947
     NEO4J_HOME: /var/lib/neo4j
@@ -76,6 +78,15 @@ contents:
                 set -eux -o pipefail
 
                 cp -R 5.26.19/bullseye/community/local-package ${target.dir}/startup
+            - name: patch entrypoint to use gosu instead of su-exec
+              work-dir: ${target.dir}/startup
+              runs: |
+                set -eux -o pipefail
+
+                # Replace su-exec with gosu in docker-entrypoint.sh
+                # su-exec syntax: su-exec user command args
+                # gosu syntax: gosu user command args (same syntax, so simple replacement works)
+                sed -i 's/su-exec/gosu/g' docker-entrypoint.sh
             - name: build
               work-dir: ${source.dir}/neo4j
               privileged: true
@@ -145,6 +156,11 @@ contents:
             - opt/**
           uid: 0
           gid: 0
+        - name: dhi/pkg-gosu:1.19-debian13@sha256:70bdd23b79275347618c96e0b88afbacf136378886d3932deeca323f5d180f95
+          includes:
+            - usr/local/sbin/gosu
+          uid: 0
+          gid: 0
 accounts:
     run-as: neo4j
     users:
@@ -170,7 +186,7 @@ environment:
     LC_ALL: en_US.UTF-8
     NEO4J_EDITION: community
     NEO4J_HOME: /var/lib/neo4j
-    PATH: /var/lib/neo4j/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+    PATH: /usr/local/sbin:/var/lib/neo4j/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 paths:
     - type: symlink
       path: /data

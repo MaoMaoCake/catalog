@@ -21,7 +21,7 @@ vars:
     SEMVER_MAJOR_VERSION: "1"
     SEMVER_VERSION: 1.27.5
     VERSION: 1.27.5
-    ZTUNNEL_REFERENCE: dhi/ztunnel:1.27.4-debian13@sha256:d756f15d4deaa571c660108b50cae9327b779b200eaeae6f3e5063b2de2220a7
+    ZTUNNEL_REFERENCE: dhi/ztunnel:1.27.5-debian13@sha256:a4ec17b19e418f9f7d8a9dcb689d8eb3073c0eb120ccc0124314b2795010799e
 contents:
     builds:
         - name: ztunnel
@@ -42,7 +42,7 @@ contents:
                     description: Docker Hardened Images Helm chart for ZTunnel
                     images:
                         - name: ztunnel
-                          ref: dhi/ztunnel:1.27.4-debian13@sha256:d756f15d4deaa571c660108b50cae9327b779b200eaeae6f3e5063b2de2220a7
+                          ref: dhi/ztunnel:1.27.5-debian13@sha256:a4ec17b19e418f9f7d8a9dcb689d8eb3073c0eb120ccc0124314b2795010799e
                     name: ztunnel-chart
                     notes: ${source.dir}/config/NOTES.txt
                     sourceUrl: https://github.com/istio/istio

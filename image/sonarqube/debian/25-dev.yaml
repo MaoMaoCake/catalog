@@ -8,16 +8,16 @@ image: dhi/sonarqube
 variant: dev
 tags:
     - 25-dev
-    - 25.11-dev
-    - 25.11.0-dev
+    - 25.12-dev
+    - 25.12.0-dev
     - 25-debian13-dev
-    - 25.11-debian13-dev
-    - 25.11.0-debian13-dev
+    - 25.12-debian13-dev
+    - 25.12.0-debian13-dev
 platforms:
     - linux/amd64
     - linux/arm64
 vars:
-    COMMIT_SHA: cf5ff316889d418d8a38334eb703ed253ca957a0
+    COMMIT_SHA: bd7a1254715e0df950e61d05c9a07cb1ba42552b
     GOSU_REFERENCE: dhi/pkg-gosu:1.19-debian13@sha256:70bdd23b79275347618c96e0b88afbacf136378886d3932deeca323f5d180f95
     GOSU_VERSION: "1.19"
     JAVA_HOME_PATH: /opt/java/openjdk
@@ -26,13 +26,13 @@ vars:
     JRE_REF: dhi/eclipse-temurin:17.0.17.10-debian13@sha256:db97574da6a2c7dd79c6ddcf5e7bca6d0b6a1d6dc15af35b49a4476d0eae2c0d
     MAVEN_REF: dhi/maven:3.9.12-jdk17-debian13-dev@sha256:f689c801f42ca21cf57e2d5dcdf08e0314458e86e8a117192cdc347d22a8033a
     NETTY_VERSION: 4.1.129.Final
-    SEMVER_MAJOR_MINOR_VERSION: "25.11"
+    SEMVER_MAJOR_MINOR_VERSION: "25.12"
     SEMVER_MAJOR_VERSION: "25"
-    SEMVER_VERSION: 25.11.0
+    SEMVER_VERSION: 25.12.0
     SONARQUBE_DOCKER_SHA: 2d77476619099afc3df0129af7ebbf372fb72336
     SONARQUBE_DOCKER_VERSION: 25.11.0.114957
     SONARQUBE_HOME: /opt/sonarqube
-    VERSION: 25.11.0.114957
+    VERSION: 25.12.0.117093
 contents:
     packages:
         - '!gawk'
@@ -64,15 +64,15 @@ contents:
                 - jq
                 - grep
             files:
-                - url: git+https://github.com/SonarSource/sonarqube.git#25.11.0.114957
-                  checksum: cf5ff316889d418d8a38334eb703ed253ca957a0
+                - url: git+https://github.com/SonarSource/sonarqube.git#25.12.0.117093
+                  checksum: bd7a1254715e0df950e61d05c9a07cb1ba42552b
                   path: ${source.dir}/sonarqube
                   spdx:
                     name: sonarqube
-                    version: 25.11.0.114957
+                    version: 25.12.0.117093
                     packages:
                         - name: sonarqube
-                          purl: pkg:dhi/sonarqube@25.11.0.114957
+                          purl: pkg:dhi/sonarqube@25.12.0.117093
                           license: LGPL-3.0-only
                   uid: 0
                   gid: 0
@@ -256,7 +256,7 @@ environment:
     LANG: en_US.UTF-8
     LANGUAGE: en_US:en
     LC_ALL: en_US.UTF-8
-    SONAR_VERSION: 25.11.0.114957
+    SONAR_VERSION: 25.12.0.117093
     SONARQUBE_HOME: /opt/sonarqube
     SQ_DATA_DIR: /opt/sonarqube/data
     SQ_EXTENSIONS_DIR: /opt/sonarqube/extensions
@@ -307,7 +307,7 @@ paths:
       path: /opt/sonarqube/lib/sonarqube.jar
       uid: 0
       gid: 0
-      source: /opt/sonarqube/lib/sonar-application-25.11-SNAPSHOT.jar
+      source: /opt/sonarqube/lib/sonar-application-25.12-SNAPSHOT.jar
 annotations:
     org.opencontainers.image.description: A minimal SonarQube image.
     org.opencontainers.image.licenses: GNU Lesser General Public License v3.0

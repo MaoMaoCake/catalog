@@ -4,4 +4,4 @@ metadata:
   featured: false
   home-url: https://github.com/kubernetes-csi/external-attacher
   categories:
-    - storage
+    - databases-and-storage

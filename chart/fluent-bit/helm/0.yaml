@@ -18,7 +18,7 @@ vars:
     DHI_PREFIX: ""
     DHI_REGISTRY: dhi.io
     DHI_SKIP_CONTEXT_COPY: "true"
-    FLUENT_BIT_REFERENCE: dhi/fluent-bit:4.2.1-debian13@sha256:fbd458eb8405684754d7e52a9ebfcb441c4f4ef4687312c296d903341bcdca79
+    FLUENT_BIT_REFERENCE: dhi/fluent-bit:4.2.2-debian13@sha256:175308cb29a9ecfb5913b33df5e0a3cbac21f6190be730d6bcd679d4b4835969
     HELM_REFERENCE: dhi/helm:3.19.4-debian13-dev@sha256:705dc44463a159c5163cc790e19afd3ca2071d63a5c3c7951e4173e1cbb14f0a
     SEMVER_MAJOR_MINOR_VERSION: "0.54"
     SEMVER_MAJOR_VERSION: "0"
@@ -52,7 +52,7 @@ contents:
                     description: Docker Hardened Images Helm chart for Fluent Bit
                     images:
                         - name: fluent-bit
-                          ref: dhi/fluent-bit:4.2.1-debian13@sha256:fbd458eb8405684754d7e52a9ebfcb441c4f4ef4687312c296d903341bcdca79
+                          ref: dhi/fluent-bit:4.2.2-debian13@sha256:175308cb29a9ecfb5913b33df5e0a3cbac21f6190be730d6bcd679d4b4835969
                         - name: configmap-reload
                           ref: dhi/configmap-reload:0.15.0-debian13@sha256:460342e1f209a4ec9f64e69b2393c2f83b4614e9f24ab3eea8abc321291e3be0
                         - name: busybox

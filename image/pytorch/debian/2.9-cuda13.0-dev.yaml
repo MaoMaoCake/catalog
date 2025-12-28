@@ -21,7 +21,7 @@ vars:
     CUDA_MAJOR_VERSION: "13"
     CUDA_MINOR_VERSION: "0"
     CUDA_PATH: cu130
-    CUDA_REFERENCE: nvidia/cuda:13.0.0-cudnn-devel-ubuntu22.04@sha256:efcdb4e63d10d619da190377ad0ff877f34751816c014a6045bb62d6c7712dbb
+    CUDA_REFERENCE: nvidia/cuda:13.0.2-cudnn-devel-ubuntu22.04@sha256:36c66a3ad4608580cf937f7ec3add9323a610956cfe8c9e2f99ef2ea0c896f01
     CUDNN_VERSION: "9"
     DEBIAN_VERSION: "13"
     LIBPNG_REFERENCE: dhi/pkg-libpng:1.6.53-debian13@sha256:c22c905dde05f2a17dbb51bb3678c1c0acfd8af8ded25db0419f47e2359c70e7
@@ -90,7 +90,7 @@ contents:
                   uid: 0
                   gid: 0
             artifacts:
-                - name: nvidia/cuda:13.0.0-cudnn-devel-ubuntu22.04@sha256:efcdb4e63d10d619da190377ad0ff877f34751816c014a6045bb62d6c7712dbb
+                - name: nvidia/cuda:13.0.2-cudnn-devel-ubuntu22.04@sha256:36c66a3ad4608580cf937f7ec3add9323a610956cfe8c9e2f99ef2ea0c896f01
                   includes:
                     - usr/local/cuda-*
                   uid: 0
@@ -171,7 +171,7 @@ contents:
             - usr/**
           uid: 0
           gid: 0
-        - name: nvidia/cuda:13.0.0-cudnn-devel-ubuntu22.04@sha256:efcdb4e63d10d619da190377ad0ff877f34751816c014a6045bb62d6c7712dbb
+        - name: nvidia/cuda:13.0.2-cudnn-devel-ubuntu22.04@sha256:36c66a3ad4608580cf937f7ec3add9323a610956cfe8c9e2f99ef2ea0c896f01
           includes:
             - NGC-DL-CONTAINER-LICENSE
             - usr/local/cuda-13.0

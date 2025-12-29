@@ -18,7 +18,7 @@ This Docker Hardened Jenkins image includes:
 - Eclipse Temurin JRE for running Jenkins
 - tini as the init process for proper signal handling
 - Pre-configured agent communication on port 50000
-- Common utilities (bash, git, gnupg, openssh-client) for Jenkins operations
+- Common utilities (bash, git, openssh-client) for Jenkins operations
 
 ## Start a Jenkins image
 

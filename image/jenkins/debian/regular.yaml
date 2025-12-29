@@ -47,7 +47,6 @@ contents:
     - fontconfig
     - fonts-dejavu-core
     - git
-    - gnupg
     - openssh-client
     - procps
     - sed

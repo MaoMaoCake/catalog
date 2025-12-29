@@ -25,7 +25,7 @@ vars:
   PIP_PYYAML_VERSION: 6.0.3
   PYTHON_DEV_REFERENCE: dhi/python:3.12.12-debian13-dev@sha256:3182f9f0ec2bea938af32387c1e7a367f57c7c1a09fa4df86ef880f99aae0eb8
   PYTHON_REFERENCE: dhi/python:3.12.12-debian13@sha256:1269127ef2c19f4ebd94e95996ba085f5e8f36cf955163261ab735ff3ab779c2
-  PYTORCH_CUDA_VERSION: 12.9.0
+  PYTORCH_CUDA_VERSION: 12.9.1
   PYTORCH_CUDNN_VERSION: 9.10.2.21
   PYTORCH_PYTHON_VERSION: "3.12"
   TAG_CUDA_VERSION: "12.9"
@@ -194,7 +194,7 @@ os-release:
   home-url: https://docker.com/products/hardened-images/
   bug-report-url: https://docker.com/support/
 environment:
-  CUDA_VERSION: 12.9.0
+  CUDA_VERSION: 12.9.1
   DEBIAN_FRONTEND: noninteractive
   LD_LIBRARY_PATH: /usr/local/nvidia/lib:/usr/local/nvidia/lib64
   LIBRARY_PATH: /usr/local/cuda/lib64/stubs

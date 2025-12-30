@@ -6,22 +6,22 @@ variant: dev
 tags:
   - 0-dev
   - 0.9-dev
-  - 0.9.20-dev
+  - 0.9.21-dev
   - 0-debian13-dev
   - 0.9-debian13-dev
-  - 0.9.20-debian13-dev
+  - 0.9.21-debian13-dev
 platforms:
   - linux/amd64
   - linux/arm64
 vars:
   BASE_DIGEST: sha256:d46a757d9ec2c6f6d9b7c4cdcfdb9bc65c9614c53ee28e0f489ed844fd2b79c8
   BASE_TAG: 20250419-glibc-debian13
-  COMMIT_SHA: 765a967236ffd71e6f82e794adf4165fedc2541f
+  COMMIT_SHA: 0dc9556adb488469ee807e360768ed6b5a6d0488
   RUST_REFERENCE: dhi/rust:1.92.0-debian13-sfw-dev@sha256:1f341e489d058262fe220369c592a953aaa032e99c5bf1261a1856524eee6cc8
   SEMVER_MAJOR_MINOR_VERSION: "0.9"
   SEMVER_MAJOR_VERSION: "0"
-  SEMVER_VERSION: 0.9.20
-  VERSION: 0.9.20
+  SEMVER_VERSION: 0.9.21
+  VERSION: 0.9.21
 contents:
   packages:
     - '!base-files'
@@ -54,15 +54,15 @@ contents:
           - libssl-dev
           - pkg-config
         files:
-          - url: git+https://github.com/astral-sh/uv.git#0.9.20
-            checksum: 765a967236ffd71e6f82e794adf4165fedc2541f
-            path: ${source.dir}/uv-765a967236ffd71e6f82e794adf4165fedc2541f
+          - url: git+https://github.com/astral-sh/uv.git#0.9.21
+            checksum: 0dc9556adb488469ee807e360768ed6b5a6d0488
+            path: ${source.dir}/uv-0dc9556adb488469ee807e360768ed6b5a6d0488
             spdx:
               name: uv
-              version: 0.9.20
+              version: 0.9.21
               packages:
                 - name: uv
-                  purl: pkg:dhi/uv@0.9.20
+                  purl: pkg:dhi/uv@0.9.21
                   license: MIT
             uid: 0
             gid: 0
@@ -74,18 +74,18 @@ contents:
 
             cargo install cargo-auditable cargo-audit
         - name: build
-          work-dir: ${source.dir}/uv-765a967236ffd71e6f82e794adf4165fedc2541f
+          work-dir: ${source.dir}/uv-0dc9556adb488469ee807e360768ed6b5a6d0488
           privileged: true
           runs: |
             set -eux -o pipefail
 
             cargo auditable build --locked --release
       outputs:
-        - source: ${source.dir}/uv-765a967236ffd71e6f82e794adf4165fedc2541f/target/release/uv
+        - source: ${source.dir}/uv-0dc9556adb488469ee807e360768ed6b5a6d0488/target/release/uv
           target: /usr/local/bin/uv
           uid: 0
           gid: 0
-        - source: ${source.dir}/uv-765a967236ffd71e6f82e794adf4165fedc2541f/target/release/uvx
+        - source: ${source.dir}/uv-0dc9556adb488469ee807e360768ed6b5a6d0488/target/release/uvx
           target: /usr/local/bin/uvx
           uid: 0
           gid: 0
@@ -139,7 +139,7 @@ os-release:
 work-dir: /io
 environment:
   DEBIAN_FRONTEND: noninteractive
-  UV_VERSION: 0.9.20
+  UV_VERSION: 0.9.21
 paths:
   - type: directory
     path: /io

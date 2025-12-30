@@ -18,8 +18,8 @@ vars:
   BASE_TAG: 20250419-glibc-debian13
   COMMIT_SHA: 0ad13d78133fcb1045f0b9f5fee11574a0d63bb2
   GOLANG_REFERENCE: dhi/golang:1.24.11-debian13-dev@sha256:3e717c75bdd2e547755fc90963578c5424b77243f4c35f97ac025ca783a41b6a
-  GRPC_HEALTH_PROBE_COMMIT_SHA: babd593ebc145893203c39100f6d2f4152318636
-  GRPC_HEALTH_PROBE_VERSION: 0.4.42
+  GRPC_HEALTH_PROBE_COMMIT_SHA: 569c97609025c2de9fc7c01fdcd3959f8c1d425e
+  GRPC_HEALTH_PROBE_VERSION: 0.4.43
   SEMVER_MAJOR_MINOR_VERSION: "1.11"
   SEMVER_MAJOR_VERSION: "1"
   SEMVER_VERSION: 1.11.2
@@ -32,15 +32,15 @@ contents:
       uses: dhi.io/golang:1.24.11-debian13-dev@sha256:3e717c75bdd2e547755fc90963578c5424b77243f4c35f97ac025ca783a41b6a
       contents:
         files:
-          - url: git+https://github.com/grpc-ecosystem/grpc-health-probe.git#v0.4.42
-            checksum: babd593ebc145893203c39100f6d2f4152318636
+          - url: git+https://github.com/grpc-ecosystem/grpc-health-probe.git#v0.4.43
+            checksum: 569c97609025c2de9fc7c01fdcd3959f8c1d425e
             path: /go/src/github.com/grpc-ecosystem/grpc-health-probe
             spdx:
               name: grpc-health-probe
-              version: 0.4.42
+              version: 0.4.43
               packages:
                 - name: grpc-health-probe
-                  purl: pkg:golang/github.com/grpc-ecosystem/grpc-health-probe@0.4.42
+                  purl: pkg:golang/github.com/grpc-ecosystem/grpc-health-probe@0.4.43
                   license: Apache-2.0
             uid: 0
             gid: 0
@@ -52,7 +52,7 @@ contents:
             ldflags:
               - -s
               - -w
-              - -X main.versionTag=0.4.42
+              - -X main.versionTag=0.4.43
             output: ${target.dir}/usr/local/bin/grpc_health_probe
             packages: ./main.go
         - name: tests

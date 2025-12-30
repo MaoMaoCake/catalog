@@ -64,7 +64,6 @@ contents:
         - name: update go dependencies
           uses: go/bump@v1
           work-dir: /go/src/github.com/thanos-io/thanos
-          privileged: true
           with:
             deps:
               - github.com/go-viper/mapstructure/v2@v2.4.0

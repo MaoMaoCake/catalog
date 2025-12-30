@@ -5,11 +5,11 @@ image: dhi.io/temporalio-admin-tools
 variant: runtime
 tags:
   - "1.28"
-  - 1.28.1
+  - 1.28.2
   - 1.28-debian13
-  - 1.28.1-debian13
-  - 1.28.1-cli-1.5.1
-  - 1.28.1-cli-1.5.1-debian13
+  - 1.28.2-debian13
+  - 1.28.2-cli-1.5.1
+  - 1.28.2-cli-1.5.1-debian13
 platforms:
   - linux/amd64
   - linux/arm64
@@ -17,7 +17,7 @@ vars:
   CLI_VERSION: 1.5.1
   DEBIAN_EPOCH_MAJOR_MINOR_VERSION: "1.28"
   DEBIAN_EPOCH_MAJOR_VERSION: "1"
-  DEBIAN_EPOCH_VERSION: 1.28.1
+  DEBIAN_EPOCH_VERSION: 1.28.2
   DEBIAN_VERSION: "13"
   PYTHON_DIGEST_BUILD: sha256:3182f9f0ec2bea938af32387c1e7a367f57c7c1a09fa4df86ef880f99aae0eb8
   PYTHON_DIGEST_FINAL: sha256:1269127ef2c19f4ebd94e95996ba085f5e8f36cf955163261ab735ff3ab779c2
@@ -25,10 +25,10 @@ vars:
   PYTHON_VERSION_FINAL: 3.12.12
   SEMVER_MAJOR_MINOR_VERSION: "1.28"
   SEMVER_MAJOR_VERSION: "1"
-  SEMVER_VERSION: 1.28.1
-  TEMPORALIO_SERVER_DIGEST: sha256:ea92396bdf6fe7365dbff138b26e96d2b9cb4470d4a7e862d6ee24f9e215324a
+  SEMVER_VERSION: 1.28.2
+  TEMPORALIO_SERVER_DIGEST: sha256:b4542dfe9a125c1f2b0d32ce7166e10eb00a2ce2362890e9e6f66a545581de69
   VARIANT_SUFFIX: ""
-  VERSION: 1.28.1
+  VERSION: 1.28.2
 contents:
   packages:
     - bash
@@ -46,7 +46,7 @@ contents:
           - bash
           - coreutils
         artifacts:
-          - name: dhi.io/temporalio-server:1.28.1-debian13@sha256:ea92396bdf6fe7365dbff138b26e96d2b9cb4470d4a7e862d6ee24f9e215324a
+          - name: dhi.io/temporalio-server:1.28.2-debian13@sha256:b4542dfe9a125c1f2b0d32ce7166e10eb00a2ce2362890e9e6f66a545581de69
             includes:
               - usr/local/bin/temporal
             uid: 0
@@ -131,7 +131,7 @@ contents:
           uid: 0
           gid: 0
   artifacts:
-    - name: dhi.io/temporalio-server:1.28.1-debian13@sha256:ea92396bdf6fe7365dbff138b26e96d2b9cb4470d4a7e862d6ee24f9e215324a
+    - name: dhi.io/temporalio-server:1.28.2-debian13@sha256:b4542dfe9a125c1f2b0d32ce7166e10eb00a2ce2362890e9e6f66a545581de69
       includes:
         - etc/temporal/schema/**
         - usr/local/bin/tdbg

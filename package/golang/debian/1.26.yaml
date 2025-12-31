@@ -1,0 +1,114 @@
+# syntax=dhi.io/build:2-debian13
+
+image: dhi.io/pkg-golang
+variant: runtime
+tags:
+  - 1.26rc1
+  - 1.26rc1-debian13
+platforms:
+  - linux/amd64
+  - linux/arm64
+vars:
+  COMMIT: c599a8f2385849a225d02843b3c6389dbfc5aa69
+  GO_REFERENCE: dhi/pkg-golang:1.25.5-debian13@sha256:4d7f7ee583145d4ba329745f4a2d0ea4683e0954c1a59dd3485eccdc9816fbb4
+  VERSION: 1.26rc1
+contents:
+  packages:
+    - '!base-files'
+  builds:
+    - name: golang
+      contents:
+        packages:
+          - bash
+          - coreutils
+          - findutils
+          - build-essential
+          - binutils
+          - grep
+          - sed
+          - git
+        files:
+          - url: git+https://github.com/golang/go.git#go1.26rc1
+            checksum: c599a8f2385849a225d02843b3c6389dbfc5aa69
+            path: ${source.dir}/go
+            spdx:
+              name: golang
+              version: 1.26rc1
+              packages:
+                - name: golang
+                  purl: pkg:dhi/golang@1.26rc1
+                  license: BSD-3-Clause
+            uid: 0
+            gid: 0
+        artifacts:
+          - name: dhi.io/pkg-golang:1.25.5-debian13@sha256:4d7f7ee583145d4ba329745f4a2d0ea4683e0954c1a59dd3485eccdc9816fbb4
+            includes:
+              - usr/local/go
+            uid: 0
+            gid: 0
+      pipeline:
+        - name: install
+          work-dir: ${source.dir}/go/src
+          runs: |
+            set -eux -o pipefail
+
+            export GOROOT_BOOTSTRAP=/usr/local/go
+
+            ./make.bash -v
+
+            cd "${source.dir}/go"
+
+            rm -rf .git .gitattributes .github .gitignore
+            rm -rf pkg/obj
+            rm -rf pkg/bootstrap
+            rm -rf pkg/tool/*/api
+            rm -rf pkg/tool/*/dist*
+            rm -rf pkg/*/cmd
+            rm -rf pkg/tool/*/go_bootstrap
+            rm -rf src/cmd/dist
+      outputs:
+        - source: /opt/docker/sbom
+          target: /opt/docker/sbom
+          uid: 0
+          gid: 0
+        - source: /src/go
+          target: /usr/local/go
+          uid: 0
+          gid: 0
+accounts:
+  root: true
+  run-as: root
+os-release:
+  name: Docker Hardened Images (Debian)
+  id: debian
+  version-id: "13"
+  version-codename: trixie
+  pretty-name: Docker Hardened Images/Debian GNU/Linux 13 (trixie)
+  home-url: https://docker.com/products/hardened-images/
+  bug-report-url: https://docker.com/support/
+environment:
+  GOLANG_VERSION: 1.26rc1
+  GOPATH: /go
+  GOTOOLCHAIN: local
+  PATH: /go/bin:/usr/local/go/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+paths:
+  - type: directory
+    path: /tmp
+    uid: 0
+    gid: 0
+tests:
+  - name: Test golang version
+    commands:
+      - docker run --rm ${DHI_TEST_IMAGE} go version
+    exit-code: 0
+    output: go1.26rc1
+  - name: Test golang version
+    commands:
+      - docker run --rm ${DHI_TEST_IMAGE} go env
+    exit-code: 0
+    output: GOPATH='/go'
+  - name: Test golang telemetry
+    commands:
+      - docker run --rm ${DHI_TEST_IMAGE} go telemetry
+    exit-code: 0
+    output: local

@@ -31,6 +31,7 @@ contents:
       contents:
         packages:
           - bash
+          - gzip
         files:
           - url: git+https://github.com/apigee-internal/microgateway.git#v3.3.8
             checksum: 899ab34fdc6f84ee69b232ab27e0ad4524ea42c8
@@ -44,6 +45,10 @@ contents:
                   license: Apache-2.0
             uid: 0
             gid: 0
+          - url: https://registry.npmjs.org/qs/-/qs-6.14.1.tgz
+            path: ${source.dir}/qs-6.14.1.tgz
+            uid: 0
+            gid: 0
       pipeline:
         - name: install dependencies
           work-dir: ${source.dir}/edgemicro
@@ -52,12 +57,24 @@ contents:
             set -eux -o pipefail
 
             npm install --omit=dev
-        - name: patch
-          uses: npm/patch@v1
+        - name: patch nested qs packages
+          work-dir: ${source.dir}/edgemicro
           privileged: true
-          with:
-            npm-root: ${source.dir}/edgemicro
-            patches: ${source.dir}/npm-patches.json
+          runs: |
+            set -eux -o pipefail
+
+            # Extract fixed qs version (downloaded in files section)
+            mkdir -p /tmp/qs-fix
+            tar -xzf ${source.dir}/qs-6.14.1.tgz -C /tmp/qs-fix
+
+            # Find and replace ALL qs packages in node_modules
+            find node_modules -type d -name "qs" -print0 | while IFS= read -r -d '' qs_dir; do
+              echo "Replacing $qs_dir"
+              rm -rf "$qs_dir"
+              cp -r /tmp/qs-fix/package "$qs_dir"
+            done
+
+            rm -rf /tmp/qs-fix
         - name: create config
           work-dir: ${source.dir}/edgemicro
           runs: |
@@ -72,12 +89,6 @@ contents:
             set -eux -o pipefail
 
             npm install -g
-      paths:
-        - type: file
-          path: /src/npm-patches.json
-          uid: 0
-          gid: 0
-          source: image/apigee-microgateway/patch/npm-patches.json
       outputs:
         - source: /opt/nodejs/node-v22.21.1/bin/edgemicro
           target: /opt/nodejs/node-v22.21.1/bin/edgemicro

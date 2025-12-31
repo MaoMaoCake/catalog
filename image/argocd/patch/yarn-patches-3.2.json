@@ -18,5 +18,10 @@
     "package": "redoc/**/js-yaml",
     "dev": false,
     "version": "4.1.1"
+  },
+  {
+    "package": "qs",
+    "dev": false,
+    "version": "6.14.1"
   }
 ]

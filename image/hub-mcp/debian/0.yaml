@@ -1,4 +1,4 @@
-# syntax=dhi.io/build:1-debian13
+# syntax=dhi.io/build:2-debian13
 
 name: Docker Hub MCP 0.x
 image: dhi.io/hub-mcp
@@ -42,6 +42,14 @@ contents:
             uid: 0
             gid: 0
       pipeline:
+        - name: bump
+          uses: npm/bump@v1
+          privileged: true
+          environment:
+            PATH: /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+          with:
+            bumps: ${source.dir}/patch/npm-bumps.json
+            npm-root: ${source.dir}/hub-mcp-98cf1b9cbec64316ea2b465462468a2d2204a406
         - name: install and build
           work-dir: ${source.dir}/hub-mcp-98cf1b9cbec64316ea2b465462468a2d2204a406
           privileged: true
@@ -55,6 +63,12 @@ contents:
             # prune to production deps only
             rm -rf node_modules
             npm ci --omit=dev --ignore-scripts
+      paths:
+        - type: file
+          path: ${source.dir}/patch/npm-bumps.json
+          uid: 0
+          gid: 0
+          source: image/hub-mcp/patch/npm-bumps.json
       outputs:
         - source: ${source.dir}/hub-mcp-98cf1b9cbec64316ea2b465462468a2d2204a406/node_modules
           target: /app/node_modules

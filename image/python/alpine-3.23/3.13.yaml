@@ -1,11 +1,11 @@
-# syntax=dhi.io/build:1-alpine3.22
+# syntax=dhi.io/build:2-alpine3.23
 
-name: Python 3.13.x (dev)
+name: Python 3.13.x
 image: dhi.io/python
-variant: dev
+variant: runtime
 tags:
-  - 3.13-alpine3.22-dev
-  - 3.13.11-alpine3.22-dev
+  - 3.13-alpine3.23
+  - 3.13.11-alpine3.23
 platforms:
   - linux/amd64
   - linux/arm64
@@ -13,29 +13,24 @@ dates:
   release: "2024-10-07"
   end-of-life: "2029-10-31"
 vars:
-  PKG_PYTHON_REFERENCE: dhi/pkg-python:3.13.11-alpine3.22@sha256:2e04619dfe2c99c002657e565b5bdce05210574f6228428c70f5dd9401017ecd
+  PKG_PYTHON_REFERENCE: dhi/pkg-python:3.13.11-alpine3.23@sha256:83920f7ead8e532aa701c6ad2a4f41e01ffd77e80ffb2aff05da5e0869b75215
   PYTHON_MAJOR_MINOR_VERSION: "3.13"
   PYTHON_MAJOR_VERSION: "3"
   PYTHON_VERSION: 3.13.11
   VERSION: 3.13.11
 contents:
   repositories:
-    - https://dl-cdn.alpinelinux.org/alpine/v3.22/main
-    - https://dl-cdn.alpinelinux.org/alpine/v3.22/community
+    - https://dl-cdn.alpinelinux.org/alpine/v3.23/main
+    - https://dl-cdn.alpinelinux.org/alpine/v3.23/community
   packages:
     - alpine-baselayout-data
-    - apk-tools
-    - busybox
     - bzip2
     - ca-certificates-bundle
     - expat
-    - gcc
     - gdbm
     - libffi
-    - libffi-dev
     - mpdecimal
     - musl
-    - musl-dev
     - ncurses
     - openssl
     - readline
@@ -43,14 +38,13 @@ contents:
     - tzdata
     - zlib
   artifacts:
-    - name: dhi.io/pkg-python:3.13.11-alpine3.22@sha256:2e04619dfe2c99c002657e565b5bdce05210574f6228428c70f5dd9401017ecd
+    - name: dhi.io/pkg-python:3.13.11-alpine3.23@sha256:83920f7ead8e532aa701c6ad2a4f41e01ffd77e80ffb2aff05da5e0869b75215
       includes:
         - opt/**
       uid: 0
       gid: 0
 accounts:
-  root: true
-  run-as: root
+  run-as: nonroot
   users:
     - name: nonroot
       uid: 65532
@@ -63,8 +57,8 @@ accounts:
 os-release:
   name: Docker Hardened Images (Alpine)
   id: alpine
-  version-id: "3.22"
-  pretty-name: Docker Hardened Images/Alpine Linux v3.22
+  version-id: "3.23"
+  pretty-name: Docker Hardened Images/Alpine Linux v3.23
   home-url: https://docker.com/products/hardened-images/
   bug-report-url: https://docker.com/support/
 environment:
@@ -91,11 +85,6 @@ tests:
     exit-code: 0
   - name: Run testcontainers basic tests
     directory: test/go-testing/base
-    commands:
-      - go test . -count=1 -v
-    exit-code: 0
-  - name: Run APK package manager tests
-    directory: test/go-testing/package_manager
     commands:
       - go test . -count=1 -v
     exit-code: 0

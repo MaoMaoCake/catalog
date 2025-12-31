@@ -114,6 +114,17 @@ environment:
   PATH: /opt/socket/bin:/opt/python/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
   PYTHON_VERSION: 3.11.14
   SSL_CERT_FILE: /etc/ssl/certs/ca-certificates.crt
+paths:
+  - type: directory
+    path: /tmp
+    uid: 65532
+    gid: 65532
+    mode: "1777"
+  - type: directory
+    path: /tmp
+    uid: 65532
+    gid: 65532
+    mode: "1777"
 annotations:
   org.opencontainers.image.description: A minimal Python image
   org.opencontainers.image.licenses: PSF-2.0

@@ -1,31 +1,30 @@
-# syntax=dhi.io/build:1-alpine3.22
+# syntax=dhi.io/build:2-alpine3.23
 
-name: Python 3.14.x / Socket Firewall (sfw, dev)
+name: Python 3.13.x / Socket Firewall (sfw, dev)
 image: dhi.io/python
 variant: dev
 flavor: sfw
 tags:
-  - 3-alpine3.22-sfw-dev
-  - 3.14-alpine3.22-sfw-dev
-  - 3.14.2-alpine3.22-sfw-dev
+  - 3.13-alpine3.23-sfw-dev
+  - 3.13.11-alpine3.23-sfw-dev
 platforms:
   - linux/amd64
   - linux/arm64
 dates:
-  release: "2025-10-07"
-  end-of-life: "2030-10-31"
+  release: "2024-10-07"
+  end-of-life: "2029-10-31"
 vars:
-  PKG_PYTHON_REFERENCE: dhi/pkg-python:3.14.2-alpine3.22@sha256:a58843e3bd062e17d53b9d4713ea8bd29e82f87396eabae71cff0b56b670dbe1
-  PYTHON_MAJOR_MINOR_VERSION: "3.14"
+  PKG_PYTHON_REFERENCE: dhi/pkg-python:3.13.11-alpine3.23@sha256:83920f7ead8e532aa701c6ad2a4f41e01ffd77e80ffb2aff05da5e0869b75215
+  PYTHON_MAJOR_MINOR_VERSION: "3.13"
   PYTHON_MAJOR_VERSION: "3"
-  PYTHON_VERSION: 3.14.2
+  PYTHON_VERSION: 3.13.11
   SFW_ARCH: '#{ target.arch == "amd64" ? "x86_64" : "arm64" }'
   SFW_VERSION: 1.5.3
-  VERSION: 3.14.2
+  VERSION: 3.13.11
 contents:
   repositories:
-    - https://dl-cdn.alpinelinux.org/alpine/v3.22/main
-    - https://dl-cdn.alpinelinux.org/alpine/v3.22/community
+    - https://dl-cdn.alpinelinux.org/alpine/v3.23/main
+    - https://dl-cdn.alpinelinux.org/alpine/v3.23/community
   packages:
     - alpine-baselayout-data
     - apk-tools
@@ -52,8 +51,8 @@ contents:
     - name: sfw
       contents:
         repositories:
-          - https://dl-cdn.alpinelinux.org/alpine/v3.22/main
-          - https://dl-cdn.alpinelinux.org/alpine/v3.22/community
+          - https://dl-cdn.alpinelinux.org/alpine/v3.23/main
+          - https://dl-cdn.alpinelinux.org/alpine/v3.23/community
         packages:
           - busybox
         files:
@@ -86,7 +85,7 @@ contents:
           uid: 0
           gid: 0
   artifacts:
-    - name: dhi.io/pkg-python:3.14.2-alpine3.22@sha256:a58843e3bd062e17d53b9d4713ea8bd29e82f87396eabae71cff0b56b670dbe1
+    - name: dhi.io/pkg-python:3.13.11-alpine3.23@sha256:83920f7ead8e532aa701c6ad2a4f41e01ffd77e80ffb2aff05da5e0869b75215
       includes:
         - opt/**
       uid: 0
@@ -106,14 +105,14 @@ accounts:
 os-release:
   name: Docker Hardened Images (Alpine)
   id: alpine
-  version-id: "3.22"
-  pretty-name: Docker Hardened Images/Alpine Linux v3.22
+  version-id: "3.23"
+  pretty-name: Docker Hardened Images/Alpine Linux v3.23
   home-url: https://docker.com/products/hardened-images/
   bug-report-url: https://docker.com/support/
 environment:
   LD_LIBRARY_PATH: /opt/python/lib
   PATH: /opt/socket/bin:/opt/python/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
-  PYTHON_VERSION: 3.14.2
+  PYTHON_VERSION: 3.13.11
   SSL_CERT_FILE: /etc/ssl/certs/ca-certificates.crt
 paths:
   - type: directory

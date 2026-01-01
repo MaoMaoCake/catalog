@@ -242,6 +242,14 @@ contents:
             path: ${source.dir}/patches/CVE-2025-11495.patch
             uid: 0
             gid: 0
+          - url: https://sourceware.org/git?p=binutils-gdb.git;a=patch;h=12ef7d5b7b02d0023db645d86eb9d0797bc747fe
+            path: ${source.dir}/patches/CVE-2025-11839.patch
+            uid: 0
+            gid: 0
+          - url: https://sourceware.org/git?p=binutils-gdb.git;a=patch;h=f6b0f53a36820da91eadfa9f466c22f92e4256e0
+            path: ${source.dir}/patches/CVE-2025-11840.patch
+            uid: 0
+            gid: 0
       pipeline:
         - name: verify
           uses: gpg/verify@v1
@@ -267,6 +275,8 @@ contents:
             patch -p1 < "${source.dir}/patches/CVE-2025-11414.patch"
             patch -p1 < "${source.dir}/patches/CVE-2025-11494.patch"
             patch -p1 < "${source.dir}/patches/CVE-2025-11495.patch"
+            patch -p1 < "${source.dir}/patches/CVE-2025-11839.patch"
+            patch -p1 < "${source.dir}/patches/CVE-2025-11840.patch"
 
             gnuArch="$(dpkg-architecture --query DEB_BUILD_GNU_TYPE)"
 

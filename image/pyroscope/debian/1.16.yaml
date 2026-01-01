@@ -1,13 +1,11 @@
-# syntax=dhi.io/build:1-debian13
+# syntax=dhi.io/build:2-debian13
 
 name: Pyroscope 1.16.x
 image: dhi.io/pyroscope
 variant: runtime
 tags:
-  - "1"
   - "1.16"
   - 1.16.2
-  - 1-debian13
   - 1.16-debian13
   - 1.16.2-debian13
 platforms:
@@ -47,8 +45,7 @@ contents:
           uses: go/bump@v1
           work-dir: /go/src/github.com/grafana/pyroscope
           with:
-            deps:
-              - golang.org/x/crypto@v0.45.0
+            deps: []
             download: true
         - name: test
           work-dir: /go/src/github.com/grafana/pyroscope

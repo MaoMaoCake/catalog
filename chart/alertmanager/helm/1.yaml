@@ -8,14 +8,14 @@ tags:
 platforms:
   - linux/amd64
 vars:
-  ALERTMANAGER_IMAGE_REFERENCE: dhi/alertmanager:0.30.0-debian13@sha256:ab64a18294e008fcafedb8fe0d7cc278a5c9f9042f2dd5dd3c52ae262aef0bc4
+  ALERTMANAGER_IMAGE_REFERENCE: dhi/alertmanager:0.30.0-debian13@sha256:343a69ae51c23b2bf2673ad10b166b97236f6f5a73b0a6d5e733101216f31f53
   BUSYBOX_IMAGE_REFERENCE: dhi/busybox:1.37.0-alpine3.22@sha256:a1e4d4675dc1f8b4c9cdc0f62cb7e47623ca063c55665049a801d8d6d129f8b2
   CHART_COMMIT_SHA: fcac966ef229709039b1610ee19afcf17104f082
   DHI_NAMESPACE: dhi
   DHI_PREFIX: ""
   DHI_REGISTRY: dhi.io
   DHI_SKIP_CONTEXT_COPY: "true"
-  HELM_REFERENCE: dhi/helm:3.19.4-debian13-dev@sha256:705dc44463a159c5163cc790e19afd3ca2071d63a5c3c7951e4173e1cbb14f0a
+  HELM_REFERENCE: dhi/helm:3.19.4-debian13-dev@sha256:4a591aa3cad9e5a0b82d3503e6140956db99735b68351b7b223514220873df4c
   PROMETHEUS_CONFIG_RELOADER_IMAGE_REFERENCE: dhi/prometheus-config-reloader:0.87.1-debian13@sha256:f960fb3a029a5ce137bc6e8462d053a78ab0c2b5c437560b35bc5f5d62095255
   SEMVER_MAJOR_MINOR_VERSION: "1.9"
   SEMVER_MAJOR_VERSION: "1"
@@ -24,7 +24,7 @@ vars:
 contents:
   builds:
     - name: alertmanager
-      uses: dhi.io/helm:3.19.4-debian13-dev@sha256:705dc44463a159c5163cc790e19afd3ca2071d63a5c3c7951e4173e1cbb14f0a
+      uses: dhi.io/helm:3.19.4-debian13-dev@sha256:4a591aa3cad9e5a0b82d3503e6140956db99735b68351b7b223514220873df4c
       contents:
         packages:
           - bash
@@ -49,7 +49,7 @@ contents:
               description: Docker Hardened Images Helm chart for Prometheus AlertManager
               images:
                 - name: alertmanager
-                  ref: dhi/alertmanager:0.30.0-debian13@sha256:ab64a18294e008fcafedb8fe0d7cc278a5c9f9042f2dd5dd3c52ae262aef0bc4
+                  ref: dhi/alertmanager:0.30.0-debian13@sha256:343a69ae51c23b2bf2673ad10b166b97236f6f5a73b0a6d5e733101216f31f53
                 - name: prometheus-config-reloader
                   ref: dhi/prometheus-config-reloader:0.87.1-debian13@sha256:f960fb3a029a5ce137bc6e8462d053a78ab0c2b5c437560b35bc5f5d62095255
                 - name: busybox

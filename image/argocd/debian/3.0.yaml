@@ -17,7 +17,7 @@ vars:
   ARGOCD_USER_ID: "999"
   COMMIT_SHA: 14cd1c14127fed2c90c7907d0ffcb6d46070c031
   EXPAT_REF: dhi/pkg-expat:2.7.3-debian13@sha256:bf522255414eb53b8992e36dc64fde670d477c0b3be62c84209c4409de35e324
-  GIT_LFS_REF: dhi/pkg-git-lfs:3.7.1-debian13@sha256:3051a3a5c5e1b61f59a9312997b269398dcdc4a9ffe697a0607e86fa69fa9f2c
+  GIT_LFS_REF: dhi/pkg-git-lfs:3.7.1-debian13@sha256:95a5b9cba428a27c209bcbaf27c5c60a5b934bc5663df514d06b5b3834c286f8
   GO_REF: dhi/golang:1.24.11-debian13-dev@sha256:ceccc68aa29c03c808090dc4c6156bebc6d4efaea357281ecde306d6451b7428
   HELM_REF: dhi/helm:3.19.4-debian13@sha256:bba848fa8e45be93921e5e192a6c952a486b40412b59920a42479c642893c81c
   KUSTOMIZE_REF: dhi/kustomize:5.8.0-debian13@sha256:c0c238511832501f81c4494942efc9e1a4ce703002c46162e657535fb866becd
@@ -85,7 +85,7 @@ contents:
               - usr/**
             uid: 0
             gid: 0
-          - name: dhi.io/pkg-git-lfs:3.7.1-debian13@sha256:3051a3a5c5e1b61f59a9312997b269398dcdc4a9ffe697a0607e86fa69fa9f2c
+          - name: dhi.io/pkg-git-lfs:3.7.1-debian13@sha256:95a5b9cba428a27c209bcbaf27c5c60a5b934bc5663df514d06b5b3834c286f8
             includes:
               - opt/**
               - usr/**
@@ -222,7 +222,7 @@ contents:
         - usr/**
       uid: 0
       gid: 0
-    - name: dhi.io/pkg-git-lfs:3.7.1-debian13@sha256:3051a3a5c5e1b61f59a9312997b269398dcdc4a9ffe697a0607e86fa69fa9f2c
+    - name: dhi.io/pkg-git-lfs:3.7.1-debian13@sha256:95a5b9cba428a27c209bcbaf27c5c60a5b934bc5663df514d06b5b3834c286f8
       includes:
         - opt/**
         - usr/**

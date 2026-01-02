@@ -18,7 +18,7 @@ vars:
   DEBIAN_VERSION: "12"
   DOCKERIZE_COMMIT_SHA: 90dbb4fc2ef9098acd41e8c3ca98d2f730c741d6
   DOCKERIZE_VERSION: 0.9.5
-  GO_DIGEST: sha256:acc9a2f016eaa69f7a6cb309ec4b60a33aa02126f8549feea8f0a5b73e2b086b
+  GO_DIGEST: sha256:ed55bf45b6dd98512e2faaf4425f23397d76ca767e565a9c284691f5c247c593
   GO_VARIANT_SUFFIX: -dev
   GO_VERSION: 1.25.5
   SEMVER_MAJOR_MINOR_VERSION: "1.28"
@@ -37,7 +37,7 @@ contents:
     - tzdata
   builds:
     - name: build-base-dockerize
-      uses: dhi.io/golang:1.25.5-debian12-dev@sha256:acc9a2f016eaa69f7a6cb309ec4b60a33aa02126f8549feea8f0a5b73e2b086b
+      uses: dhi.io/golang:1.25.5-debian12-dev@sha256:ed55bf45b6dd98512e2faaf4425f23397d76ca767e565a9c284691f5c247c593
       privileged: true
       contents:
         packages:
@@ -83,7 +83,7 @@ contents:
           uid: 0
           gid: 0
     - name: build-temporal-server-binaries
-      uses: dhi.io/golang:1.25.5-debian12-dev@sha256:acc9a2f016eaa69f7a6cb309ec4b60a33aa02126f8549feea8f0a5b73e2b086b
+      uses: dhi.io/golang:1.25.5-debian12-dev@sha256:ed55bf45b6dd98512e2faaf4425f23397d76ca767e565a9c284691f5c247c593
       privileged: true
       contents:
         packages:
@@ -147,7 +147,7 @@ contents:
           uid: 0
           gid: 0
     - name: build-cli
-      uses: dhi.io/golang:1.25.5-debian12-dev@sha256:acc9a2f016eaa69f7a6cb309ec4b60a33aa02126f8549feea8f0a5b73e2b086b
+      uses: dhi.io/golang:1.25.5-debian12-dev@sha256:ed55bf45b6dd98512e2faaf4425f23397d76ca767e565a9c284691f5c247c593
       privileged: true
       contents:
         packages:
@@ -201,7 +201,7 @@ contents:
           uid: 0
           gid: 0
     - name: build-configs
-      uses: dhi.io/golang:1.25.5-debian12-dev@sha256:acc9a2f016eaa69f7a6cb309ec4b60a33aa02126f8549feea8f0a5b73e2b086b
+      uses: dhi.io/golang:1.25.5-debian12-dev@sha256:ed55bf45b6dd98512e2faaf4425f23397d76ca767e565a9c284691f5c247c593
       privileged: true
       contents:
         packages:
@@ -270,7 +270,7 @@ contents:
           uid: 0
           gid: 0
     - name: install temporal-sql-tool
-      uses: dhi.io/golang:1.25.5-debian12-dev@sha256:acc9a2f016eaa69f7a6cb309ec4b60a33aa02126f8549feea8f0a5b73e2b086b
+      uses: dhi.io/golang:1.25.5-debian12-dev@sha256:ed55bf45b6dd98512e2faaf4425f23397d76ca767e565a9c284691f5c247c593
       privileged: true
       contents:
         packages:
@@ -334,7 +334,7 @@ contents:
           uid: 0
           gid: 0
     - name: install temporal-cassandra-tool
-      uses: dhi.io/golang:1.25.5-debian12-dev@sha256:acc9a2f016eaa69f7a6cb309ec4b60a33aa02126f8549feea8f0a5b73e2b086b
+      uses: dhi.io/golang:1.25.5-debian12-dev@sha256:ed55bf45b6dd98512e2faaf4425f23397d76ca767e565a9c284691f5c247c593
       privileged: true
       contents:
         packages:

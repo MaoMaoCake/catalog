@@ -71,6 +71,12 @@ contents:
           runs: |
             set -eux -o pipefail
 
+            # Use lenient FIPS mode during tests because redis/go-redis uses SHA-1
+            # for Lua script hashing, which fails in strict mode
+            if [ "${target.fips}" = "true" ]; then
+              export GODEBUG=fips140=on
+            fi
+
             go test -v ./cmd/...
         - name: build webui (> v2)
           work-dir: /go/src/github.com/traefik/traefik/v3/webui

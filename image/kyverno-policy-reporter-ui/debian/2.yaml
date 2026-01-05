@@ -6,10 +6,10 @@ variant: runtime
 tags:
   - "2"
   - "2.5"
-  - 2.5.0
+  - 2.5.1
   - 2-debian13
   - 2.5-debian13
-  - 2.5.0-debian13
+  - 2.5.1-debian13
 platforms:
   - linux/amd64
   - linux/arm64
@@ -18,13 +18,12 @@ vars:
   BASE_TAG: 20250419-debian13
   BUN_DIGEST: sha256:2a5df837b30bf3435a8790f4bba88a07dd09ecd7fa80e7d9c5e58e0102e31ccc
   BUN_VERSION: 1.2.23
-  COMMIT_SHA: 113811adf0477063e89231d9e9e4df13b499d8af
-  GO_DIGEST: sha256:4d980141d6126a906f3a1143c1bff22e8cd9a2813299d96cd8cd659b8f258680
-  GO_VERSION: 1.24.11
+  COMMIT_SHA: a1acbeaf5cf74ddc986d36cd41bf9332777fc67e
+  PKG_GOLANG_REFERENCE: dhi/pkg-golang:1.25.5-debian13@sha256:4d7f7ee583145d4ba329745f4a2d0ea4683e0954c1a59dd3485eccdc9816fbb4
   SEMVER_MAJOR_MINOR_VERSION: "2.5"
   SEMVER_MAJOR_VERSION: "2"
-  SEMVER_VERSION: 2.5.0
-  VERSION: 2.5.0
+  SEMVER_VERSION: 2.5.1
+  VERSION: 2.5.1
 contents:
   packages:
     - '!base-files'
@@ -35,20 +34,20 @@ contents:
         GOPATH: /usr/local/go/bin
       contents:
         files:
-          - url: git+https://github.com/kyverno/policy-reporter-ui.git#v2.5.0
-            checksum: 113811adf0477063e89231d9e9e4df13b499d8af
+          - url: git+https://github.com/kyverno/policy-reporter-ui.git#v2.5.1
+            checksum: a1acbeaf5cf74ddc986d36cd41bf9332777fc67e
             path: /go/src/github.com/kyverno/policy-reporter-ui
             spdx:
               name: kyverno-policy-reporter-ui
-              version: 2.5.0
+              version: 2.5.1
               packages:
                 - name: kyverno-policy-reporter-ui
-                  purl: pkg:golang/github.com/kyverno/policy-reporter-ui@2.5.0
+                  purl: pkg:golang/github.com/kyverno/policy-reporter-ui@2.5.1
                   license: Apache-2.0
             uid: 0
             gid: 0
         artifacts:
-          - name: dhi.io/pkg-golang:1.24.11-debian13@sha256:4d980141d6126a906f3a1143c1bff22e8cd9a2813299d96cd8cd659b8f258680
+          - name: dhi.io/pkg-golang:1.25.5-debian13@sha256:4d7f7ee583145d4ba329745f4a2d0ea4683e0954c1a59dd3485eccdc9816fbb4
             includes:
               - usr/local/go
             uid: 0

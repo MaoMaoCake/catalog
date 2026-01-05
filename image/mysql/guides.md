@@ -41,7 +41,7 @@ services:
       MYSQL_ROOT_PASSWORD: my-secret-pw
     command: mysqld
     volumes:
-      - mysql-data:/var/lib/data
+      - mysql-data:/var/lib/mysql
 volumes:
   mysql-data:
 ```
@@ -67,9 +67,9 @@ variables are ignored.
 
 ### Read-only environment variables (set by the image)
 
-| Variable    | Description                                                                                |
-| :---------- | :----------------------------------------------------------------------------------------- |
-| `MYSQLDATA` | Path to the MySQL data directory. Defaults to `/var/lib/data`. Do not override this value. |
+| Variable    | Description                                                                                 |
+| :---------- | :------------------------------------------------------------------------------------------ |
+| `MYSQLDATA` | Path to the MySQL data directory. Defaults to `/var/lib/mysql`. Do not override this value. |
 
 ### Using Docker secrets
 
@@ -172,11 +172,11 @@ Mount a volume to persist MySQL data across container restarts:
 ```bash
 $ docker run --name some-mysql \
   -e MYSQL_ROOT_PASSWORD=my-secret-pw \
-  -v mysql-data:/var/lib/data \
+  -v mysql-data:/var/lib/mysql \
   -d dhi.io/mysql:<tag> mysqld
 ```
 
-The MySQL data is stored in `/var/lib/data` inside the container.
+The MySQL data is stored in `/var/lib/mysql` inside the container.
 
 ## Creating database dumps
 

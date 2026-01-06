@@ -131,6 +131,7 @@ contents:
             sed -i 's/h2==4\.2\.0/h2==4.3.0/g' ${source.dir}/airflow/constraints.txt                       # CVE-2025-57804
             sed -i 's/Authlib==1\.6\.4/Authlib==1.6.5/g' ${source.dir}/airflow/constraints.txt             # CVE-2025-61920
             sed -i 's/python-ldap==3\.4\.4/python-ldap==3.4.5/' ${source.dir}/airflow/constraints.txt      # CVE-2025-61911, CVE-2025-61912
+            sed -i 's/aiohttp==3\.13\.2/aiohttp==3.13.3/' ${source.dir}/airflow/constraints.txt            # CVE-2025-69223, CVE-2025-69227, CVE-2025-69229, CVE-2025-69228, CVE-2025-68161
 
             # starlette 0.49.1 contains a fix for HIGH CVE-2025-62727
             # airflow 3.1.1 requires fastapi 0.117.1 which requires starlette 0.48.0
@@ -175,7 +176,7 @@ contents:
               $providers_only_binary_flags \
               --prefix ${target.dir}/opt/airflow \
               dist/*.whl
-        - name: remove non-critical packages
+        - name: install ray independently
           privileged: true
           runs: |
             set -eux -o pipefail
@@ -184,6 +185,9 @@ contents:
             # Note that patching dependencies with this causes some confusion to the uv resolver,
             # so this is most cleanly done after the initial install.
             uv pip install --prefix ${target.dir}/opt/airflow "ray>=2.52.0"
+
+            # Fixes CVE-2025-69223 in ray.
+            uv pip install -U --target ${target.dir}/opt/airflow/lib/python3.12/site-packages/ray/_private/runtime_env/agent/thirdparty_files 'aiohttp>=3.13.3'
         - name: create default config
           runs: |
             set -eux -o pipefail

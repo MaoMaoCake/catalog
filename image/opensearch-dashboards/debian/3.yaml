@@ -200,6 +200,16 @@ contents:
             patches: ${source.dir}/patches/unified-patches.json
             skip-yarn-add: true
             yarn-root: ${source.dir}/opensearch-dashboards/plugins/observabilityDashboards
+        - name: create tesseract directory for reportsDashboards
+          privileged: true
+          runs: |
+            set -eux -o pipefail
+
+            # Create the directory and ensure parent directories exist with correct permissions
+            mkdir -p ${source.dir}/opensearch-dashboards/plugins/reportsDashboards/common/tesseract
+            # Ensure the directory is owned by uid 1000 and has proper permissions for the postinstall script
+            chown -R 1000:1000 ${source.dir}/opensearch-dashboards/plugins/reportsDashboards/common
+            chmod 755 ${source.dir}/opensearch-dashboards/plugins/reportsDashboards/common/tesseract
         - name: patch reportsDashboards with unified patches
           uses: yarn/bump@v1
           privileged: true
@@ -207,6 +217,16 @@ contents:
             patches: ${source.dir}/patches/unified-patches.json
             skip-yarn-add: false
             yarn-root: ${source.dir}/opensearch-dashboards/plugins/reportsDashboards
+        - name: fix tesseract directory permissions after patch
+          privileged: true
+          runs: |
+            set -eux -o pipefail
+
+            # Ensure the tesseract directory and any files created during patch are owned by uid 1000
+            if [ -d "${source.dir}/opensearch-dashboards/plugins/reportsDashboards/common/tesseract" ]; then
+              chown -R 1000:1000 ${source.dir}/opensearch-dashboards/plugins/reportsDashboards/common/tesseract || true
+              chmod -R 755 ${source.dir}/opensearch-dashboards/plugins/reportsDashboards/common/tesseract || true
+            fi
         - name: patch queryWorkbenchDashboards with unified patches
           uses: yarn/bump@v1
           privileged: true
@@ -298,6 +318,19 @@ contents:
             patches: ${source.dir}/patches/unified-patches.json
             skip-yarn-add: true
             yarn-root: ${source.dir}/opensearch-dashboards/plugins/queryInsightsDashboards
+        - name: ensure tesseract directory permissions before bootstrap
+          privileged: true
+          runs: |
+            set -eux -o pipefail
+
+            tesseract_dir="${source.dir}/opensearch-dashboards/plugins/reportsDashboards/common/tesseract"
+            if [ -d "${tesseract_dir}" ]; then
+              # Remove any existing files so they can be recreated with proper permissions
+              rm -f "${tesseract_dir}"/* || true
+              # Ensure directory is owned by uid 1000 and writable
+              chown -R 1000:1000 "${tesseract_dir}"
+              chmod 755 "${tesseract_dir}"
+            fi
         - name: Bootstrap opensearch-dashboards with plugins
           privileged: true
           runs: |

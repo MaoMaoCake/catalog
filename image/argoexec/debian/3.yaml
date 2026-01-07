@@ -1,0 +1,114 @@
+# syntax=dhi.io/build:2-debian13
+
+name: Argo executor 3.7.x
+image: dhi.io/argoexec
+variant: runtime
+tags:
+  - "3"
+  - "3.7"
+  - 3.7.6
+  - 3-debian13
+  - 3.7-debian13
+  - 3.7.6-debian13
+platforms:
+  - linux/amd64
+  - linux/arm64
+vars:
+  BASE_DIGEST: sha256:74fc43fa240887b8159970e434244039aab0c6efaaa9cf044004cdc22aa2a34d
+  BASE_TAG: 20250419-debian13
+  COMMIT_SHA: 9572e7b8243834b951385584c2a344378accb76d
+  GO_REF: dhi/golang:1.24.11-debian13-dev@sha256:ceccc68aa29c03c808090dc4c6156bebc6d4efaea357281ecde306d6451b7428
+  SEMVER_MAJOR_MINOR_VERSION: "3.7"
+  SEMVER_MAJOR_VERSION: "3"
+  SEMVER_VERSION: 3.7.6
+  VERSION: 3.7.6
+contents:
+  packages:
+    - '!base-files'
+  builds:
+    - name: argoexec
+      uses: dhi.io/golang:1.24.11-debian13-dev@sha256:ceccc68aa29c03c808090dc4c6156bebc6d4efaea357281ecde306d6451b7428
+      contents:
+        files:
+          - url: git+https://github.com/argoproj/argo-workflows.git#v3.7.6
+            checksum: 9572e7b8243834b951385584c2a344378accb76d
+            path: /go/src/github.com/argoproj/argo-workflows
+            spdx:
+              name: argoexec
+              version: 3.7.6
+              packages:
+                - name: argoexec
+                  purl: pkg:golang/github.com/argoproj/argo-workflows@3.7.6
+                  license: Apache-2.0
+            uid: 0
+            gid: 0
+      pipeline:
+        - name: patch
+          uses: go/bump@v1
+          work-dir: /go/src/github.com/argoproj/argo-workflows
+          with:
+            deps:
+              - github.com/expr-lang/expr@v1.17.7
+            download: true
+        - name: build
+          uses: go/build@v1
+          work-dir: /go/src/github.com/argoproj/argo-workflows
+          with:
+            ldflags:
+              - -X github.com/argoproj/argo-workflows/v3.version=3.7.6
+              - -X github.com/argoproj/argo-workflows/v3.gitCommit=9572e7b8243834b951385584c2a344378accb76d
+            output: ${target.dir}/usr/local/bin/argoexec
+            packages: ./cmd/argoexec
+      outputs:
+        - source: ${target.dir}/usr/local/bin/argoexec
+          target: /usr/local/bin/argoexec
+          uid: 0
+          gid: 0
+        - source: /opt/docker/sbom/argoexec
+          target: /opt/docker/sbom/argoexec
+          uid: 0
+          gid: 0
+  artifacts:
+    - name: dhi.io/static:20250419-debian13@sha256:74fc43fa240887b8159970e434244039aab0c6efaaa9cf044004cdc22aa2a34d
+      includes:
+        - bin
+        - etc
+        - home
+        - lib
+        - lib64
+        - opt
+        - sbin
+        - tmp
+        - usr
+        - var
+      excludes:
+        - etc/group
+        - etc/os-release
+        - etc/passwd
+        - var/lib/dpkg/status
+      uid: 0
+      gid: 0
+accounts:
+  run-as: argoexec
+  users:
+    - name: argoexec
+      uid: 8737
+      gid: 8737
+  groups:
+    - name: argoexec
+      gid: 8737
+      members:
+        - argoexec
+os-release:
+  name: Docker Hardened Images (Debian)
+  id: debian
+  version-id: "13"
+  version-codename: trixie
+  pretty-name: Docker Hardened Images/Debian GNU/Linux 13 (trixie)
+  home-url: https://docker.com/products/hardened-images/
+  bug-report-url: https://docker.com/support/
+annotations:
+  org.opencontainers.image.description: A minimal Argo executor image
+  org.opencontainers.image.licenses: Apache-2.0
+entrypoint:
+  - argoexec

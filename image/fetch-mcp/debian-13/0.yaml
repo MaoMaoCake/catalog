@@ -64,10 +64,13 @@ contents:
             mkdir -p /usr/local/bin
             tar -xzf "${source.dir}/uv-unknown-linux-gnu.tar.gz" -C /usr/local/bin --strip-components=1
             chmod +x /usr/local/bin/uv
-        - name: move to /app
+        - name: fix CVE and move to /app
           runs: |
             set -eux -o pipefail
 
+            # urllib3 is a transitive dep from requests, explicitly stating it will bump it to the desired version
+            # CVE-2026-21441
+            sed -i '/"requests>=2\.32\.3",/a\"urllib3==2.6.3",' "${source.dir}/servers/src/fetch/pyproject.toml"
             cp -r "${source.dir}/servers/src/fetch" /app
         - name: build python package
           work-dir: /app

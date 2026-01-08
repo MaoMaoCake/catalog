@@ -63,6 +63,8 @@ contents:
           runs: |
             set -eux -o pipefail
 
+            ls -la package.json
+
             # Upstream pins a patch version of Node, which may not receive security-related updates,
             # so update this requirement to the current version of Node.
 
@@ -80,6 +82,7 @@ contents:
             sed -ir "s/\"node\": \"[0-9]\+\.[0-9]\+\.[0-9]\+\"/\"node\": \"22.21.1\"/g" package.json
         - name: bump yarn deps (9.1)
           uses: yarn/bump@v1
+          run-as: "65532"
           privileged: true
           with:
             patches: ${source.dir}/patches/yarn-patches_9.1.json

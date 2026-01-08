@@ -48,7 +48,13 @@ contents:
           runs: |
             set -eux -o pipefail
 
-            npm pkg set pnpm.overrides.qs=6.14.1 # CVE-2025-15284
+            npm pkg set pnpm.overrides.qs=6.14.1                          # CVE-2025-15284
+            npm pkg set pnpm.overrides."@modelcontextprotocol/sdk"=1.25.2 # CVE-2026-0621
+        - name: patch source for SDK 1.25.2 compatibility
+          uses: git/patch@v1
+          with:
+            dir: ${source.dir}/mongodb-mcp-server-2c66ba72aa067736ba8bd1f0c971c0ff15c0f4b6
+            patch: ${source.dir}/patch/elicitation-sdk-1.25.2.patch
         - name: build
           work-dir: ${source.dir}/mongodb-mcp-server-2c66ba72aa067736ba8bd1f0c971c0ff15c0f4b6
           privileged: true
@@ -60,6 +66,12 @@ contents:
 
             rm -rf node_modules
             pnpm install --prod --ignore-scripts
+      paths:
+        - type: file
+          path: ${source.dir}/patch/elicitation-sdk-1.25.2.patch
+          uid: 0
+          gid: 0
+          source: image/mongodb-mcp/patch/elicitation-sdk-1.25.2.patch
       outputs:
         - source: ${source.dir}/mongodb-mcp-server-2c66ba72aa067736ba8bd1f0c971c0ff15c0f4b6/node_modules
           target: /app/node_modules

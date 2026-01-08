@@ -59,6 +59,7 @@ contents:
           runs: |
             set -eux -o pipefail
 
+            npm pkg set pnpm.overrides."@modelcontextprotocol/sdk"=1.25.2 # CVE-2026-0621
             sfw pnpm update
         - name: update dependencies
           work-dir: ${source.dir}/context7-21d3da51072712a86a65fed806cbaa223de48568/packages/mcp

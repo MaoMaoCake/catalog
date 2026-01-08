@@ -62,8 +62,8 @@ contents:
           runs: |
             set -eux -o pipefail
 
-            sed -i 's#joserfc==1.4.0#joserfc==1.4.2#g' '${source.dir}/localstack/requirements-runtime.txt'
-            sed -i 's#urllib3==2.5.0#urllib3==2.6.0#g' '${source.dir}/localstack/requirements-runtime.txt' # CVE-2025-66418 CVE-2025-66471
+            sed -i 's#urllib3==2.6.1#urllib3==2.6.3#g' '${source.dir}/localstack/requirements-runtime.txt' # CVE-2026-21441
+            sed -i 's#cbor2==5.7.1#cbor2==5.8.0#g' '${source.dir}/localstack/requirements-runtime.txt'     # CVE-2025-68131
         - name: install
           privileged: true
           runs: |

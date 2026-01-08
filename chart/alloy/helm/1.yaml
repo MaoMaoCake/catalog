@@ -9,7 +9,7 @@ platforms:
   - linux/amd64
 vars:
   ALLOY_IMAGE_TAG: 1.12.0
-  ALLOY_REFERENCE: dhi/alloy:1.12.1-debian13@sha256:75f2a952d545c8e75459c80afcffc3885b9c810f04ae31b1fba5c9fecdf07f58
+  ALLOY_REFERENCE: dhi/alloy:1.12.2-debian13@sha256:531ed109499053a43b13108c0d0cf705423b476de474e57828ea7630ad2f244d
   CHART_COMMIT_SHA: a1861605c3744006d26caecc380a2fdc2845757a
   DHI_NAMESPACE: dhi
   DHI_PREFIX: ""
@@ -52,7 +52,7 @@ contents:
               description: Docker Hardened Images Helm chart for Grafana Alloy
               images:
                 - name: alloy
-                  ref: dhi/alloy:1.12.1-debian13@sha256:75f2a952d545c8e75459c80afcffc3885b9c810f04ae31b1fba5c9fecdf07f58
+                  ref: dhi/alloy:1.12.2-debian13@sha256:531ed109499053a43b13108c0d0cf705423b476de474e57828ea7630ad2f244d
                 - name: prometheus-config-reloader
                   ref: dhi/prometheus-config-reloader:0.87.1-debian13@sha256:b776b4895ce7171a1d9444c27baaead4fedf16995ed2b6ab282562ada3613cbd
               name: alloy-chart

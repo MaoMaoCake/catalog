@@ -227,6 +227,7 @@ contents:
             cat > pnpm-workspace.yaml << EOF
             overrides:
               "axios@1.11.0": "1.12.0"  # CVE-2025-58754
+              "react-router-dom": "7.12.0" # CVE-2026-21884
             EOF
 
             /opt/nodejs/node-v22.21.1/bin/corepack pnpm install

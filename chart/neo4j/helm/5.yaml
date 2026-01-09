@@ -4,11 +4,11 @@ name: Neo4j Helm chart 5.x
 image: dhi.io/neo4j-chart
 variant: helm
 tags:
-  - 5.26.18
+  - 5.26.19
 platforms:
   - linux/amd64
 vars:
-  CHART_COMMIT_SHA: 1641faac870c0d3a17e57ec9d215785fbc587112
+  CHART_COMMIT_SHA: 9e167874715a2f056ce3195ff229a05b2bb69ab0
   DHI_NAMESPACE: dhi
   DHI_PREFIX: ""
   DHI_REGISTRY: dhi.io
@@ -18,15 +18,15 @@ vars:
   NEO4J_REFERENCE: dhi/neo4j:5.26.19-debian13@sha256:cf2abef6e18b906a3a67d845c0ca8dd735d67c3b84c860fe966949a209df029f
   SEMVER_MAJOR_MINOR_VERSION: "5.26"
   SEMVER_MAJOR_VERSION: "5"
-  SEMVER_VERSION: 5.26.18
-  VERSION: 5.26.18
+  SEMVER_VERSION: 5.26.19
+  VERSION: 5.26.19
 contents:
   builds:
     - name: neo4j
       uses: dhi.io/helm:3.19.4-debian13-dev@sha256:4a591aa3cad9e5a0b82d3503e6140956db99735b68351b7b223514220873df4c
       contents:
         files:
-          - url: git+https://github.com/neo4j/helm-charts.git#5.26.18
+          - url: git+https://github.com/neo4j/helm-charts.git#5.26.19
             path: ${source.dir}/helm-charts
             uid: 0
             gid: 0

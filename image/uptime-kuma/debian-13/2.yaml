@@ -26,6 +26,7 @@ vars:
 contents:
   packages:
     - '!base-files'
+    - iputils-ping
   builds:
     - name: uptime-kuma
       uses: dhi.io/node:24.12.0-debian13-dev@sha256:0a90afadabdddcdd7e9eecef7048e5a0f1f45e6f165c2a035be091f1efd2255e

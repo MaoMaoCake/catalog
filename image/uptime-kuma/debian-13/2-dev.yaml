@@ -37,6 +37,7 @@ contents:
     - dpkg
     - findutils
     - grep
+    - iputils-ping
     - libc-bin
     - mawk
     - perl-base

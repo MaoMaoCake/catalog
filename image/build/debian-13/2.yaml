@@ -16,7 +16,7 @@ platforms:
 vars:
   BINUTILS_REFERENCE: dhi/pkg-binutils:2.45-debian13@sha256:f63e465d4a2f59ba5af48164c16fbd05fbe141e4b932ff27a0bec5e45edf6199
   COMMIT_SHA: daac6bc00a83cd62c131fbdd0d227e43050a6d21
-  DEBIAN_REFERENCE: dhi/debian-base:trixie-debian13@sha256:4b5d819e1097db050980b4a62bbdb8b702afdec33b89d01747e73ed521e33560
+  DEBIAN_REFERENCE: dhi/debian-base:trixie-debian13@sha256:1244523a2f7b6c096c6f98ce0349df6798c775c57322c51f8a4982daf60c256c
   DHI_TAGS_OVERWRITE: "true"
   GO_REFERENCE: dhi/golang:1.25.5-debian13-dev@sha256:a45faad20adc1286eef26b1f30e170b54791c217ce69457784de66b0a13d1fe6
   SEMVER_MAJOR_MINOR_VERSION: "2.0"

@@ -66,11 +66,11 @@ contents:
           runs: |
             set -eux -o pipefail
 
-            # CVE: CVE-2024-47081, CVE-2025-4565
+            # CVE-2024-47081, CVE-2025-4565
             sed -i 's/requests==.*/requests==2.32.4/g; s/protobuf==.*/protobuf==4.25.8/g; s/ml-metadata==.*/ml-metadata==1.17.0/g' \
               'requirements.txt'
-            # CVE: CVE-2025-66471, CVE-2025-66418⁠
-            sed -i 's/urllib3==.*/urllib3==2.6.0/g' 'requirements.txt'
+            # CVE-2026-21441
+            sed -i 's/urllib3==.*/urllib3==2.6.3/g' 'requirements.txt'
 
             cp -a 'src' '${target.dir}/app'
 

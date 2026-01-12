@@ -4,8 +4,8 @@ name: Jenkins 2.x (weekly)
 image: dhi.io/jenkins
 variant: runtime
 tags:
-  - "2.544"
-  - 2.544-debian13
+  - "2.545"
+  - 2.545-debian13
 platforms:
   - linux/amd64
   - linux/arm64
@@ -18,9 +18,9 @@ vars:
   BUILD_JDK_DIGEST: sha256:99421ea725e0905500a94ed9b10b688071e6681002d06bd6869193f55111c366
   BUILD_JDK_REF: dhi/eclipse-temurin:21.0.9.10-jdk-debian13-dev@sha256:99421ea725e0905500a94ed9b10b688071e6681002d06bd6869193f55111c366
   BUILD_JDK_VERSION: 21.0.9.10
-  COMMIT_SHA: 909de8740d1034362ffa3928980f16932ce23186
-  DOCKER_REPO_COMMIT_SHA: b8051c8cd22f6cdbbef8f4d581781b9395cc4827
-  DOCKER_REPO_VERSION: "2.544"
+  COMMIT_SHA: 47e87c4737e6f71171e61fbcd6e81d523f001859
+  DOCKER_REPO_COMMIT_SHA: a4e310d0ea9db3515d9ac88ca4f585ad915b3197
+  DOCKER_REPO_VERSION: "2.545"
   JAVA_HOME_PATH: /opt/java/openjdk/21-jre
   JAVA_MAJOR_VERSION: "21"
   JDK_MAJOR_VERSION: "21"
@@ -31,9 +31,9 @@ vars:
   MAVEN_DIGEST: sha256:54dad2732e2c07f1377491e56c864c20635adf7ab2d60673a0e69455c3e1c947
   MAVEN_REF: dhi/maven:3.9.12-jdk21-debian13-dev@sha256:54dad2732e2c07f1377491e56c864c20635adf7ab2d60673a0e69455c3e1c947
   MAVEN_VERSION: 3.9.12
-  SEMVER_MAJOR_MINOR_VERSION: "2.544"
+  SEMVER_MAJOR_MINOR_VERSION: "2.545"
   SEMVER_MAJOR_VERSION: "2"
-  VERSION: "2.544"
+  VERSION: "2.545"
 contents:
   packages:
     - '!libelogind0'
@@ -67,20 +67,20 @@ contents:
           - sed
           - tar
         files:
-          - url: git+https://github.com/jenkinsci/jenkins.git#jenkins-2.544
-            checksum: 909de8740d1034362ffa3928980f16932ce23186
-            path: ${source.dir}/jenkins-909de8740d1034362ffa3928980f16932ce23186
+          - url: git+https://github.com/jenkinsci/jenkins.git#jenkins-2.545
+            checksum: 47e87c4737e6f71171e61fbcd6e81d523f001859
+            path: ${source.dir}/jenkins-47e87c4737e6f71171e61fbcd6e81d523f001859
             spdx:
               name: jenkins
-              version: "2.544"
+              version: "2.545"
               packages:
                 - name: jenkins
-                  purl: pkg:dhi/jenkins@2.544
+                  purl: pkg:dhi/jenkins@2.545
                   license: MIT
             uid: 0
             gid: 0
-          - url: git+https://github.com/jenkinsci/docker.git#b8051c8cd22f6cdbbef8f4d581781b9395cc4827
-            checksum: b8051c8cd22f6cdbbef8f4d581781b9395cc4827
+          - url: git+https://github.com/jenkinsci/docker.git#a4e310d0ea9db3515d9ac88ca4f585ad915b3197
+            checksum: a4e310d0ea9db3515d9ac88ca4f585ad915b3197
             path: ${source.dir}/docker-builds
             uid: 0
             gid: 0
@@ -93,14 +93,14 @@ contents:
             gid: 0
       pipeline:
         - name: build
-          work-dir: ${source.dir}/jenkins-909de8740d1034362ffa3928980f16932ce23186
+          work-dir: ${source.dir}/jenkins-47e87c4737e6f71171e61fbcd6e81d523f001859
           privileged: true
           runs: |
             set -eux -o pipefail
 
             mvn clean install -DskipTests -Dmaven.test.skip=true -Dspotless.check.skip=true
         - name: install
-          work-dir: ${source.dir}/jenkins-909de8740d1034362ffa3928980f16932ce23186
+          work-dir: ${source.dir}/jenkins-47e87c4737e6f71171e61fbcd6e81d523f001859
           runs: |
             set -eux -o pipefail
 
@@ -135,6 +135,30 @@ contents:
           gid: 0
         - source: ${target.dir}/usr/share/jenkins/ref
           target: /usr/share/jenkins/ref
+          uid: 0
+          gid: 0
+    - name: locale
+      uses: dhi.io/debian-base:trixie-debian13@sha256:c7651f9ef631e9a9feada59aff228f9382bdb537e85dc8e9c201093597898c45
+      contents:
+        packages:
+          - bash
+          - locales
+          - coreutils
+          - gzip
+      pipeline:
+        - name: install locales
+          runs: |
+            set -eux -o pipefail
+
+            echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen
+            locale-gen en_US.UTF-8
+      outputs:
+        - source: /usr/share/locale
+          target: /usr/share/locale
+          uid: 0
+          gid: 0
+        - source: /usr/lib/locale
+          target: /usr/lib/locale
           uid: 0
           gid: 0
   artifacts:
@@ -180,8 +204,10 @@ environment:
   JENKINS_SLAVE_AGENT_PORT: "50000"
   JENKINS_UC: https://updates.jenkins.io
   JENKINS_UC_EXPERIMENTAL: https://updates.jenkins.io/experimental
-  JENKINS_VERSION: "2.544"
-  LANG: C.UTF-8
+  JENKINS_VERSION: "2.545"
+  LANG: en_US.UTF-8
+  LANGUAGE: en_US:en
+  LC_ALL: en_US.UTF-8
   PATH: /usr/local/bin:/usr/local/sbin:/usr/sbin:/usr/bin:/sbin:/bin
   REF: /usr/share/jenkins/ref
 paths:

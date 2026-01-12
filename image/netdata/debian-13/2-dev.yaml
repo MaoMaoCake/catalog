@@ -6,23 +6,23 @@ variant: dev
 tags:
   - 2-dev
   - 2.8-dev
-  - 2.8.4-dev
+  - 2.8.5-dev
   - 2-debian13-dev
   - 2.8-debian13-dev
-  - 2.8.4-debian13-dev
+  - 2.8.5-debian13-dev
 platforms:
   - linux/amd64
   - linux/arm64
 vars:
-  COMMIT: b7e27f683e7447031c876e67d05ae3f8b4f98d98
+  COMMIT: 38812a29044fc5b0290389bcf1292d9f4af5c334
   GO_VERSION: 1.25.5
   GOLANG_REFERENCE: dhi/golang:1.25.5-debian13-dev@sha256:a45faad20adc1286eef26b1f30e170b54791c217ce69457784de66b0a13d1fe6
   PYTHON_REFERENCE: dhi/python:3.12.12-debian13@sha256:1269127ef2c19f4ebd94e95996ba085f5e8f36cf955163261ab735ff3ab779c2
   PYTHON_VERSION: 3.12.12
   SEMVER_MAJOR_MINOR_VERSION: "2.8"
   SEMVER_MAJOR_VERSION: "2"
-  SEMVER_VERSION: 2.8.4
-  VERSION: 2.8.4
+  SEMVER_VERSION: 2.8.5
+  VERSION: 2.8.5
 contents:
   packages:
     - '!gawk'
@@ -96,15 +96,15 @@ contents:
           - libzstd-dev
           - patch
         files:
-          - url: git+https://github.com/netdata/netdata.git#v2.8.4
-            checksum: b7e27f683e7447031c876e67d05ae3f8b4f98d98
+          - url: git+https://github.com/netdata/netdata.git#v2.8.5
+            checksum: 38812a29044fc5b0290389bcf1292d9f4af5c334
             path: /usr/src/netdata
             spdx:
               name: netdata
-              version: 2.8.4
+              version: 2.8.5
               packages:
                 - name: netdata
-                  purl: pkg:dhi/netdata@2.8.4
+                  purl: pkg:dhi/netdata@2.8.5
                   license: GPL-3.0
             uid: 0
             gid: 0

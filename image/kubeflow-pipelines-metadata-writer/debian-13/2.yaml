@@ -14,8 +14,8 @@ platforms:
   - linux/amd64
 vars:
   COMMIT_SHA: 8fe8d7bdd88f027bde080f619762a0b3294796db
-  PYTHON_DEV_REFERENCE: dhi/python:3.11.14-debian13-dev@sha256:26d347ab41bf525ead393378d476376a4b0ff74c8617faa92d71e1c72799a102
-  PYTHON_REFERENCE: dhi/python:3.11.14-debian13@sha256:04a0800899b60ef39a724eddbf105f2985e575fc1663644450efc1cc86f0eca3
+  PYTHON_DEV_REFERENCE: dhi/python:3.11.14-debian13-dev@sha256:dc57f7a2061f7689be5a66aa1a16c44c830b668962e165865a7f58954cb4b1d8
+  PYTHON_REFERENCE: dhi/python:3.11.14-debian13@sha256:19b5990f98f09afe959f961123ce2a9cd87168ecf30ffcc718c51b74a6a4de95
   SEMVER_MAJOR_MINOR_VERSION: "2.15"
   SEMVER_MAJOR_VERSION: "2"
   SEMVER_VERSION: 2.15.0
@@ -28,7 +28,7 @@ contents:
     - base-files
   builds:
     - name: kubeflow-pipelines-metadata-writer
-      uses: dhi.io/python:3.11.14-debian13-dev@sha256:26d347ab41bf525ead393378d476376a4b0ff74c8617faa92d71e1c72799a102
+      uses: dhi.io/python:3.11.14-debian13-dev@sha256:dc57f7a2061f7689be5a66aa1a16c44c830b668962e165865a7f58954cb4b1d8
       contents:
         packages:
           - '!libexpat1'
@@ -72,7 +72,7 @@ contents:
           uid: 0
           gid: 0
   artifacts:
-    - name: dhi.io/python:3.11.14-debian13@sha256:04a0800899b60ef39a724eddbf105f2985e575fc1663644450efc1cc86f0eca3
+    - name: dhi.io/python:3.11.14-debian13@sha256:19b5990f98f09afe959f961123ce2a9cd87168ecf30ffcc718c51b74a6a4de95
       includes:
         - opt/**
         - usr/**

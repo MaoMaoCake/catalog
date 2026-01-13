@@ -23,7 +23,7 @@ vars:
   SEMVER_MAJOR_MINOR_VERSION: "1.29"
   SEMVER_MAJOR_VERSION: "1"
   SEMVER_VERSION: 1.29.2
-  TEMPORALIO_SERVER_DIGEST: sha256:bdd6a2f9ed1190e59ef729abcb754501332ab83a79d64e267fa331b191ed9c97
+  TEMPORALIO_SERVER_DIGEST: sha256:8ffd0d54a7ef6c85619c11a75009be2aa59491352db09621cfdb1490b5f4b2f1
   VARIANT_SUFFIX: ""
   VERSION: 1.29.2
 contents:
@@ -43,7 +43,7 @@ contents:
           - bash
           - coreutils
         artifacts:
-          - name: dhi.io/temporalio-server:1.29.2-debian12@sha256:bdd6a2f9ed1190e59ef729abcb754501332ab83a79d64e267fa331b191ed9c97
+          - name: dhi.io/temporalio-server:1.29.2-debian12@sha256:8ffd0d54a7ef6c85619c11a75009be2aa59491352db09621cfdb1490b5f4b2f1
             includes:
               - usr/local/bin/temporal
             uid: 0
@@ -128,7 +128,7 @@ contents:
           uid: 0
           gid: 0
   artifacts:
-    - name: dhi.io/temporalio-server:1.29.2-debian12@sha256:bdd6a2f9ed1190e59ef729abcb754501332ab83a79d64e267fa331b191ed9c97
+    - name: dhi.io/temporalio-server:1.29.2-debian12@sha256:8ffd0d54a7ef6c85619c11a75009be2aa59491352db09621cfdb1490b5f4b2f1
       includes:
         - etc/temporal/schema/**
         - usr/local/bin/tdbg

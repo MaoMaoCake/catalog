@@ -14,7 +14,7 @@ platforms:
   - linux/amd64
   - linux/arm64
 vars:
-  BINUTILS_REFERENCE: dhi/pkg-binutils:2.45-debian13@sha256:f63e465d4a2f59ba5af48164c16fbd05fbe141e4b932ff27a0bec5e45edf6199
+  BINUTILS_REFERENCE: dhi/pkg-binutils:2.45-debian13@sha256:ec7e4a2bd685757646c09915f5d71be3613d0bec266926caceccbb5da84e6916
   COMMIT_SHA: cfd0913912c3975a96940300429d35fb6cce2bfb
   DEBIAN_REFERENCE: dhi/debian-base:trixie-debian13@sha256:1244523a2f7b6c096c6f98ce0349df6798c775c57322c51f8a4982daf60c256c
   DHI_TAGS_OVERWRITE: "true"
@@ -117,7 +117,7 @@ contents:
           gid: 0
           mode: "0644"
   artifacts:
-    - name: dhi.io/pkg-binutils:2.45-debian13@sha256:f63e465d4a2f59ba5af48164c16fbd05fbe141e4b932ff27a0bec5e45edf6199
+    - name: dhi.io/pkg-binutils:2.45-debian13@sha256:ec7e4a2bd685757646c09915f5d71be3613d0bec266926caceccbb5da84e6916
       excludes:
         - etc/group
         - etc/os-release

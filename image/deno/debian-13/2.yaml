@@ -18,7 +18,7 @@ dates:
 vars:
   BASE_DIGEST: sha256:d46a757d9ec2c6f6d9b7c4cdcfdb9bc65c9614c53ee28e0f489ed844fd2b79c8
   BASE_TAG: 20250419-glibc-debian13
-  BINUTILS_DIGEST: sha256:f63e465d4a2f59ba5af48164c16fbd05fbe141e4b932ff27a0bec5e45edf6199
+  BINUTILS_DIGEST: sha256:ec7e4a2bd685757646c09915f5d71be3613d0bec266926caceccbb5da84e6916
   BINUTILS_VERSION: "2.45"
   COMMIT_SHA: 658638b3262a90c3e92fe96887fd898b5b1a78d7
   RUST_DIGEST: sha256:de9e1dabba33764dae5f447574172913a481823066268396bc4c4eed1d742baf
@@ -98,7 +98,7 @@ contents:
           uid: 0
           gid: 0
   artifacts:
-    - name: dhi.io/pkg-binutils:2.45-debian13@sha256:f63e465d4a2f59ba5af48164c16fbd05fbe141e4b932ff27a0bec5e45edf6199
+    - name: dhi.io/pkg-binutils:2.45-debian13@sha256:ec7e4a2bd685757646c09915f5d71be3613d0bec266926caceccbb5da84e6916
       excludes:
         - etc/group
         - etc/os-release

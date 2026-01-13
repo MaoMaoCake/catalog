@@ -23,13 +23,13 @@ vars:
   MAVEN_REFERENCE: dhi/maven:3.9.12-jdk21-debian13-dev@sha256:54dad2732e2c07f1377491e56c864c20635adf7ab2d60673a0e69455c3e1c947
   MAVEN_VERSION: 3.9.12
   NIFI_HOME: /opt/nifi/nifi-current
-  PYTHON_REFERENCE: dhi/python:3.12.12-debian13@sha256:7a9232974f894cfff2f8ab22be2fe54df8e9f7243cb741f85182fffa8957c636
+  PYTHON_REFERENCE: dhi/python:3.12.12-debian13@sha256:65e3d2289d1e2bcb1419af38d0ce9182d6f2cf1b51338ca947cae2744b38ec46
   PYTHON_VERSION: 3.12.12
   SEMVER_MAJOR_MINOR_VERSION: "2.7"
   SEMVER_MAJOR_VERSION: "2"
   SEMVER_VERSION: 2.7.2
   UV_ARCH: '#{ target.arch == "amd64" ? "x86_64-unknown-linux-gnu" : "aarch64-unknown-linux-gnu" }'
-  UV_VERSION: 0.9.24
+  UV_VERSION: 0.9.25
   VERSION: 2.7.2
 contents:
   packages:
@@ -78,15 +78,15 @@ contents:
                   license: Apache-2.0
             uid: 0
             gid: 0
-          - url: https://github.com/astral-sh/uv/releases/download/0.9.24/uv-${UV_ARCH}.tar.gz
-            checksum: https://github.com/astral-sh/uv/releases/download/0.9.24/uv-${UV_ARCH}.tar.gz.sha256
+          - url: https://github.com/astral-sh/uv/releases/download/0.9.25/uv-${UV_ARCH}.tar.gz
+            checksum: https://github.com/astral-sh/uv/releases/download/0.9.25/uv-${UV_ARCH}.tar.gz.sha256
             path: ${source.dir}/uv-${UV_ARCH}.tar.gz
             spdx:
               name: uv-binary
-              version: 0.9.24
+              version: 0.9.25
               packages:
                 - name: uv
-                  purl: pkg:github/astral-sh/uv@0.9.24
+                  purl: pkg:github/astral-sh/uv@0.9.25
                   license: MIT OR Apache-2.0
             uid: 0
             gid: 0
@@ -282,7 +282,7 @@ contents:
         - opt/**
       uid: 0
       gid: 0
-    - name: dhi.io/python:3.12.12-debian13@sha256:7a9232974f894cfff2f8ab22be2fe54df8e9f7243cb741f85182fffa8957c636
+    - name: dhi.io/python:3.12.12-debian13@sha256:65e3d2289d1e2bcb1419af38d0ce9182d6f2cf1b51338ca947cae2744b38ec46
       includes:
         - opt/**
         - usr/**

@@ -21,9 +21,9 @@ platforms:
   - linux/arm64
 vars:
   COMMIT_SHA: b570b3ee2cf98ba084073f2774583eed4fb0ad38
-  PYTHON_BUILD_REFERENCE: dhi/python:3.13.11-debian13-dev@sha256:e164c5c87a60cffa6fa14cc81c90b0414e0e4455137bfe41ae403fa9f7205118
+  PYTHON_BUILD_REFERENCE: dhi/python:3.13.11-debian13-dev@sha256:a699c9ddca400955c37ad71c068026ba5c2e5e67f47d96d241b0b798eca3db42
   PYTHON_MAJOR_MINOR_VERSION: "3.13"
-  PYTHON_REFERENCE: dhi/python:3.13.11-debian13@sha256:30c96fc631848a5360b39b01d19baf720cb03566af87a5104c39a70faeb65608
+  PYTHON_REFERENCE: dhi/python:3.13.11-debian13@sha256:b646363a6d6c0c2cbd9bda6dd72ae6acdd753f93066fa1bf1567a094dfd60cef
   PYTHON_VERSION: 3.13.11
   SEMVER_MAJOR_MINOR_VERSION: "4.12"
   SEMVER_MAJOR_VERSION: "4"
@@ -52,7 +52,7 @@ contents:
     - util-linux
   builds:
     - name: localstack
-      uses: dhi.io/python:3.13.11-debian13-dev@sha256:e164c5c87a60cffa6fa14cc81c90b0414e0e4455137bfe41ae403fa9f7205118
+      uses: dhi.io/python:3.13.11-debian13-dev@sha256:a699c9ddca400955c37ad71c068026ba5c2e5e67f47d96d241b0b798eca3db42
       contents:
         packages:
           - ca-certificates
@@ -130,7 +130,7 @@ contents:
           uid: 0
           gid: 0
   artifacts:
-    - name: dhi.io/python:3.13.11-debian13@sha256:30c96fc631848a5360b39b01d19baf720cb03566af87a5104c39a70faeb65608
+    - name: dhi.io/python:3.13.11-debian13@sha256:b646363a6d6c0c2cbd9bda6dd72ae6acdd753f93066fa1bf1567a094dfd60cef
       includes:
         - opt/**
         - usr/**

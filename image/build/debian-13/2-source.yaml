@@ -1,0 +1,153 @@
+# syntax=dhi.io/build:2-debian13
+
+name: DHI Source Build 2.x (dev)
+image: dhi.io/build
+variant: dev
+tags:
+  - 2-source
+  - 2.1-source
+  - 2.1.0-source
+platforms:
+  - linux/amd64
+  - linux/arm64
+vars:
+  BINUTILS_REFERENCE: dhi/pkg-binutils:2.45-debian13@sha256:f63e465d4a2f59ba5af48164c16fbd05fbe141e4b932ff27a0bec5e45edf6199
+  COMMIT_SHA: cfd0913912c3975a96940300429d35fb6cce2bfb
+  DEBIAN_REFERENCE: dhi/debian-base:trixie-debian13@sha256:1244523a2f7b6c096c6f98ce0349df6798c775c57322c51f8a4982daf60c256c
+  DHI_TAGS_OVERWRITE: "true"
+  GO_REFERENCE: dhi/golang:1.25.5-debian13-dev@sha256:a45faad20adc1286eef26b1f30e170b54791c217ce69457784de66b0a13d1fe6
+  SEMVER_MAJOR_MINOR_VERSION: "2.1"
+  SEMVER_MAJOR_VERSION: "2"
+  SEMVER_VERSION: 2.1.0
+  VERSION: 2.1.0
+contents:
+  packages:
+    - '!binutils'
+    - '!binutils-aarch64-linux-gnu'
+    - '!binutils-common'
+    - '!binutils-x86-64-linux-gnu'
+    - '!gawk'
+    - '!libbinutils'
+    - '!libctf-nobfd0'
+    - '!libctf0'
+    - '!libelogind0'
+    - '!libgprofng0'
+    - '!libsframe1'
+    - '!libxml2'
+    - '!original-awk'
+    - apt
+    - base-files
+    - bash
+    - binutils
+    - ca-certificates
+    - coreutils
+    - curl
+    - diffutils
+    - dpkg
+    - equivs
+    - findutils
+    - gpg
+    - grep
+    - jq
+    - libc-bin
+    - mawk
+    - perl-base
+    - sed
+    - unzip
+    - util-linux
+  builds:
+    - name: frontend
+      contents:
+        packages:
+          - bash
+        files:
+          - url: git+https://github.com/docker-hardened-images/frontend.git#cfd0913912c3975a96940300429d35fb6cce2bfb
+            path: /go/src/github.com/docker-hardened-images/frontend
+            spdx:
+              name: dhi-build
+              version: 2.1.0
+              packages:
+                - name: dhi-build
+                  purl: pkg:golang/github.com/docker-hardened-images/frontend@2.1.0
+            uid: 0
+            gid: 0
+        artifacts:
+          - name: dhi.io/golang:1.25.5-debian13-dev@sha256:a45faad20adc1286eef26b1f30e170b54791c217ce69457784de66b0a13d1fe6
+            includes:
+              - usr/local/go
+            uid: 0
+            gid: 0
+      pipeline:
+        - name: compile
+          work-dir: /go/src/github.com/docker-hardened-images/frontend
+          environment:
+            PATH: /usr/local/go/bin:$PATH
+          runs: |
+            set -eux -o pipefail
+
+            go build --ldflags="-s -w" -o "${target.dir}/bin/dhi-build" ./cmd/dhi-build
+        - name: compile source
+          work-dir: /go/src/github.com/docker-hardened-images/frontend
+          environment:
+            PATH: /usr/local/go/bin:$PATH
+          runs: |
+            set -eux -o pipefail
+
+            go build --ldflags="-s -w" -o "${target.dir}/bin/dhi-source" ./cmd/dhi-source
+      outputs:
+        - source: ${target.dir}/bin/dhi-build
+          target: /opt/docker/dhi/build
+          uid: 0
+          gid: 0
+          mode: "0744"
+        - source: ${target.dir}/bin/dhi-source
+          target: /opt/docker/dhi/source
+          uid: 0
+          gid: 0
+          mode: "0744"
+        - source: /opt/docker/sbom/dhi-build
+          target: /opt/docker/sbom/dhi-build
+          uid: 0
+          gid: 0
+  artifacts:
+    - name: dhi.io/pkg-binutils:2.45-debian13@sha256:f63e465d4a2f59ba5af48164c16fbd05fbe141e4b932ff27a0bec5e45edf6199
+      excludes:
+        - etc/group
+        - etc/os-release
+        - etc/passwd
+        - var/lib/dpkg/status
+      uid: 0
+      gid: 0
+accounts:
+  root: true
+  run-as: root
+  users:
+    - name: nonroot
+      uid: 65532
+      gid: 65532
+    - name: _apt
+      uid: 42
+      gid: 65532
+  groups:
+    - name: nonroot
+      gid: 65532
+      members:
+        - nonroot
+os-release:
+  name: Docker Hardened Images (Debian)
+  id: debian
+  version-id: "13"
+  version-codename: trixie
+  pretty-name: Docker Hardened Images/Debian GNU/Linux 13 (trixie)
+  home-url: https://docker.com/products/hardened-images/
+  bug-report-url: https://docker.com/support/
+environment:
+  DEBIAN_FRONTEND: noninteractive
+  DHI_BUILD_TYPE: source
+annotations:
+  org.opencontainers.image.description: DHI Build
+labels:
+  moby.buildkit.frontend.caps: moby.buildkit.frontend.contexts,moby.buildkit.frontend.inputs
+  moby.buildkit.frontend.network.none: "true"
+entrypoint:
+  - /opt/docker/dhi/build

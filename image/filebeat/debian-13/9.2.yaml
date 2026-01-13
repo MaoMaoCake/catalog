@@ -6,22 +6,22 @@ variant: runtime
 tags:
   - "9"
   - "9.2"
-  - 9.2.3
+  - 9.2.4
   - 9-debian13
   - 9.2-debian13
-  - 9.2.3-debian13
+  - 9.2.4-debian13
 platforms:
   - linux/amd64
   - linux/arm64
 vars:
   BASE_DIGEST: sha256:74fc43fa240887b8159970e434244039aab0c6efaaa9cf044004cdc22aa2a34d
   BASE_TAG: 20250419-debian13
-  COMMIT_SHA: b95cc76490c9bb4184f98e0094be4af14b5d7bd2
+  COMMIT_SHA: fd909e2bd4416ce14162971875d6013334f6fd44
   GOLANG_REFERENCE: dhi/golang:1.24.11-debian13-dev@sha256:ceccc68aa29c03c808090dc4c6156bebc6d4efaea357281ecde306d6451b7428
   SEMVER_MAJOR_MINOR_VERSION: "9.2"
   SEMVER_MAJOR_VERSION: "9"
-  SEMVER_VERSION: 9.2.3
-  VERSION: 9.2.3
+  SEMVER_VERSION: 9.2.4
+  VERSION: 9.2.4
 contents:
   packages:
     - '!libelogind0'
@@ -33,8 +33,8 @@ contents:
       uses: dhi.io/golang:1.24.11-debian13-dev@sha256:ceccc68aa29c03c808090dc4c6156bebc6d4efaea357281ecde306d6451b7428
       contents:
         files:
-          - url: git+https://github.com/elastic/beats#v9.2.3
-            checksum: b95cc76490c9bb4184f98e0094be4af14b5d7bd2
+          - url: git+https://github.com/elastic/beats#v9.2.4
+            checksum: fd909e2bd4416ce14162971875d6013334f6fd44
             path: /go/src/github.com/elastic/beats
             uid: 0
             gid: 0
@@ -54,8 +54,8 @@ contents:
 
             # Reproducible version metadata
             # https://github.com/elastic/beats/issues/46314#issuecomment-3250659340
-            GOLDFLAGS="-X github.com/elastic/beats/v7/libbeat/version.commit=b95cc76490c9bb4184f98e0094be4af14b5d7bd2
-                      -X github.com/elastic/beats/v7/libbeat/version.version=9.2.3
+            GOLDFLAGS="-X github.com/elastic/beats/v7/libbeat/version.commit=fd909e2bd4416ce14162971875d6013334f6fd44
+                      -X github.com/elastic/beats/v7/libbeat/version.version=9.2.4
                       -X github.com/elastic/beats/v7/libbeat/version.buildTime=$(date -u -d @${SOURCE_DATE_EPOCH} +'%F-%T')"
 
             mkdir -p "${target.dir}/usr/share/filebeat"

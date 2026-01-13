@@ -6,10 +6,10 @@ variant: runtime
 tags:
   - "3"
   - "3.2"
-  - 3.2.3
+  - 3.2.4
   - 3-debian13
   - 3.2-debian13
-  - 3.2.3-debian13
+  - 3.2.4-debian13
 platforms:
   - linux/amd64
   - linux/arm64
@@ -17,7 +17,7 @@ dates:
   release: "2025-11-04"
 vars:
   ARGOCD_USER_ID: "999"
-  COMMIT_SHA: 2b6251dfedb54de40596272a73ed1fb19d740219
+  COMMIT_SHA: 030b4f982b2a0f6a97cb3d3f3616c14df0f58c48
   EXPAT_REF: dhi/pkg-expat:2.7.3-debian13@sha256:bf522255414eb53b8992e36dc64fde670d477c0b3be62c84209c4409de35e324
   GIT_LFS_REF: dhi/pkg-git-lfs:3.7.1-debian13@sha256:95a5b9cba428a27c209bcbaf27c5c60a5b934bc5663df514d06b5b3834c286f8
   GO_REF: dhi/golang:1.25.5-debian13-dev@sha256:a45faad20adc1286eef26b1f30e170b54791c217ce69457784de66b0a13d1fe6
@@ -26,8 +26,8 @@ vars:
   NODE_REF: dhi/node:20.19.6-debian13-dev@sha256:b2e4556f0a42a43d0480cd03a56406bc2b97728cf0d6f90a3583dea09a033c56
   SEMVER_MAJOR_MINOR_VERSION: "3.2"
   SEMVER_MAJOR_VERSION: "3"
-  SEMVER_VERSION: 3.2.3
-  VERSION: 3.2.3
+  SEMVER_VERSION: 3.2.4
+  VERSION: 3.2.4
 contents:
   packages:
     - '!libelogind0'
@@ -60,15 +60,15 @@ contents:
           - openssh-client
           - sed
         files:
-          - url: git+https://github.com/argoproj/argo-cd.git#v3.2.3
-            checksum: 2b6251dfedb54de40596272a73ed1fb19d740219
+          - url: git+https://github.com/argoproj/argo-cd.git#v3.2.4
+            checksum: 030b4f982b2a0f6a97cb3d3f3616c14df0f58c48
             path: /go/src/github.com/argoproj/argo-cd/v3
             spdx:
               name: argocd
-              version: 3.2.3
+              version: 3.2.4
               packages:
                 - name: argocd
-                  purl: pkg:dhi/argocd@3.2.3
+                  purl: pkg:dhi/argocd@3.2.4
                   license: Apache-2.0
             uid: 0
             gid: 0
@@ -157,10 +157,10 @@ contents:
             KUBECTL_VERSION=$(go list -m k8s.io/client-go | head -n 1 | rev | cut -d' ' -f1 | rev)
 
             GOLDFLAGS="-extldflags '-static'
-                       -X github.com/argoproj/argo-cd/v3/common.version=3.2.3
-                       -X github.com/argoproj/argo-cd/v3/common.gitTag=v3.2.3
+                       -X github.com/argoproj/argo-cd/v3/common.version=3.2.4
+                       -X github.com/argoproj/argo-cd/v3/common.gitTag=v3.2.4
                        -X github.com/argoproj/argo-cd/v3/common.buildDate=$(date -ud @${SOURCE_DATE_EPOCH} +'%Y-%m-%dT%H:%M:%SZ')
-                       -X github.com/argoproj/argo-cd/v3/common.gitCommit=2b6251dfedb54de40596272a73ed1fb19d740219
+                       -X github.com/argoproj/argo-cd/v3/common.gitCommit=030b4f982b2a0f6a97cb3d3f3616c14df0f58c48
                        -X github.com/argoproj/argo-cd/v3/common.gitTreeState=clean
                        -X github.com/argoproj/argo-cd/v3/common.kubectlVersion=${KUBECTL_VERSION}"
 

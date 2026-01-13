@@ -6,44 +6,44 @@ variant: runtime
 tags:
   - "1"
   - "1.4"
-  - 1.4.0
+  - 1.4.1
   - 1-debian13
   - 1.4-debian13
-  - 1.4.0-debian13
+  - 1.4.1-debian13
 platforms:
   - linux/amd64
   - linux/arm64
 vars:
-  COMMIT_SHA: 2c66ba72aa067736ba8bd1f0c971c0ff15c0f4b6
-  NODE_BUILD_REFERENCE: dhi/node:24.12.0-debian13-sfw-dev@sha256:3e1ba3b8f881f9e8ee051f6806de8cdfb3ae1b1ff7a36182b449bd084772a6dd
+  COMMIT_SHA: 13f5be1b56b6e308f718241f1b6c9ebe9817d34b
+  NODE_BUILD_REFERENCE: dhi/node:24.12.0-debian13-sfw-dev@sha256:534c405aa222e9a5971452b42451275b8b92c814c390a1988855ca42cf0eb78b
   NODE_RUNTIME_REFERENCE: dhi/node:24.12.0-debian13@sha256:e805d972f53c2db92cab8c56242ba8609736e461ef16d4073d52d5404263bbc9
   SEMVER_MAJOR_MINOR_VERSION: "1.4"
   SEMVER_MAJOR_VERSION: "1"
-  SEMVER_VERSION: 1.4.0
-  VERSION: 1.4.0
+  SEMVER_VERSION: 1.4.1
+  VERSION: 1.4.1
 contents:
   packages:
     - '!base-files'
   builds:
     - name: mongodb-mcp
-      uses: dhi.io/node:24.12.0-debian13-sfw-dev@sha256:3e1ba3b8f881f9e8ee051f6806de8cdfb3ae1b1ff7a36182b449bd084772a6dd
+      uses: dhi.io/node:24.12.0-debian13-sfw-dev@sha256:534c405aa222e9a5971452b42451275b8b92c814c390a1988855ca42cf0eb78b
       contents:
         files:
-          - url: git+https://github.com/mongodb-js/mongodb-mcp-server.git#v1.4.0
-            checksum: 2c66ba72aa067736ba8bd1f0c971c0ff15c0f4b6
-            path: ${source.dir}/mongodb-mcp-server-2c66ba72aa067736ba8bd1f0c971c0ff15c0f4b6
+          - url: git+https://github.com/mongodb-js/mongodb-mcp-server.git#v1.4.1
+            checksum: 13f5be1b56b6e308f718241f1b6c9ebe9817d34b
+            path: ${source.dir}/mongodb-mcp-server-13f5be1b56b6e308f718241f1b6c9ebe9817d34b
             spdx:
               name: mongodb-mcp-server
-              version: 1.4.0
+              version: 1.4.1
               packages:
                 - name: mongodb-mcp-server
-                  purl: pkg:dhi/mongodb-mcp@1.4.0
+                  purl: pkg:dhi/mongodb-mcp@1.4.1
                   license: Apache-2.0
             uid: 0
             gid: 0
       pipeline:
         - name: bump pnpm dependencies
-          work-dir: ${source.dir}/mongodb-mcp-server-2c66ba72aa067736ba8bd1f0c971c0ff15c0f4b6
+          work-dir: ${source.dir}/mongodb-mcp-server-13f5be1b56b6e308f718241f1b6c9ebe9817d34b
           privileged: true
           runs: |
             set -eux -o pipefail
@@ -53,10 +53,10 @@ contents:
         - name: patch source for SDK 1.25.2 compatibility
           uses: git/patch@v1
           with:
-            dir: ${source.dir}/mongodb-mcp-server-2c66ba72aa067736ba8bd1f0c971c0ff15c0f4b6
+            dir: ${source.dir}/mongodb-mcp-server-13f5be1b56b6e308f718241f1b6c9ebe9817d34b
             patch: ${source.dir}/patch/elicitation-sdk-1.25.2.patch
         - name: build
-          work-dir: ${source.dir}/mongodb-mcp-server-2c66ba72aa067736ba8bd1f0c971c0ff15c0f4b6
+          work-dir: ${source.dir}/mongodb-mcp-server-13f5be1b56b6e308f718241f1b6c9ebe9817d34b
           privileged: true
           runs: |
             set -eux -o pipefail
@@ -73,11 +73,11 @@ contents:
           gid: 0
           source: image/mongodb-mcp/patch/elicitation-sdk-1.25.2.patch
       outputs:
-        - source: ${source.dir}/mongodb-mcp-server-2c66ba72aa067736ba8bd1f0c971c0ff15c0f4b6/node_modules
+        - source: ${source.dir}/mongodb-mcp-server-13f5be1b56b6e308f718241f1b6c9ebe9817d34b/node_modules
           target: /app/node_modules
           uid: 0
           gid: 0
-        - source: ${source.dir}/mongodb-mcp-server-2c66ba72aa067736ba8bd1f0c971c0ff15c0f4b6/dist
+        - source: ${source.dir}/mongodb-mcp-server-13f5be1b56b6e308f718241f1b6c9ebe9817d34b/dist
           target: /app/dist
           uid: 0
           gid: 0

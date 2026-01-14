@@ -29,6 +29,8 @@ contents:
   builds:
     - name: trivy
       uses: dhi.io/golang:1.25.5-debian13-dev@sha256:a45faad20adc1286eef26b1f30e170b54791c217ce69457784de66b0a13d1fe6
+      caches:
+        - path: /go/pkg/mod
       contents:
         files:
           - url: https://github.com/aquasecurity/trivy/commit/2f3ae9346db5575a700e7e0e9c16ca8958528ef4.patch

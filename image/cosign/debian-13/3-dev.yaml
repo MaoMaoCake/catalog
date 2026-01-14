@@ -44,6 +44,8 @@ contents:
   builds:
     - name: cosign
       uses: dhi.io/golang:1.25.5-debian13-dev@sha256:a45faad20adc1286eef26b1f30e170b54791c217ce69457784de66b0a13d1fe6
+      caches:
+        - path: /go/pkg/mod
       contents:
         files:
           - url: git+https://github.com/sigstore/cosign.git#v3.0.4

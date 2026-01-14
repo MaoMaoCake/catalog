@@ -6,10 +6,10 @@ variant: runtime
 tags:
   - "2"
   - "2.11"
-  - 2.11.34
+  - 2.11.35
   - 2-debian13
   - 2.11-debian13
-  - 2.11.34-debian13
+  - 2.11.35-debian13
 platforms:
   - linux/amd64
   - linux/arm64
@@ -19,15 +19,15 @@ dates:
 vars:
   BASE_DIGEST: sha256:74fc43fa240887b8159970e434244039aab0c6efaaa9cf044004cdc22aa2a34d
   BASE_TAG: 20250419-debian13
-  COMMIT_SHA: d1765c7768e5cb9d2d4b0b3a017007349e4e61d4
+  COMMIT_SHA: 9e5d4ba5a1cdcf3465630cef858945f90f6b4279
   GOLANG_REFERENCE: dhi/golang:1.24.11-debian13-dev@sha256:ceccc68aa29c03c808090dc4c6156bebc6d4efaea357281ecde306d6451b7428
   GOLANG_VERSION: 1.24.11
   NODE_REFERENCE: dhi/node:22.22.0-debian13-dev@sha256:0885e8d074fa4bce93cb80e564ae339a678b72add6fcfa057a1d0b07dc7dc013
   NODE_VERSION: 22.22.0
   SEMVER_MAJOR_MINOR_VERSION: "2.11"
   SEMVER_MAJOR_VERSION: "2"
-  SEMVER_VERSION: 2.11.34
-  VERSION: 2.11.34
+  SEMVER_VERSION: 2.11.35
+  VERSION: 2.11.35
 contents:
   packages:
     - '!libelogind0'
@@ -42,15 +42,15 @@ contents:
           - grep
           - sed
         files:
-          - url: git+https://github.com/traefik/traefik.git#v2.11.34
-            checksum: d1765c7768e5cb9d2d4b0b3a017007349e4e61d4
+          - url: git+https://github.com/traefik/traefik.git#v2.11.35
+            checksum: 9e5d4ba5a1cdcf3465630cef858945f90f6b4279
             path: /go/src/github.com/traefik/traefik/v2
             spdx:
               name: traefik
-              version: 2.11.34
+              version: 2.11.35
               packages:
                 - name: traefik
-                  purl: pkg:golang/github.com/traefik/traefik@2.11.34#v2
+                  purl: pkg:golang/github.com/traefik/traefik@2.11.35#v2
                   license: MIT
             uid: 0
             gid: 0
@@ -86,7 +86,7 @@ contents:
           work-dir: /go/src/github.com/traefik/traefik/v2
           with:
             ldflags:
-              - -X github.com/traefik/traefik/v2/pkg/version.Version=2.11.34
+              - -X github.com/traefik/traefik/v2/pkg/version.Version=2.11.35
               - -X github.com/traefik/traefik/v2/pkg/version.Codename=$(grep -Po 'CODENAME \?= \K\w+' Makefile)
               - -X github.com/traefik/traefik/v2/pkg/version.BuildDate=$(date -d @${SOURCE_DATE_EPOCH} +'"%Y-%m-%dT%H:%M:%SZ')
             output: ${target.dir}/usr/local/bin/traefik

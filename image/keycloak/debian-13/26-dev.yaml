@@ -6,20 +6,20 @@ variant: dev
 tags:
   - 26-dev
   - 26.5-dev
-  - 26.5.0-dev
+  - 26.5.1-dev
   - 26-debian13-dev
   - 26.5-debian13-dev
-  - 26.5.0-debian13-dev
+  - 26.5.1-debian13-dev
 platforms:
   - linux/amd64
   - linux/arm64
 dates:
   release: "2025-09-30"
 vars:
-  COMMIT_SHA: bb0c59793c0ce4d2ff4f9e1a2b51cca9f262309c
+  COMMIT_SHA: 228bc50913aaf8778aeb05c33b67c3fe4f5817e9
   DEBIAN_EPOCH_MAJOR_MINOR_VERSION: "26.5"
   DEBIAN_EPOCH_MAJOR_VERSION: "26"
-  DEBIAN_EPOCH_VERSION: 26.5.0
+  DEBIAN_EPOCH_VERSION: 26.5.1
   JRE_REFERENCE: dhi/eclipse-temurin:21.0.9.10-debian13@sha256:8be38a5a3942a69d6ac8a6040c54fb588b6fc29499fa44fec189d2438be4d6a8
   JRE_VERSION: 21.0.9.10
   MAVEN_REFERENCE: dhi/maven:3.9.12-jdk21-debian13-dev@sha256:54dad2732e2c07f1377491e56c864c20635adf7ab2d60673a0e69455c3e1c947
@@ -28,7 +28,7 @@ vars:
   NODE_BUILD_VERSION: 24.13.0
   NODE_REFERENCE: sha256:f4224680e72e4235283a924b299ae04eea7b722dc732cd2353a80ea274538c9c
   NODE_VERSION: 24.11.1
-  VERSION: 26.5.0
+  VERSION: 26.5.1
 contents:
   packages:
     - '!gawk'
@@ -61,15 +61,15 @@ contents:
           - tar
           - gzip
         files:
-          - url: git+https://github.com/keycloak/keycloak.git#26.5.0
-            checksum: bb0c59793c0ce4d2ff4f9e1a2b51cca9f262309c
+          - url: git+https://github.com/keycloak/keycloak.git#26.5.1
+            checksum: 228bc50913aaf8778aeb05c33b67c3fe4f5817e9
             path: ${source.dir}/keycloak
             spdx:
               name: keycloak
-              version: 26.5.0
+              version: 26.5.1
               packages:
                 - name: keycloak
-                  purl: pkg:dhi/keycloak@26.5.0
+                  purl: pkg:dhi/keycloak@26.5.1
                   license: Apache-2.0
             uid: 0
             gid: 0
@@ -121,7 +121,7 @@ contents:
             set -eux -o pipefail
 
             mkdir -p "${target.dir}/opt/keycloak"
-            tar -xzf "${source.dir}/keycloak/quarkus/dist/target/keycloak-26.5.0.tar.gz" -C "${target.dir}/opt/keycloak" --strip-components=1
+            tar -xzf "${source.dir}/keycloak/quarkus/dist/target/keycloak-26.5.1.tar.gz" -C "${target.dir}/opt/keycloak" --strip-components=1
 
             "${target.dir}/opt/keycloak/bin/kc.sh" build
         - name: prepare for sbom

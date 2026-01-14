@@ -1,42 +1,42 @@
 # syntax=dhi.io/build:2-debian13
 
-name: Kubernetes Cluster Autoscaler 1.34.x
+name: Kubernetes Cluster Autoscaler 1.33.x
 image: dhi.io/kubernetes-cluster-autoscaler
 variant: runtime
 tags:
-  - "1.34"
-  - 1.34.2
-  - 1.34-debian13
-  - 1.34.2-debian13
+  - "1.33"
+  - 1.33.3
+  - 1.33-debian13
+  - 1.33.3-debian13
 platforms:
   - linux/amd64
   - linux/arm64
 vars:
   BASE_DIGEST: sha256:74fc43fa240887b8159970e434244039aab0c6efaaa9cf044004cdc22aa2a34d
   BASE_TAG: 20250419-debian13
-  COMMIT_SHA: b8e0634637ff376046eb145b0a4b864ac7a4beb3
-  GO_REFERENCE: dhi/golang:1.25.5-debian13-dev@sha256:a45faad20adc1286eef26b1f30e170b54791c217ce69457784de66b0a13d1fe6
-  SEMVER_MAJOR_MINOR_VERSION: "1.34"
+  COMMIT_SHA: 58c2293bcf60baca1910ae1d42f6340c1761ad06
+  GO_REFERENCE: dhi/golang:1.25.5-debian13-dev@sha256:f9f36f0abe1b818b2fcb2ce0397af9f223cc3e3310871be2a0b6d999dd97fab0
+  SEMVER_MAJOR_MINOR_VERSION: "1.33"
   SEMVER_MAJOR_VERSION: "1"
-  SEMVER_VERSION: 1.34.2
-  VERSION: 1.34.2
+  SEMVER_VERSION: 1.33.3
+  VERSION: 1.33.3
 contents:
   packages:
     - '!base-files'
   builds:
     - name: kubernetes-cluster-autoscaler
-      uses: dhi.io/golang:1.25.5-debian13-dev@sha256:a45faad20adc1286eef26b1f30e170b54791c217ce69457784de66b0a13d1fe6
+      uses: dhi.io/golang:1.25.5-debian13-dev@sha256:f9f36f0abe1b818b2fcb2ce0397af9f223cc3e3310871be2a0b6d999dd97fab0
       contents:
         files:
-          - url: git+https://github.com/kubernetes/autoscaler.git#cluster-autoscaler-1.34.2
-            checksum: b8e0634637ff376046eb145b0a4b864ac7a4beb3
+          - url: git+https://github.com/kubernetes/autoscaler.git#cluster-autoscaler-1.33.3
+            checksum: 58c2293bcf60baca1910ae1d42f6340c1761ad06
             path: /go/src/k8s.io/autoscaler
             spdx:
               name: kubernetes-cluster-autoscaler
-              version: 1.34.2
+              version: 1.33.3
               packages:
                 - name: kubernetes-cluster-autoscaler
-                  purl: pkg:golang/k8s.io/autoscaler/cluster-autoscaler@1.34.2
+                  purl: pkg:golang/k8s.io/autoscaler/cluster-autoscaler@1.33.3
                   license: Apache-2.0
             uid: 0
             gid: 0

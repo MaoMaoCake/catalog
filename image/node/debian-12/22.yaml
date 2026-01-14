@@ -5,16 +5,16 @@ image: dhi.io/node
 variant: runtime
 tags:
   - 22-debian12
-  - 22.21-debian12
-  - 22.21.1-debian12
+  - 22.22-debian12
+  - 22.22.0-debian12
 platforms:
   - linux/amd64
   - linux/arm64
 vars:
-  DIGEST: sha256:6d2d5059055cd0c16a05a1c4349a5099b49be4c3b85e32a6bc67dddb1b9ab7df
+  DIGEST: sha256:3abe7f6b55176c9b22a0518c29041efe99d7d459ddb5e069edff4c039fd7b784
   NODEJS_VERSION_MAJOR: "22"
-  NODEJS_VERSION_MAJOR_MINOR: "22.21"
-  VERSION: 22.21.1
+  NODEJS_VERSION_MAJOR_MINOR: "22.22"
+  VERSION: 22.22.0
 contents:
   packages:
     - '!acl'
@@ -72,30 +72,30 @@ contents:
           - bash
           - coreutils
         artifacts:
-          - name: dhi.io/pkg-node:22.21.1-debian12@sha256:6d2d5059055cd0c16a05a1c4349a5099b49be4c3b85e32a6bc67dddb1b9ab7df
+          - name: dhi.io/pkg-node:22.22.0-debian12@sha256:3abe7f6b55176c9b22a0518c29041efe99d7d459ddb5e069edff4c039fd7b784
             includes:
               - opt/docker
               - opt/nodejs
               - usr/local/bin/node
             excludes:
               - opt/docker/sbom/yarn
-              - opt/nodejs/node-v22.21.1/bin/corepack
-              - opt/nodejs/node-v22.21.1/bin/npm
-              - opt/nodejs/node-v22.21.1/bin/npx
-              - opt/nodejs/node-v22.21.1/bin/pnpm
-              - opt/nodejs/node-v22.21.1/bin/pnpx
-              - opt/nodejs/node-v22.21.1/bin/yarn
-              - opt/nodejs/node-v22.21.1/bin/yarnpkg
-              - opt/nodejs/node-v22.21.1/include
-              - opt/nodejs/node-v22.21.1/lib
-              - opt/nodejs/node-v22.21.1/share
+              - opt/nodejs/node-v22.22.0/bin/corepack
+              - opt/nodejs/node-v22.22.0/bin/npm
+              - opt/nodejs/node-v22.22.0/bin/npx
+              - opt/nodejs/node-v22.22.0/bin/pnpm
+              - opt/nodejs/node-v22.22.0/bin/pnpx
+              - opt/nodejs/node-v22.22.0/bin/yarn
+              - opt/nodejs/node-v22.22.0/bin/yarnpkg
+              - opt/nodejs/node-v22.22.0/include
+              - opt/nodejs/node-v22.22.0/lib
+              - opt/nodejs/node-v22.22.0/share
             uid: 0
             gid: 0
       pipeline:
         - name: strip
           uses: strip@v1
           with:
-            dir: /opt/nodejs/node-v22.21.1
+            dir: /opt/nodejs/node-v22.22.0
       outputs:
         - source: /opt/nodejs
           target: /opt/nodejs
@@ -131,7 +131,7 @@ os-release:
   bug-report-url: https://docker.com/support/
 work-dir: /app
 environment:
-  NODE_VERSION: 22.21.1
+  NODE_VERSION: 22.22.0
 paths:
   - type: directory
     path: /app

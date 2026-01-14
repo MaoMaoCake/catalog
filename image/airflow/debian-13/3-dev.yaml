@@ -23,8 +23,8 @@ dates:
   release: "2025-04-22"
 vars:
   COMMIT_SHA: d6a009b6dfa1802930f514a2429cc56f5b4c2f12
-  NODE_DIGEST: sha256:3b834f27bae6cccc45f254e1837ed21b9b550708d6c87449e1be3189b8fa46ad
-  NODE_VERSION: 22.21.1
+  NODE_DIGEST: sha256:027182eb872d9b722722c77e4a4f631c71fab95d96126d34f695f27a73cda858
+  NODE_VERSION: 22.22.0
   PYTHON_BUILD_DIGEST: sha256:b351349ab90acd9a0a558801721d802cd38e77e760747f5b4d421f3460354fe1
   PYTHON_BUILD_VERSION: 3.12.12
   PYTHON_DIGEST: sha256:65e3d2289d1e2bcb1419af38d0ce9182d6f2cf1b51338ca947cae2744b38ec46
@@ -99,7 +99,7 @@ contents:
             uid: 0
             gid: 0
         artifacts:
-          - name: dhi.io/pkg-node:22.21.1-debian13@sha256:3b834f27bae6cccc45f254e1837ed21b9b550708d6c87449e1be3189b8fa46ad
+          - name: dhi.io/pkg-node:22.22.0-debian13@sha256:027182eb872d9b722722c77e4a4f631c71fab95d96126d34f695f27a73cda858
             includes:
               - opt/nodejs
               - usr/local/bin/node
@@ -216,12 +216,12 @@ contents:
               "react-router-dom@6.30.0": "6.30.3"
             EOF
 
-            /opt/nodejs/node-v22.21.1/bin/corepack pnpm install
-            /opt/nodejs/node-v22.21.1/bin/corepack pnpm run build --outDir ${target.dir}/ui
+            /opt/nodejs/node-v22.22.0/bin/corepack pnpm install
+            /opt/nodejs/node-v22.22.0/bin/corepack pnpm run build --outDir ${target.dir}/ui
 
             # prep for sbom
             rm -rf node_modules
-            /opt/nodejs/node-v22.21.1/bin/corepack pnpm install --frozen-lockfile --production
+            /opt/nodejs/node-v22.22.0/bin/corepack pnpm install --frozen-lockfile --production
         - name: main ui sbom
           uses: sbom@v1
           with:
@@ -243,12 +243,12 @@ contents:
               "react-router-dom": "7.12.0" # CVE-2026-21884
             EOF
 
-            /opt/nodejs/node-v22.21.1/bin/corepack pnpm install
-            /opt/nodejs/node-v22.21.1/bin/corepack pnpm run build --outDir ${target.dir}/simple-auth-ui
+            /opt/nodejs/node-v22.22.0/bin/corepack pnpm install
+            /opt/nodejs/node-v22.22.0/bin/corepack pnpm run build --outDir ${target.dir}/simple-auth-ui
 
             # prep for sbom
             rm -rf node_modules
-            /opt/nodejs/node-v22.21.1/bin/corepack pnpm install --frozen-lockfile --production
+            /opt/nodejs/node-v22.22.0/bin/corepack pnpm install --frozen-lockfile --production
         - name: simple auth ui sbom
           uses: sbom@v1
           with:

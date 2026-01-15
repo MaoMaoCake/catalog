@@ -104,8 +104,8 @@ contents:
             patches:
               - ${source.dir}/patch/initdb.patch
               - ${source.dir}/patch/pager-less.patch
-              - ${source.dir}/patch/alpine/dont-use-locale-a-on-musl.pg16.patch
-              - ${source.dir}/patch/alpine/icu-collections-hack.pg16.patch
+              - ${source.dir}/patch/dont-use-locale-a-on-musl.pg16.patch
+              - ${source.dir}/patch/icu-collections-hack.pg16.patch
         - name: build and install
           work-dir: ${source.dir}/postgresql-16.11
           runs: |
@@ -152,15 +152,15 @@ contents:
           gid: 0
           source: image/postgres/patch/pager-less.patch
         - type: file
-          path: ${source.dir}/patch/alpine/dont-use-locale-a-on-musl.pg16.patch
+          path: ${source.dir}/patch/dont-use-locale-a-on-musl.pg16.patch
           uid: 0
           gid: 0
-          source: image/postgres/patch/alpine/dont-use-locale-a-on-musl.pg16.patch
+          source: image/postgres/patch/alpine-3.22/dont-use-locale-a-on-musl.pg16.patch
         - type: file
-          path: ${source.dir}/patch/alpine/icu-collections-hack.pg16.patch
+          path: ${source.dir}/patch/icu-collections-hack.pg16.patch
           uid: 0
           gid: 0
-          source: image/postgres/patch/alpine/icu-collections-hack.pg16.patch
+          source: image/postgres/patch/alpine-3.22/icu-collections-hack.pg16.patch
       outputs:
         - source: ${target.dir}/opt/postgresql/16
           target: /opt/postgresql/16

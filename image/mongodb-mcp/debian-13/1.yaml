@@ -5,22 +5,22 @@ image: dhi.io/mongodb-mcp
 variant: runtime
 tags:
   - "1"
-  - "1.4"
-  - 1.4.1
+  - "1.5"
+  - 1.5.0
   - 1-debian13
-  - 1.4-debian13
-  - 1.4.1-debian13
+  - 1.5-debian13
+  - 1.5.0-debian13
 platforms:
   - linux/amd64
   - linux/arm64
 vars:
-  COMMIT_SHA: 13f5be1b56b6e308f718241f1b6c9ebe9817d34b
+  COMMIT_SHA: 7283f597ae0256bd4a190c5281b6ed76c6278935
   NODE_BUILD_REFERENCE: dhi/node:24.13.0-debian13-sfw-dev@sha256:5260a0f14b48fd6bf44d7cef36c4e5eb0c7755afda29b272f1e705312dc14c18
   NODE_RUNTIME_REFERENCE: dhi/node:24.13.0-debian13@sha256:2f0ded1493cff1e093f1a4b82d678ac72aa9a9504da3054e4668cb71b486bc3f
-  SEMVER_MAJOR_MINOR_VERSION: "1.4"
+  SEMVER_MAJOR_MINOR_VERSION: "1.5"
   SEMVER_MAJOR_VERSION: "1"
-  SEMVER_VERSION: 1.4.1
-  VERSION: 1.4.1
+  SEMVER_VERSION: 1.5.0
+  VERSION: 1.5.0
 contents:
   packages:
     - '!base-files'
@@ -29,21 +29,21 @@ contents:
       uses: dhi.io/node:24.13.0-debian13-sfw-dev@sha256:5260a0f14b48fd6bf44d7cef36c4e5eb0c7755afda29b272f1e705312dc14c18
       contents:
         files:
-          - url: git+https://github.com/mongodb-js/mongodb-mcp-server.git#v1.4.1
-            checksum: 13f5be1b56b6e308f718241f1b6c9ebe9817d34b
-            path: ${source.dir}/mongodb-mcp-server-13f5be1b56b6e308f718241f1b6c9ebe9817d34b
+          - url: git+https://github.com/mongodb-js/mongodb-mcp-server.git#v1.5.0
+            checksum: 7283f597ae0256bd4a190c5281b6ed76c6278935
+            path: ${source.dir}/mongodb-mcp-server-7283f597ae0256bd4a190c5281b6ed76c6278935
             spdx:
               name: mongodb-mcp-server
-              version: 1.4.1
+              version: 1.5.0
               packages:
                 - name: mongodb-mcp-server
-                  purl: pkg:dhi/mongodb-mcp@1.4.1
+                  purl: pkg:dhi/mongodb-mcp@1.5.0
                   license: Apache-2.0
             uid: 0
             gid: 0
       pipeline:
         - name: bump pnpm dependencies
-          work-dir: ${source.dir}/mongodb-mcp-server-13f5be1b56b6e308f718241f1b6c9ebe9817d34b
+          work-dir: ${source.dir}/mongodb-mcp-server-7283f597ae0256bd4a190c5281b6ed76c6278935
           privileged: true
           runs: |
             set -eux -o pipefail
@@ -52,7 +52,7 @@ contents:
             npm pkg set pnpm.overrides."@modelcontextprotocol/sdk"=1.25.2 # CVE-2026-0621
             npm pkg set pnpm.overrides.hono=4.11.4                        # CVE-2026-22818, CVE-2026-22817
         - name: build
-          work-dir: ${source.dir}/mongodb-mcp-server-13f5be1b56b6e308f718241f1b6c9ebe9817d34b
+          work-dir: ${source.dir}/mongodb-mcp-server-7283f597ae0256bd4a190c5281b6ed76c6278935
           privileged: true
           runs: |
             set -eux -o pipefail
@@ -67,11 +67,11 @@ contents:
             rm -rf node_modules
             pnpm install --prod --ignore-scripts
       outputs:
-        - source: ${source.dir}/mongodb-mcp-server-13f5be1b56b6e308f718241f1b6c9ebe9817d34b/node_modules
+        - source: ${source.dir}/mongodb-mcp-server-7283f597ae0256bd4a190c5281b6ed76c6278935/node_modules
           target: /app/node_modules
           uid: 0
           gid: 0
-        - source: ${source.dir}/mongodb-mcp-server-13f5be1b56b6e308f718241f1b6c9ebe9817d34b/dist
+        - source: ${source.dir}/mongodb-mcp-server-7283f597ae0256bd4a190c5281b6ed76c6278935/dist
           target: /app/dist
           uid: 0
           gid: 0

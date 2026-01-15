@@ -28,6 +28,8 @@ contents:
   builds:
     - name: caddy build
       uses: dhi.io/golang:1.25.5-debian13-dev@sha256:a45faad20adc1286eef26b1f30e170b54791c217ce69457784de66b0a13d1fe6
+      caches:
+        - path: /go/pkg/mod
       contents:
         files:
           - url: git+https://github.com/caddyserver/caddy.git#v2.10.2
@@ -51,7 +53,6 @@ contents:
               - github.com/smallstep/certificates@v0.29.0
               - github.com/quic-go/quic-go@v0.57.0
               - github.com/slackhq/nebula@v1.9.7
-              - golang.org/x/crypto@v0.46.0
             download: true
         - name: test
           work-dir: /go/src/github.com/caddyserver/caddy

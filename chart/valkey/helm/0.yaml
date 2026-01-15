@@ -4,30 +4,30 @@ name: Valkey Helm chart 0.x
 image: dhi.io/valkey-chart
 variant: helm
 tags:
-  - 0.8.1
+  - 0.9.3
 platforms:
   - linux/amd64
 vars:
-  CHART_COMMIT_SHA: bce9499be2c7779513a26c5b10aaca7bdb87d647
+  CHART_COMMIT_SHA: 13b95820b80663d98ab1bb4a91ed8330a5405eef
   DHI_NAMESPACE: dhi
   DHI_PREFIX: ""
   DHI_REGISTRY: dhi.io
   DHI_SKIP_CONTEXT_COPY: "true"
   HELM_REFERENCE: dhi/helm:3.19.4-debian13-dev@sha256:4a591aa3cad9e5a0b82d3503e6140956db99735b68351b7b223514220873df4c
   REDIS_EXPORTER_REFERENCE: dhi/redis-exporter:1.80.1-debian13@sha256:39b68591150a362609a191f290ee65a8b87bf4ddcaf5cfae4cf0d53505d0d522
-  SEMVER_MAJOR_MINOR_VERSION: "0.8"
+  SEMVER_MAJOR_MINOR_VERSION: "0.9"
   SEMVER_MAJOR_VERSION: "0"
-  SEMVER_VERSION: 0.8.1
+  SEMVER_VERSION: 0.9.3
   VALKEY_REFERENCE: dhi/valkey:9.0.1-debian13@sha256:f1c6f7af37287cb36e8e73e7a8c9b07f160296dde9a6429a4b1e7948ef9d4297
-  VERSION: 0.8.1
+  VERSION: 0.9.3
 contents:
   builds:
     - name: valkey
       uses: dhi.io/helm:3.19.4-debian13-dev@sha256:4a591aa3cad9e5a0b82d3503e6140956db99735b68351b7b223514220873df4c
       contents:
         files:
-          - url: git+https://github.com/valkey-io/valkey-helm.git#v0.8.1
-            checksum: bce9499be2c7779513a26c5b10aaca7bdb87d647
+          - url: git+https://github.com/valkey-io/valkey-helm.git#valkey-0.9.3
+            checksum: 13b95820b80663d98ab1bb4a91ed8330a5405eef
             path: ${source.dir}/helm-charts
             uid: 0
             gid: 0

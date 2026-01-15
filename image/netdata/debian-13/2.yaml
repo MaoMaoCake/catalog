@@ -16,7 +16,7 @@ platforms:
 vars:
   COMMIT: 38812a29044fc5b0290389bcf1292d9f4af5c334
   GO_VERSION: 1.25.5
-  GOLANG_REFERENCE: dhi/golang:1.25.5-debian13-dev@sha256:a45faad20adc1286eef26b1f30e170b54791c217ce69457784de66b0a13d1fe6
+  GOLANG_REFERENCE: dhi/golang:1.25.5-debian13-dev@sha256:f9f36f0abe1b818b2fcb2ce0397af9f223cc3e3310871be2a0b6d999dd97fab0
   PYTHON_REFERENCE: dhi/python:3.12.12-debian13@sha256:65e3d2289d1e2bcb1419af38d0ce9182d6f2cf1b51338ca947cae2744b38ec46
   PYTHON_VERSION: 3.12.12
   SEMVER_MAJOR_MINOR_VERSION: "2.8"
@@ -52,7 +52,7 @@ contents:
     - zlib1g
   builds:
     - name: netdata
-      uses: dhi.io/golang:1.25.5-debian13-dev@sha256:a45faad20adc1286eef26b1f30e170b54791c217ce69457784de66b0a13d1fe6
+      uses: dhi.io/golang:1.25.5-debian13-dev@sha256:f9f36f0abe1b818b2fcb2ce0397af9f223cc3e3310871be2a0b6d999dd97fab0
       contents:
         packages:
           - autoconf

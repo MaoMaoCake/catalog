@@ -69,7 +69,6 @@ contents:
             options: -p1
             patches:
               - ${source.dir}/patch/8.18.patch
-              - ${source.dir}/patch/lz4.patch
         - name: build
           work-dir: ${source.dir}/elasticsearch
           runs: |
@@ -88,11 +87,6 @@ contents:
           uid: 0
           gid: 0
           source: image/elasticsearch/patch/8.18.patch
-        - type: file
-          path: ${source.dir}/patch/lz4.patch
-          uid: 0
-          gid: 0
-          source: image/elasticsearch/patch/lz4.patch
       outputs:
         - source: ${target.dir}/opt/elasticsearch/elasticsearch-8.18.8
           target: /opt/elasticsearch/elasticsearch-8.18.8
@@ -139,14 +133,14 @@ paths:
     source: /opt/elasticsearch/elasticsearch-8.18.8
   - type: file
     path: /opt/elasticsearch/elasticsearch-8.18.8/config/elasticsearch.yml
-    uid: 0
-    gid: 0
+    uid: 1000
+    gid: 1000
     mode: "0644"
     source: image/elasticsearch/config/elasticsearch.yml
   - type: file
     path: /opt/elasticsearch/elasticsearch-8.18.8/config/log4j2.properties
-    uid: 0
-    gid: 0
+    uid: 1000
+    gid: 1000
     mode: "0644"
     source: image/elasticsearch/config/log4j2.properties
 annotations:

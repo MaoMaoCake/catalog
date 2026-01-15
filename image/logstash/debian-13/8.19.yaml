@@ -19,7 +19,6 @@ dates:
 vars:
   ARCH: '#{ target.arch == "amd64" ? "x86_64" : "aarch64" }'
   COMMIT_SHA: e21497ddfbe84a50f2d8d04105b9b5f0c5efdbc4
-  ENV2YAML_BUILDER: dhi/gradle:8.14.3-jdk21-debian13-dev@sha256:748c3f300c3496511402a320e94bc73e6a31077d38ed24d9eb275515f450c0e1
   GO_REFERENCE: dhi/golang:1.24.11-debian13-dev@sha256:62830af7e4fa15a26dc6d12378595f2c70e2e0bee2bc081179d3cffe9bf0657c
   GO_VERSION: 1.24.11
   GRADLE_REFERENCE: dhi/gradle:8.14.3-jdk21-debian13-dev@sha256:748c3f300c3496511402a320e94bc73e6a31077d38ed24d9eb275515f450c0e1
@@ -44,7 +43,7 @@ contents:
     - coreutils
     - sed
   builds:
-    - name: env2yaml
+    - name: env2yaml java for 8.19+
       uses: dhi.io/gradle:8.14.3-jdk21-debian13-dev@sha256:748c3f300c3496511402a320e94bc73e6a31077d38ed24d9eb275515f450c0e1
       contents:
         packages:
@@ -52,24 +51,25 @@ contents:
           - coreutils
         files:
           - url: git+https://github.com/elastic/logstash.git#e21497ddfbe84a50f2d8d04105b9b5f0c5efdbc4
-            path: ${source.dir}/logstash-e21497ddfbe84a50f2d8d04105b9b5f0c5efdbc4
+            checksum: e21497ddfbe84a50f2d8d04105b9b5f0c5efdbc4
+            path: ${source.dir}/logstash
             uid: 0
             gid: 0
       pipeline:
         - name: build env2yaml java
-          work-dir: ${source.dir}/logstash-e21497ddfbe84a50f2d8d04105b9b5f0c5efdbc4/docker/data/logstash/env2yaml
+          work-dir: ${source.dir}/logstash/docker/data/logstash/env2yaml
           privileged: true
           runs: |
             set -eux -o pipefail
 
             gradle build
       outputs:
-        - source: ${source.dir}/logstash-e21497ddfbe84a50f2d8d04105b9b5f0c5efdbc4/docker/data/logstash/env2yaml
+        - source: ${source.dir}/logstash/docker/data/logstash/env2yaml
           target: /usr/share/logstash/env2yaml
           uid: 0
           gid: 0
           mode: "0755"
-        - source: ${source.dir}/logstash-e21497ddfbe84a50f2d8d04105b9b5f0c5efdbc4/docker/data/logstash/env2yaml/env2yaml
+        - source: ${source.dir}/logstash/docker/data/logstash/env2yaml/env2yaml
           target: /usr/local/bin/env2yaml
           uid: 0
           gid: 0
@@ -135,21 +135,6 @@ contents:
             mkdir -p "${target.dir}/usr/share/logstash"
 
             cp -r "/usr/share/logstash-8.19.10"-SNAPSHOT/* "${target.dir}/usr/share/logstash"
-        - name: replace vulnerable jars
-          work-dir: ${source.dir}/logstash
-          runs: |
-            set -eux -o pipefail
-
-            lz4_base_path="${target.dir}/usr/share/logstash/vendor/bundle/jruby/3.1.0/gems/logstash-integration-kafka-11.6.4-java/vendor/jar-dependencies/org/lz4/lz4-java/"
-
-            # Remove old version
-            # This will fail if the file is not there (meaning something has changed since this patch was needed)
-            rm "$lz4_base_path/1.8.0/lz4-java-1.8.0.jar"
-            rmdir "$lz4_base_path/1.8.0"
-
-            # Insert fixed version
-            mkdir "$lz4_base_path/1.10.1"
-            cp "${source.dir}/patch/deps/lz4-java-1.10.1.jar" "$lz4_base_path/1.10.1"
       paths:
         - type: directory
           path: ${source.dir}/patch

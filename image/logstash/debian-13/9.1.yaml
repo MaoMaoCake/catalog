@@ -5,9 +5,9 @@ image: dhi.io/logstash
 variant: runtime
 tags:
   - "9.1"
-  - 9.1.9
+  - 9.1.10
   - 9.1-debian13
-  - 9.1.9-debian13
+  - 9.1.10-debian13
 platforms:
   - linux/amd64
   - linux/arm64
@@ -15,9 +15,9 @@ dates:
   release: "2025-07-22"
 vars:
   ARCH: '#{ target.arch == "amd64" ? "x86_64" : "aarch64" }'
-  COMMIT_SHA: 33a62d1cc1fd3010bc88dcba870cb2dfb91c3269
-  ENV2YAML_BUILDER: dhi/gradle:8.14.3-jdk21-debian13-dev@sha256:748c3f300c3496511402a320e94bc73e6a31077d38ed24d9eb275515f450c0e1
-  GO_REFERENCE: dhi/golang:1.24.11-debian13-dev@sha256:ceccc68aa29c03c808090dc4c6156bebc6d4efaea357281ecde306d6451b7428
+  COMMIT_SHA: 852e410cb3ff8a8cbf21f378f0ab7129c3dc208d
+  ENV2YAML_BUILDER: dhi/golang:1.24.11-debian13-dev@sha256:62830af7e4fa15a26dc6d12378595f2c70e2e0bee2bc081179d3cffe9bf0657c
+  GO_REFERENCE: dhi/golang:1.24.11-debian13-dev@sha256:62830af7e4fa15a26dc6d12378595f2c70e2e0bee2bc081179d3cffe9bf0657c
   GO_VERSION: 1.24.11
   GRADLE_REFERENCE: dhi/gradle:8.14.3-jdk21-debian13-dev@sha256:748c3f300c3496511402a320e94bc73e6a31077d38ed24d9eb275515f450c0e1
   GRADLE_VERSION: 8.14.3
@@ -29,8 +29,8 @@ vars:
   OSS: "true"
   SEMVER_MAJOR_MINOR_VERSION: "9.1"
   SEMVER_MAJOR_VERSION: "9"
-  SEMVER_VERSION: 9.1.9
-  VERSION: 9.1.9
+  SEMVER_VERSION: 9.1.10
+  VERSION: 9.1.10
 contents:
   packages:
     - '!libelogind0'
@@ -42,31 +42,28 @@ contents:
     - sed
   builds:
     - name: env2yaml
-      uses: dhi.io/gradle:8.14.3-jdk21-debian13-dev@sha256:748c3f300c3496511402a320e94bc73e6a31077d38ed24d9eb275515f450c0e1
+      uses: dhi.io/golang:1.24.11-debian13-dev@sha256:62830af7e4fa15a26dc6d12378595f2c70e2e0bee2bc081179d3cffe9bf0657c
       contents:
         packages:
           - bash
           - coreutils
         files:
-          - url: git+https://github.com/elastic/logstash.git#33a62d1cc1fd3010bc88dcba870cb2dfb91c3269
-            path: ${source.dir}/logstash-33a62d1cc1fd3010bc88dcba870cb2dfb91c3269
+          - url: git+https://github.com/elastic/logstash.git#852e410cb3ff8a8cbf21f378f0ab7129c3dc208d
+            path: ${source.dir}/logstash-852e410cb3ff8a8cbf21f378f0ab7129c3dc208d
             uid: 0
             gid: 0
       pipeline:
-        - name: build env2yaml java
-          work-dir: ${source.dir}/logstash-33a62d1cc1fd3010bc88dcba870cb2dfb91c3269/docker/data/logstash/env2yaml
+        - name: build env2yaml go
           privileged: true
           runs: |
             set -eux -o pipefail
 
-            gradle build
+            mkdir -p /tmp/go/src
+            cp -r "${source.dir}/logstash-852e410cb3ff8a8cbf21f378f0ab7129c3dc208d/docker/data/logstash/env2yaml" /tmp/go/src/env2yaml
+            cd /tmp/go/src/env2yaml
+            go build -trimpath
       outputs:
-        - source: ${source.dir}/logstash-33a62d1cc1fd3010bc88dcba870cb2dfb91c3269/docker/data/logstash/env2yaml
-          target: /usr/share/logstash/env2yaml
-          uid: 0
-          gid: 0
-          mode: "0755"
-        - source: ${source.dir}/logstash-33a62d1cc1fd3010bc88dcba870cb2dfb91c3269/docker/data/logstash/env2yaml/env2yaml
+        - source: /tmp/go/src/env2yaml/env2yaml
           target: /usr/local/bin/env2yaml
           uid: 0
           gid: 0
@@ -85,15 +82,15 @@ contents:
           - sed
           - tar
         files:
-          - url: git+https://github.com/elastic/logstash.git#v9.1.9
-            checksum: 33a62d1cc1fd3010bc88dcba870cb2dfb91c3269
+          - url: git+https://github.com/elastic/logstash.git#v9.1.10
+            checksum: 852e410cb3ff8a8cbf21f378f0ab7129c3dc208d
             path: ${source.dir}/logstash
             spdx:
               name: logstash
-              version: 9.1.9
+              version: 9.1.10
               packages:
                 - name: logstash
-                  purl: pkg:dhi/logstash@9.1.9
+                  purl: pkg:dhi/logstash@9.1.10
                   license: Apache-2.0
             uid: 0
             gid: 0
@@ -127,11 +124,11 @@ contents:
           runs: |
             set -eux -o pipefail
 
-            tar -zxf "build/logstash-oss-9.1.9-SNAPSHOT-no-jdk.tar.gz" -C /usr/share
+            tar -zxf "build/logstash-oss-9.1.10-SNAPSHOT-no-jdk.tar.gz" -C /usr/share
 
             mkdir -p "${target.dir}/usr/share/logstash"
 
-            cp -r "/usr/share/logstash-9.1.9"-SNAPSHOT/* "${target.dir}/usr/share/logstash"
+            cp -r "/usr/share/logstash-9.1.10"-SNAPSHOT/* "${target.dir}/usr/share/logstash"
         - name: replace vulnerable jars
           work-dir: ${source.dir}/logstash
           runs: |

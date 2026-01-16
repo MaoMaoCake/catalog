@@ -16,14 +16,14 @@ platforms:
 vars:
   BUILD_NUMBER: "100"
   COMMIT_SHA: c9b95f32abaeb2f441c42464c43ce959e6afc9d8
-  DOTNET_DIGEST: sha256:3ceb0d48a944dc2acd4861f37a9a272f886ee46ebfd27d86020ed986d2f57bed
+  DOTNET_REFERENCE: dhi/dotnet:8.0.417-sdk-debian13@sha256:3ceb0d48a944dc2acd4861f37a9a272f886ee46ebfd27d86020ed986d2f57bed
   DOTNET_VERSION: 8.0.417
   EXT_BUNDLE_COMMIT_SHA: 3d5750b4307aa5e29111721f8308bff40f4f5c09
   EXT_BUNDLE_VERSION: 4.31.0
   FUNCTIONS_WORKER: node
-  NODE_DIGEST: sha256:7ec6f31778af2ec3d38ea30a17c5a0ff0b24d79d156749b5ef804e48bd60f988
   NODE_MAJOR_MINOR_VERSION: "22.22"
   NODE_MAJOR_VERSION: "22"
+  NODE_REFERENCE: dhi/node:22.22.0-debian13@sha256:7ec6f31778af2ec3d38ea30a17c5a0ff0b24d79d156749b5ef804e48bd60f988
   NODE_VERSION: 22.22.0
   SEMVER_MAJOR_MINOR_VERSION: "4.1046"
   SEMVER_MAJOR_VERSION: "4"
@@ -33,9 +33,9 @@ vars:
   VERSION: 4.1046.100
 contents:
   repositories:
-    - deb [signed-by=/usr/share/keyrings/microsoft-signing-key] https://packages.microsoft.com/debian/12/prod bookworm main
+    - deb [signed-by=/usr/share/keyrings/microsoft-signing-key] https://packages.microsoft.com/debian/13/prod trixie main
   keyring:
-    - https://packages.microsoft.com/keys/microsoft.asc
+    - https://packages.microsoft.com/keys/microsoft-2025.asc
   packages:
     - '!libelogind0'
     - '!mawk'
@@ -53,13 +53,13 @@ contents:
   builds:
     - name: azure-functions-host
       uses: dhi.io/dotnet:8.0.417-sdk-debian13@sha256:3ceb0d48a944dc2acd4861f37a9a272f886ee46ebfd27d86020ed986d2f57bed
-      privileged: true
       contents:
         packages:
           - bash
           - findutils
         files:
           - url: git+https://github.com/Azure/azure-functions-host.git#v4.1046.100
+            checksum: c9b95f32abaeb2f441c42464c43ce959e6afc9d8
             path: ${source.dir}/azure-functions-host
             spdx:
               name: azure-functions-host
@@ -71,13 +71,9 @@ contents:
             uid: 0
             gid: 0
       pipeline:
-        - name: verify checkout
-          uses: git/checkout@v1
-          with:
-            dir: ${source.dir}/azure-functions-host
-            expected-commit: c9b95f32abaeb2f441c42464c43ce959e6afc9d8
         - name: build
           work-dir: ${source.dir}/azure-functions-host
+          privileged: true
           runs: |
             set -eux -o pipefail
 
@@ -103,7 +99,6 @@ contents:
           gid: 0
     - name: azure-functions-extension-bundles
       uses: dhi.io/dotnet:8.0.417-sdk-debian13@sha256:3ceb0d48a944dc2acd4861f37a9a272f886ee46ebfd27d86020ed986d2f57bed
-      privileged: true
       contents:
         packages:
           - bash
@@ -112,6 +107,7 @@ contents:
           - unzip
         files:
           - url: git+https://github.com/Azure/azure-functions-extension-bundles.git#4.31.0
+            checksum: 3d5750b4307aa5e29111721f8308bff40f4f5c09
             path: ${source.dir}/azure-functions-extension-bundles
             spdx:
               name: azure-functions-extension-bundles
@@ -127,11 +123,6 @@ contents:
             uid: 0
             gid: 0
       pipeline:
-        - name: verify checkout
-          uses: git/checkout@v1
-          with:
-            dir: ${source.dir}/azure-functions-extension-bundles
-            expected-commit: 3d5750b4307aa5e29111721f8308bff40f4f5c09
         - name: extract templates
           work-dir: ${source.dir}/azure-functions-extension-bundles
           runs: |
@@ -148,6 +139,7 @@ contents:
               - ${source.dir}/patch/linux_bundles.patch
         - name: build
           work-dir: ${source.dir}/azure-functions-extension-bundles/build
+          privileged: true
           runs: |
             set -eux -o pipefail
 
@@ -181,7 +173,7 @@ contents:
           uid: 0
           gid: 0
   artifacts:
-    - name: dhi.io/node:22.22.0@sha256:7ec6f31778af2ec3d38ea30a17c5a0ff0b24d79d156749b5ef804e48bd60f988
+    - name: dhi.io/node:22.22.0-debian13@sha256:7ec6f31778af2ec3d38ea30a17c5a0ff0b24d79d156749b5ef804e48bd60f988
       includes:
         - opt/**
         - usr/**
@@ -216,12 +208,6 @@ environment:
   DOTNET_USE_POLLING_FILE_WATCHER: "true"
   FUNCTIONS_WORKER_RUNTIME: node
   FUNCTIONS_WORKER_RUNTIME_VERSION: 22.22.0
-paths:
-  - type: directory
-    path: /tmp
-    uid: 65532
-    gid: 65532
-    mode: "0755"
 annotations:
   org.opencontainers.image.description: A minimal Azure Functions Node image
   org.opencontainers.image.licenses: MIT

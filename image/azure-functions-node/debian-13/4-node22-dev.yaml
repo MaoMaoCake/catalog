@@ -1,16 +1,16 @@
 # syntax=dhi.io/build:2-debian13
 
-name: Azure Functions 4.x for Python 3.12.x (python3.12)
-image: dhi.io/azure-functions-python
-variant: runtime
-flavor: python3.12
+name: Azure Functions 4.x for Node 22.x (node22.22, dev)
+image: dhi.io/azure-functions-node
+variant: dev
+flavor: node22.22
 tags:
-  - 4-python3.12
-  - 4.1046-python3.12
-  - 4-debian13-python3.12
-  - 4.1046.100-python3.12
-  - 4.1046-debian13-python3.12
-  - 4.1046.100-debian13-python3.12
+  - 4-node22.22-dev
+  - 4.1046-node22.22-dev
+  - 4-debian13-node22.22-dev
+  - 4.1046.100-node22.22-dev
+  - 4.1046-debian13-node22.22-dev
+  - 4.1046.100-debian13-node22.22-dev
 platforms:
   - linux/amd64
 vars:
@@ -20,10 +20,11 @@ vars:
   DOTNET_VERSION: 8.0.417
   EXT_BUNDLE_COMMIT_SHA: 3d5750b4307aa5e29111721f8308bff40f4f5c09
   EXT_BUNDLE_VERSION: 4.31.0
-  FUNCTIONS_WORKER: python
-  PYTHON_DIGEST: sha256:65e3d2289d1e2bcb1419af38d0ce9182d6f2cf1b51338ca947cae2744b38ec46
-  PYTHON_MAJOR_MINOR_VERSION: "3.12"
-  PYTHON_VERSION: 3.12.12
+  FUNCTIONS_WORKER: node
+  NODE_MAJOR_MINOR_VERSION: "22.22"
+  NODE_MAJOR_VERSION: "22"
+  NODE_REFERENCE: dhi/node:22.22.0-debian13@sha256:7ec6f31778af2ec3d38ea30a17c5a0ff0b24d79d156749b5ef804e48bd60f988
+  NODE_VERSION: 22.22.0
   SEMVER_MAJOR_MINOR_VERSION: "4.1046"
   SEMVER_MAJOR_VERSION: "4"
   SEMVER_VERSION: 4.1046.100
@@ -36,19 +37,32 @@ contents:
   keyring:
     - https://packages.microsoft.com/keys/microsoft-2025.asc
   packages:
+    - '!gawk'
     - '!libelogind0'
     - '!mawk'
     - '!original-awk'
+    - apt
     - base-files
     - bash
+    - ca-certificates
+    - coreutils
+    - diffutils
+    - dpkg
+    - findutils
+    - grep
+    - libc-bin
     - libglib2.0-0t64
     - libicu76
     - libsm6
     - libxext6
     - libxrender-dev
+    - mawk
     - msodbcsql18
     - mssql-tools18
+    - perl-base
+    - sed
     - unixodbc
+    - util-linux
   builds:
     - name: azure-functions-host
       uses: dhi.io/dotnet:8.0.417-sdk-debian13@sha256:3ceb0d48a944dc2acd4861f37a9a272f886ee46ebfd27d86020ed986d2f57bed
@@ -86,7 +100,7 @@ contents:
           runs: |
             set -eux -o pipefail
 
-            find '${target.dir}/azure-functions-host/workers' -type d -mindepth 1 -maxdepth 1 -not -name 'python' -exec rm -rf '{}' \;
+            find '${target.dir}/azure-functions-host/workers' -type d -mindepth 1 -maxdepth 1 -not -name 'node' -exec rm -rf '{}' \;
       outputs:
         - source: ${target.dir}/azure-functions-host
           target: /azure-functions-host
@@ -172,7 +186,7 @@ contents:
           uid: 0
           gid: 0
   artifacts:
-    - name: dhi.io/python:3.12.12@sha256:65e3d2289d1e2bcb1419af38d0ce9182d6f2cf1b51338ca947cae2744b38ec46
+    - name: dhi.io/node:22.22.0-debian13@sha256:7ec6f31778af2ec3d38ea30a17c5a0ff0b24d79d156749b5ef804e48bd60f988
       includes:
         - opt/**
         - usr/**
@@ -180,10 +194,14 @@ contents:
       uid: 0
       gid: 0
 accounts:
-  run-as: nonroot
+  root: true
+  run-as: root
   users:
     - name: nonroot
       uid: 65532
+      gid: 65532
+    - name: _apt
+      uid: 42
       gid: 65532
   groups:
     - name: nonroot
@@ -203,12 +221,13 @@ environment:
   ASPNETCORE_URLS: http://+:80
   AzureFunctionsJobHost__Logging__Console__IsEnabled: "true"
   AzureWebJobsScriptRoot: /home/site/wwwroot
+  DEBIAN_FRONTEND: noninteractive
   DOTNET_RUNNING_IN_CONTAINER: "true"
   DOTNET_USE_POLLING_FILE_WATCHER: "true"
-  FUNCTIONS_WORKER_RUNTIME: python
-  FUNCTIONS_WORKER_RUNTIME_VERSION: "3.12"
+  FUNCTIONS_WORKER_RUNTIME: node
+  FUNCTIONS_WORKER_RUNTIME_VERSION: 22.22.0
 annotations:
-  org.opencontainers.image.description: A minimal Azure Functions Python image
+  org.opencontainers.image.description: A minimal Azure Functions Node image
   org.opencontainers.image.licenses: MIT
 entrypoint:
   - /azure-functions-host/Microsoft.Azure.WebJobs.Script.WebHost

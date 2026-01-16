@@ -1,16 +1,16 @@
 # syntax=dhi.io/build:2-debian13
 
-name: Azure Functions 4.x for Python 3.12.x (python3.12)
-image: dhi.io/azure-functions-python
+name: Azure Functions 4.x for Node 24.x (node24.13)
+image: dhi.io/azure-functions-node
 variant: runtime
-flavor: python3.12
+flavor: node24.13
 tags:
-  - 4-python3.12
-  - 4.1046-python3.12
-  - 4-debian13-python3.12
-  - 4.1046.100-python3.12
-  - 4.1046-debian13-python3.12
-  - 4.1046.100-debian13-python3.12
+  - 4-node24.13
+  - 4.1046-node24.13
+  - 4-debian13-node24.13
+  - 4.1046.100-node24.13
+  - 4.1046-debian13-node24.13
+  - 4.1046.100-debian13-node24.13
 platforms:
   - linux/amd64
 vars:
@@ -20,10 +20,11 @@ vars:
   DOTNET_VERSION: 8.0.417
   EXT_BUNDLE_COMMIT_SHA: 3d5750b4307aa5e29111721f8308bff40f4f5c09
   EXT_BUNDLE_VERSION: 4.31.0
-  FUNCTIONS_WORKER: python
-  PYTHON_DIGEST: sha256:65e3d2289d1e2bcb1419af38d0ce9182d6f2cf1b51338ca947cae2744b38ec46
-  PYTHON_MAJOR_MINOR_VERSION: "3.12"
-  PYTHON_VERSION: 3.12.12
+  FUNCTIONS_WORKER: node
+  NODE_MAJOR_MINOR_VERSION: "24.13"
+  NODE_MAJOR_VERSION: "24"
+  NODE_REFERENCE: dhi/node:24.13.0-debian13@sha256:2f0ded1493cff1e093f1a4b82d678ac72aa9a9504da3054e4668cb71b486bc3f
+  NODE_VERSION: 24.13.0
   SEMVER_MAJOR_MINOR_VERSION: "4.1046"
   SEMVER_MAJOR_VERSION: "4"
   SEMVER_VERSION: 4.1046.100
@@ -86,7 +87,7 @@ contents:
           runs: |
             set -eux -o pipefail
 
-            find '${target.dir}/azure-functions-host/workers' -type d -mindepth 1 -maxdepth 1 -not -name 'python' -exec rm -rf '{}' \;
+            find '${target.dir}/azure-functions-host/workers' -type d -mindepth 1 -maxdepth 1 -not -name 'node' -exec rm -rf '{}' \;
       outputs:
         - source: ${target.dir}/azure-functions-host
           target: /azure-functions-host
@@ -172,7 +173,7 @@ contents:
           uid: 0
           gid: 0
   artifacts:
-    - name: dhi.io/python:3.12.12@sha256:65e3d2289d1e2bcb1419af38d0ce9182d6f2cf1b51338ca947cae2744b38ec46
+    - name: dhi.io/node:24.13.0-debian13@sha256:2f0ded1493cff1e093f1a4b82d678ac72aa9a9504da3054e4668cb71b486bc3f
       includes:
         - opt/**
         - usr/**
@@ -205,10 +206,10 @@ environment:
   AzureWebJobsScriptRoot: /home/site/wwwroot
   DOTNET_RUNNING_IN_CONTAINER: "true"
   DOTNET_USE_POLLING_FILE_WATCHER: "true"
-  FUNCTIONS_WORKER_RUNTIME: python
-  FUNCTIONS_WORKER_RUNTIME_VERSION: "3.12"
+  FUNCTIONS_WORKER_RUNTIME: node
+  FUNCTIONS_WORKER_RUNTIME_VERSION: 24.13.0
 annotations:
-  org.opencontainers.image.description: A minimal Azure Functions Python image
+  org.opencontainers.image.description: A minimal Azure Functions Node image
   org.opencontainers.image.licenses: MIT
 entrypoint:
   - /azure-functions-host/Microsoft.Azure.WebJobs.Script.WebHost

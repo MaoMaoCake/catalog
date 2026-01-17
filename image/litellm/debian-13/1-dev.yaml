@@ -6,26 +6,26 @@ variant: dev
 tags:
   - 1-dev
   - 1.80-dev
-  - 1.80.11-dev
+  - 1.80.15-dev
   - 1-debian13-dev
   - 1.80-debian13-dev
-  - 1.80.11-debian13-dev
+  - 1.80.15-debian13-dev
 platforms:
   - linux/amd64
   - linux/arm64
 vars:
-  COMMIT_SHA: 57e07bddd34185934893de3ad74583ba119ed67d
+  COMMIT_SHA: 17c8d8d109b5d10c8a691108c47b9ce39f2f2646
   DEBIAN_EPOCH_MAJOR_MINOR_VERSION: "1.80"
   DEBIAN_EPOCH_MAJOR_VERSION: "1"
-  DEBIAN_EPOCH_VERSION: 1.80.11
+  DEBIAN_EPOCH_VERSION: 1.80.15
   PYTHON_BUILD_REFERENCE: dhi/python:3.13.11-debian13-dev@sha256:a699c9ddca400955c37ad71c068026ba5c2e5e67f47d96d241b0b798eca3db42
   PYTHON_BUILD_VERSION: 3.13.11
   PYTHON_REFERENCE: dhi/python:3.13.11-debian13@sha256:b646363a6d6c0c2cbd9bda6dd72ae6acdd753f93066fa1bf1567a094dfd60cef
   PYTHON_VERSION: 3.13.11
   SEMVER_MAJOR_MINOR_VERSION: "1.80"
   SEMVER_MAJOR_VERSION: "1"
-  SEMVER_VERSION: 1.80.11
-  VERSION: 1.80.11
+  SEMVER_VERSION: 1.80.15
+  VERSION: 1.80.15
 contents:
   packages:
     - '!gawk'
@@ -65,15 +65,15 @@ contents:
           - findutils
           - '!libexpat1'
         files:
-          - url: git+https://github.com/BerriAI/litellm.git#57e07bddd34185934893de3ad74583ba119ed67d
-            checksum: 57e07bddd34185934893de3ad74583ba119ed67d
+          - url: git+https://github.com/BerriAI/litellm.git#17c8d8d109b5d10c8a691108c47b9ce39f2f2646
+            checksum: 17c8d8d109b5d10c8a691108c47b9ce39f2f2646
             path: ${source.dir}/litellm-src
             spdx:
               name: litellm
-              version: 1.80.11
+              version: 1.80.15
               packages:
                 - name: litellm
-                  purl: pkg:pypi/litellm@1.80.11
+                  purl: pkg:pypi/litellm@1.80.15
                   license: MIT
             uid: 0
             gid: 0

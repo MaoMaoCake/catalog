@@ -19,8 +19,8 @@ vars:
   CHECKSUM: 67f084d36852daab6809561a7c8023d130ca07fc6af8fb040684dd1414934d48
   CPPFLAGS: -fstack-protector-strong -fpic -fpie -O2 -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64
   LDFLAGS: -Wl,-O1 -pie
-  PHP_INI_DIR: /opt/php-8.3/etc/php
   PHP_PREFIX: /opt/php-8.3
+  PHP_SYSCONFDIR: /opt/php-8.3/etc
   SEMVER_MAJOR_MINOR_VERSION: "8.3"
   SEMVER_MAJOR_VERSION: "8"
   SEMVER_VERSION: 8.3.30
@@ -56,8 +56,6 @@ contents:
           - bash
           - build-essential
           - coreutils
-          - gpg
-          - gpg-agent
           - grep
           - libargon2-dev
           - libc-bin
@@ -91,50 +89,16 @@ contents:
             uid: 0
             gid: 0
       pipeline:
-        - name: verify and extract
+        - name: verify php-8.3.30.tar.xz
+          uses: gpg/verify@v1
+          with:
+            file: ${source.dir}/php-8.3.30.tar.xz
+            keys: ${source.dir}/keyring.asc
+            signature: ${source.dir}/php-8.3.30.tar.xz.asc
+        - name: extract source
           runs: |
             set -eux -o pipefail
 
-            GNUPGHOME="$(mktemp -d)"
-            export GNUPGHOME
-
-            case '8.3' in
-              8.5)
-                gpg --batch --import \
-                  key/1198C0117593497A5EC5C199286AF1F9897469DC \
-                  key/49D9AF6BC72A80D6691719C8AA23F5BE9C7097D4 \
-                  key/D95C03BC702BE9515344AE3374E44BC9067701A5
-                ;;
-              8.4)
-                gpg --batch --import \
-                  key/0616E93D95AF471243E26761770426E17EBBB3DD \
-                  key/9D7F99A0CB8F05C8A6958D6256A97AF7600A39A6 \
-                  key/AFD8691FDAEDF03BDF6E460563F15A9B715376CA
-                ;;
-              8.3)
-                gpg --batch --import \
-                  key/1198C0117593497A5EC5C199286AF1F9897469DC \
-                  key/AFD8691FDAEDF03BDF6E460563F15A9B715376CA \
-                  key/C28D937575603EB4ABB725861C0779DC5C0A9DE4
-                ;;
-              8.2)
-                gpg --batch --import \
-                  key/1198C0117593497A5EC5C199286AF1F9897469DC \
-                  key/39B641343D8C104B2B146DC3F9C39DC0B9698544 \
-                  key/E60913E4DF209907D8E30D96659A97C9CF2A795A
-                ;;
-              8.1)
-                gpg --batch --import \
-                  key/528995BFEDFBA7191D46839EF9BA0ADA31CBD89E \
-                  key/39B641343D8C104B2B146DC3F9C39DC0B9698544 \
-                  key/F1F692238FBC1666E5A5CCD4199F9DFEF6FFBAFD
-                ;;
-              *)
-                exit 1
-                ;;
-            esac
-
-            gpg --batch --verify 'php-8.3.30.tar.xz.asc' 'php-8.3.30.tar.xz'
             tar xvf 'php-8.3.30.tar.xz'
         - name: build and install
           work-dir: ${source.dir}/php-8.3.30
@@ -156,6 +120,7 @@ contents:
             ./configure \
               --enable-option-checking=fatal \
               --prefix='/opt/php-8.3' \
+              --sysconfdir='/opt/php-8.3/etc' \
               --with-config-file-path='/opt/php-8.3/etc/php' \
               --with-config-file-scan-dir='/opt/php-8.3/etc/php/conf.d' \
               --disable-static \
@@ -192,35 +157,40 @@ contents:
           runs: |
             set -eux -o pipefail
 
-            install -d '${target.dir}//opt/php-8.3/etc/php/conf.d'
+            install -d '${target.dir}/opt/php-8.3/etc/php/conf.d'
             install '${source.dir}/php-8.3.30/php.ini-production' \
-              '${target.dir}//opt/php-8.3/etc/php/php.ini'
+              '${target.dir}/opt/php-8.3/etc/php/php.ini'
 
             # On dev images, include example php.ini files.
-            if [ '${target.dev}' = 'true' ]; then
-              install -t '${target.dir}//opt/php-8.3/etc/php' \
+            if [ '${target.dev}' = true ]; then
+              install -t '${target.dir}/opt/php-8.3/etc/php' \
                 '${source.dir}/php-8.3.30/'php.ini-*
             fi
-        - name: remove unused executables
+        - name: remove unused files
           runs: |
             set -eux -o pipefail
 
-            rm '${target.dir}//opt/php-8.3'/bin/{phpize,php-config}
+            rm '${target.dir}/opt/php-8.3/bin/'{phpize,php-config}
+            rm -rf '${target.dir}/opt/php-8.3/lib/php/build'
         - uses: strip@v1
           with:
-            dir: ${target.dir}//opt/php-8.3
+            dir: ${target.dir}/opt/php-8.3
       paths:
-        - type: directory
-          path: ${source.dir}/key
+        - type: file
+          path: ${source.dir}/keyring.asc
           uid: 0
           gid: 0
-          source: image/php/key
+          source: image/php/key/php8.3.keyring.asc
       outputs:
-        - source: ${target.dir}//opt/php-8.3/bin
+        - source: ${target.dir}/opt/php-8.3/bin
           target: /opt/php-8.3/bin
           uid: 0
           gid: 0
-        - source: ${target.dir}//opt/php-8.3/etc
+        - source: ${target.dir}/opt/php-8.3/lib
+          target: /opt/php-8.3/lib
+          uid: 0
+          gid: 0
+        - source: ${target.dir}/opt/php-8.3/etc
           target: /opt/php-8.3/etc
           uid: 0
           gid: 0
@@ -249,10 +219,24 @@ os-release:
   bug-report-url: https://docker.com/support/
 environment:
   PATH: /opt/php-8.3/bin:/opt/php-8.3/sbin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
-  PHP_INI_DIR: /opt/php-8.3/etc/php
+  PHP_INI_DIR: /usr/local/etc/php
   PHP_PREFIX: /opt/php-8.3
   PHP_VERSION: 8.3.30
 paths:
+  - type: symlink
+    path: /opt/php
+    uid: 0
+    gid: 0
+    source: /opt/php-8.3
+  - type: directory
+    path: /usr/local/etc
+    uid: 0
+    gid: 0
+  - type: symlink
+    path: /usr/local/etc/php
+    uid: 0
+    gid: 0
+    source: /opt/php-8.3/etc/php
   - type: directory
     path: /var/www/html
     uid: 65532

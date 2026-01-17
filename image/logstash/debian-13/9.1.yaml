@@ -102,12 +102,11 @@ contents:
             uid: 0
             gid: 0
       pipeline:
-        - name: apply rack patch
-          uses: patch@v1
+        - name: patch deps
+          uses: git/patch@v1
           work-dir: ${source.dir}/logstash
           with:
-            patches:
-              - ${source.dir}/patch/rack-9.1.patch
+            patch: ${source.dir}/patch/deps-9.1.patch
         - name: install default gems
           work-dir: ${source.dir}/logstash
           privileged: true

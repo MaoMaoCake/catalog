@@ -104,6 +104,11 @@ contents:
             uid: 0
             gid: 0
       pipeline:
+        - name: patch deps
+          uses: git/patch@v1
+          work-dir: ${source.dir}/logstash
+          with:
+            patch: ${source.dir}/patch/deps-9.2.patch
         - name: install default gems
           work-dir: ${source.dir}/logstash
           privileged: true

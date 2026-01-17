@@ -13,9 +13,9 @@ vars:
   DHI_PREFIX: ""
   DHI_REGISTRY: dhi.io
   DHI_SKIP_CONTEXT_COPY: "true"
-  HELM_REFERENCE: dhi/helm:3.19.5-debian13-dev@sha256:990351376bd8e5afc77dc61f88f8dd47e31ec480a59dd7b171370d89aadf0f74
-  KUBECTL_REFERENCE: dhi/kubectl:1.34.3-alpine3.22-dev@sha256:12eeefe1e3b287e884ab5439e36a41f341131d44ea8aea8c764d32efba04c5fc
-  NEO4J_REFERENCE: dhi/neo4j:5.26.19-debian13@sha256:cf2abef6e18b906a3a67d845c0ca8dd735d67c3b84c860fe966949a209df029f
+  HELM_REFERENCE: dhi/helm:3.19.5-debian13-dev@sha256:e634d3d0c4ae9bc6fc4ffb768fd972fd75025208a94e67b49d271cfc910ea847
+  KUBECTL_REFERENCE: dhi/kubectl:1.34.3-alpine3.22-dev@sha256:0459b7b67ab31a30e497ad651a8d00963f836d73d9e33f1cc6b1c6edb7a0a2cd
+  NEO4J_REFERENCE: dhi/neo4j:5.26.19-debian13@sha256:850d52171070e634dc1a3a20b22884c1106f3f37c8c4c2fd7f86cab749bbe195
   SEMVER_MAJOR_MINOR_VERSION: "5.26"
   SEMVER_MAJOR_VERSION: "5"
   SEMVER_VERSION: 5.26.19
@@ -23,7 +23,7 @@ vars:
 contents:
   builds:
     - name: neo4j
-      uses: dhi.io/helm:3.19.5-debian13-dev@sha256:990351376bd8e5afc77dc61f88f8dd47e31ec480a59dd7b171370d89aadf0f74
+      uses: dhi.io/helm:3.19.5-debian13-dev@sha256:e634d3d0c4ae9bc6fc4ffb768fd972fd75025208a94e67b49d271cfc910ea847
       contents:
         files:
           - url: git+https://github.com/neo4j/helm-charts.git#5.26.19
@@ -40,9 +40,9 @@ contents:
               description: Docker Hardened Images Helm chart for Neo4j
               images:
                 - name: neo4j
-                  ref: dhi/neo4j:5.26.19-debian13@sha256:cf2abef6e18b906a3a67d845c0ca8dd735d67c3b84c860fe966949a209df029f
+                  ref: dhi/neo4j:5.26.19-debian13@sha256:850d52171070e634dc1a3a20b22884c1106f3f37c8c4c2fd7f86cab749bbe195
                 - name: kubectl
-                  ref: dhi/kubectl:1.34.3-alpine3.22-dev@sha256:12eeefe1e3b287e884ab5439e36a41f341131d44ea8aea8c764d32efba04c5fc
+                  ref: dhi/kubectl:1.34.3-alpine3.22-dev@sha256:0459b7b67ab31a30e497ad651a8d00963f836d73d9e33f1cc6b1c6edb7a0a2cd
               name: neo4j-chart
               notes: ${source.dir}/config/NOTES.txt
               sourceUrl: https://github.com/neo4j/helm-charts

@@ -13,19 +13,19 @@ vars:
   DHI_PREFIX: ""
   DHI_REGISTRY: dhi.io
   DHI_SKIP_CONTEXT_COPY: "true"
-  HELM_REFERENCE: dhi/helm:3.19.5-debian13-dev@sha256:990351376bd8e5afc77dc61f88f8dd47e31ec480a59dd7b171370d89aadf0f74
+  HELM_REFERENCE: dhi/helm:3.19.5-debian13-dev@sha256:e634d3d0c4ae9bc6fc4ffb768fd972fd75025208a94e67b49d271cfc910ea847
   SEMVER_MAJOR_MINOR_VERSION: "0.32"
   SEMVER_MAJOR_VERSION: "0"
   SEMVER_VERSION: 0.32.0
   VERSION: 0.32.0
-  VMAUTH_REFERENCE: dhi/victoriametrics-vmauth:1.133.0-debian13@sha256:28eeb6430153d66f66fc1063843bde3c1727aadf67592b2cb029c91916b2ac8f
-  VMINSERT_REFERENCE: dhi/victoriametrics-vminsert:1.133.0-debian13@sha256:5f88143eba524c8c3f14e4b3f280fae9ad400cce43478b7a9dc6923ef840f1ea
-  VMSELECT_REFERENCE: dhi/victoriametrics-vmselect:1.133.0-debian13@sha256:fdbad0dd80ca1efa01e41c2bb9adfa79616ae39a34e6736d3315025a73dacde7
-  VMSTORAGE_REFERENCE: dhi/victoriametrics-vmstorage:1.133.0-debian13@sha256:5f73386b9a39f92e19cbb45a4e578e4e8fce32b914533a953bbca58a656c03e0
+  VMAUTH_REFERENCE: dhi/victoriametrics-vmauth:1.133.0-debian13@sha256:c739561852d9d1decd5669b4f88eeac40de7b63c9972d81242d276f27234c284
+  VMINSERT_REFERENCE: dhi/victoriametrics-vminsert:1.133.0-debian13@sha256:42c17813655387b5f5c107f9d722f8a0281d928782d0f9ac81b6aeb35797d106
+  VMSELECT_REFERENCE: dhi/victoriametrics-vmselect:1.133.0-debian13@sha256:b33ad81ff99b1fbb089724b87ba07c2f1a94dfaf3b7b024569afa72366efb14b
+  VMSTORAGE_REFERENCE: dhi/victoriametrics-vmstorage:1.133.0-debian13@sha256:994b6cf38c316440c32362ffbedce3568ec99869addad7b0b5ec04335a177e0d
 contents:
   builds:
     - name: victoriametrics-cluster-chart
-      uses: dhi.io/helm:3.19.5-debian13-dev@sha256:990351376bd8e5afc77dc61f88f8dd47e31ec480a59dd7b171370d89aadf0f74
+      uses: dhi.io/helm:3.19.5-debian13-dev@sha256:e634d3d0c4ae9bc6fc4ffb768fd972fd75025208a94e67b49d271cfc910ea847
       contents:
         files:
           - url: git+https://github.com/VictoriaMetrics/helm-charts.git#victoria-metrics-cluster-0.32.0
@@ -42,13 +42,13 @@ contents:
               description: Docker Hardened Images Helm chart for VictoriaMetrics Cluster
               images:
                 - name: victoriametrics-vmselect
-                  ref: dhi/victoriametrics-vmselect:1.133.0-debian13@sha256:fdbad0dd80ca1efa01e41c2bb9adfa79616ae39a34e6736d3315025a73dacde7
+                  ref: dhi/victoriametrics-vmselect:1.133.0-debian13@sha256:b33ad81ff99b1fbb089724b87ba07c2f1a94dfaf3b7b024569afa72366efb14b
                 - name: victoriametrics-vmstorage
-                  ref: dhi/victoriametrics-vmstorage:1.133.0-debian13@sha256:5f73386b9a39f92e19cbb45a4e578e4e8fce32b914533a953bbca58a656c03e0
+                  ref: dhi/victoriametrics-vmstorage:1.133.0-debian13@sha256:994b6cf38c316440c32362ffbedce3568ec99869addad7b0b5ec04335a177e0d
                 - name: victoriametrics-vminsert
-                  ref: dhi/victoriametrics-vminsert:1.133.0-debian13@sha256:5f88143eba524c8c3f14e4b3f280fae9ad400cce43478b7a9dc6923ef840f1ea
+                  ref: dhi/victoriametrics-vminsert:1.133.0-debian13@sha256:42c17813655387b5f5c107f9d722f8a0281d928782d0f9ac81b6aeb35797d106
                 - name: victoriametrics-vmauth
-                  ref: dhi/victoriametrics-vmauth:1.133.0-debian13@sha256:28eeb6430153d66f66fc1063843bde3c1727aadf67592b2cb029c91916b2ac8f
+                  ref: dhi/victoriametrics-vmauth:1.133.0-debian13@sha256:c739561852d9d1decd5669b4f88eeac40de7b63c9972d81242d276f27234c284
               name: victoriametrics-cluster-chart
               notes: ${source.dir}/config/NOTES.txt
               sourceUrl: https://github.com/VictoriaMetrics/helm-charts
@@ -67,7 +67,7 @@ contents:
           with:
             file: ${source.dir}/helm-charts/charts/victoria-metrics-cluster/values-sidecar.yaml
             patches:
-              - .extraContainers[0].image = "dhi/victoriametrics-vmauth:1.133.0-debian13@sha256:28eeb6430153d66f66fc1063843bde3c1727aadf67592b2cb029c91916b2ac8f"
+              - .extraContainers[0].image = "dhi/victoriametrics-vmauth:1.133.0-debian13@sha256:c739561852d9d1decd5669b4f88eeac40de7b63c9972d81242d276f27234c284"
               - .extraContainers[0].securityContext.enabled = true
               - .extraContainers[0].securityContext.runAsNonRoot = true
               - .extraContainers[0].securityContext.runAsUser = 65532

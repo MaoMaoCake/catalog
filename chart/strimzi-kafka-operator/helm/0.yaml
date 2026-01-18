@@ -8,19 +8,19 @@ tags:
 platforms:
   - linux/amd64
 vars:
-  CHART_COMMIT_SHA: eb359e808dee4f00230ed031bd381cd2a2f94b9c
+  CHART_COMMIT_SHA: 825447910afa6e2db8f2897c4ada35dba9dcfa2a
   CHART_VERSION: 0.1.1
   DHI_NAMESPACE: dhi
   DHI_PREFIX: ""
   DHI_REGISTRY: dhi.io
   DHI_SKIP_CONTEXT_COPY: "true"
   HELM_REFERENCE: dhi/helm:3.19.5-debian13-dev@sha256:9fa0f8ba70052f17df5a7a3469c2e306d18b5f934f3439ce781c9dd5a2f6b96a
-  SEMVER_MAJOR_MINOR_VERSION: "0.49"
+  SEMVER_MAJOR_MINOR_VERSION: "0.50"
   SEMVER_MAJOR_VERSION: "0"
-  SEMVER_VERSION: 0.49.1
+  SEMVER_VERSION: 0.50.0
   STRIMZI_KAFKA_REFERENCE: dhi/strimzi-kafka:0.49.1-debian13-kafka-4.1.1@sha256:ea17c44ce9edb92bc7acf75777b82c0f154429ec3ee7c666de2643a2b8224cde
   STRIMZI_OPERATOR_REFERENCE: dhi/strimzi-operator:0.49.1-debian13@sha256:df33f7093ec4c730ebe9cb5e4ddf69a4757105cca600eaee48c286e630bac0ef
-  VERSION: 0.49.1
+  VERSION: 0.50.0
 contents:
   builds:
     - name: strimzi-kafka-operator
@@ -34,8 +34,8 @@ contents:
           - libc-bin
           - sed
         files:
-          - url: git+https://github.com/strimzi/strimzi-kafka-operator.git#0.49.1
-            checksum: eb359e808dee4f00230ed031bd381cd2a2f94b9c
+          - url: git+https://github.com/strimzi/strimzi-kafka-operator.git#0.50.0
+            checksum: 825447910afa6e2db8f2897c4ada35dba9dcfa2a
             path: ${source.dir}/helm-charts
             uid: 0
             gid: 0

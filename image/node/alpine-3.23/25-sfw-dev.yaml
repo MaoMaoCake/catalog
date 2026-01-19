@@ -6,8 +6,8 @@ variant: dev
 flavor: sfw
 tags:
   - 25-alpine3.23-sfw-dev
-  - 25.3-alpine3.23-sfw-dev
-  - 25.3.0-alpine3.23-sfw-dev
+  - 25.4-alpine3.23-sfw-dev
+  - 25.4.0-alpine3.23-sfw-dev
 platforms:
   - linux/amd64
   - linux/arm64
@@ -16,12 +16,12 @@ dates:
   end-of-life: "2026-06-01"
 vars:
   ARCH: '#{ target.arch == "amd64" ? "x86_64" : "arm64" }'
-  DIGEST: sha256:fa47c060e3923bb08994b04691fc36b2c1081ce71c96b1570ae65eeb962a38bb
+  DIGEST: sha256:84667e4fe17b5711f991ddc21cbb0afb761f21835e20bf08534e94152fd83b22
   NODEJS_VERSION_MAJOR: "25"
-  NODEJS_VERSION_MAJOR_MINOR: "25.3"
-  PKG_NODE_REFERENCE: dhi/pkg-node:25.3.0-alpine3.23@sha256:fa47c060e3923bb08994b04691fc36b2c1081ce71c96b1570ae65eeb962a38bb
+  NODEJS_VERSION_MAJOR_MINOR: "25.4"
+  PKG_NODE_REFERENCE: dhi/pkg-node:25.4.0-alpine3.23@sha256:84667e4fe17b5711f991ddc21cbb0afb761f21835e20bf08534e94152fd83b22
   SFW_VERSION: 1.5.4
-  VERSION: 25.3.0
+  VERSION: 25.4.0
 contents:
   repositories:
     - https://dl-cdn.alpinelinux.org/alpine/v3.23/main
@@ -55,7 +55,7 @@ contents:
             uid: 0
             gid: 0
         artifacts:
-          - name: dhi.io/pkg-node:25.3.0-alpine3.23@sha256:fa47c060e3923bb08994b04691fc36b2c1081ce71c96b1570ae65eeb962a38bb
+          - name: dhi.io/pkg-node:25.4.0-alpine3.23@sha256:84667e4fe17b5711f991ddc21cbb0afb761f21835e20bf08534e94152fd83b22
             includes:
               - opt/docker
               - opt/nodejs
@@ -73,7 +73,7 @@ contents:
             cat > "${target.dir}/opt/socket/bin/npm" << 'EOF'
             #!/bin/sh
 
-            sfw /opt/nodejs/node-v25.3.0/bin/npm "$@"
+            sfw /opt/nodejs/node-v25.4.0/bin/npm "$@"
             EOF
 
             chmod +x "${target.dir}/opt/socket/bin/npm"
@@ -132,7 +132,7 @@ os-release:
   bug-report-url: https://docker.com/support/
 work-dir: /app
 environment:
-  NODE_VERSION: 25.3.0
+  NODE_VERSION: 25.4.0
   NPM_CONFIG_UPDATE_NOTIFIER: "false"
   PATH: /opt/socket/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
   YARN_DISABLE_SELF_UPDATE_CHECK: "true"

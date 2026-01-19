@@ -8,7 +8,7 @@ Subject: [PATCH] Update org.apache.commons/commons-lang3:3.18.0
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/packaging/distributions-dependencies/build.gradle.kts b/packaging/distributions-dependencies/build.gradle.kts
-index 9b75556c201..21cca99d024 100644
+index f464c2b32e4..80fa03e684f 100644
 --- a/packaging/distributions-dependencies/build.gradle.kts
 +++ b/packaging/distributions-dependencies/build.gradle.kts
 @@ -79,7 +79,7 @@ dependencies {
@@ -19,6 +19,7 @@ index 9b75556c201..21cca99d024 100644
 +        api(libs.commonsLang)           { version { strictly("3.18.0") }}
          api(libs.commonsMath)           { version { strictly("3.6.1") }}
          api(libs.eclipseSisuPlexus)     { version { strictly("0.3.5"); because("transitive dependency of Maven modules to process POM metadata") }}
-         api(libs.errorProneAnnotations) { version { strictly("2.36.0") } } // don't forget to upgrade errorprone in gradlebuild.code-quality.gradle.kts
--- 
+         api(libs.errorProneAnnotations) { version { strictly("2.42.0") } } // don't forget to upgrade errorprone in gradlebuild.code-quality.gradle.kts
+
+--
 2.51.0

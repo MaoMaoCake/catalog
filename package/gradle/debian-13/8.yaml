@@ -38,6 +38,7 @@ contents:
           - libstdc++6
         files:
           - url: git+https://github.com/gradle/gradle.git#v8.14.3
+            checksum: e5ee1df3d88b8ca3a8074787a94f373e3090e1db
             path: ${source.dir}/gradle
             spdx:
               name: gradle
@@ -49,11 +50,6 @@ contents:
             uid: 0
             gid: 0
       pipeline:
-        - name: verify
-          uses: git/checkout@v1
-          with:
-            dir: ${source.dir}/gradle
-            expected-commit: e5ee1df3d88b8ca3a8074787a94f373e3090e1db
         - name: patch bouncycastle
           uses: git/patch@v1
           with:

@@ -4,19 +4,19 @@ image: dhi.io/pkg-gradle
 variant: runtime
 tags:
   - "9"
-  - "9.2"
-  - 9.2.1
+  - "9.3"
+  - 9.3.0
   - 9-debian13
-  - 9.2-debian13
-  - 9.2.1-debian13
+  - 9.3-debian13
+  - 9.3.0-debian13
 platforms:
   - linux/amd64
   - linux/arm64
 vars:
-  GRADLE_COMMIT_SHA: 30ecdc708db275e8f8769ea0620f6dd919a58f76
-  GRADLE_MAJOR_MINOR_VERSION: "9.2"
+  GRADLE_COMMIT_SHA: 701205ed2f78811508466c8e1952304c2ea869f5
+  GRADLE_MAJOR_MINOR_VERSION: "9.3"
   GRADLE_MAJOR_VERSION: "9"
-  GRADLE_VERSION: 9.2.1
+  GRADLE_VERSION: 9.3.0
   JAVA_DIGEST: sha256:98cfd5d8dcdc5120750eda258ddfedad56e36104c0c34dc65ae3693934919250
   JAVA_VERSION: 17.0.17.10
 contents:
@@ -37,23 +37,19 @@ contents:
           - sed
           - libstdc++6
         files:
-          - url: git+https://github.com/gradle/gradle.git#v9.2.1
+          - url: git+https://github.com/gradle/gradle.git#v9.3.0
+            checksum: 701205ed2f78811508466c8e1952304c2ea869f5
             path: ${source.dir}/gradle
             spdx:
               name: gradle
-              version: 9.2.1
+              version: 9.3.0
               packages:
                 - name: gradle
-                  purl: pkg:dhi/gradle@9.2.1
+                  purl: pkg:dhi/gradle@9.3.0
                   license: Apache-2.0
             uid: 0
             gid: 0
       pipeline:
-        - name: verify
-          uses: git/checkout@v1
-          with:
-            dir: ${source.dir}/gradle
-            expected-commit: 30ecdc708db275e8f8769ea0620f6dd919a58f76
         - name: patch bouncycastle
           uses: git/patch@v1
           with:
@@ -76,25 +72,25 @@ contents:
             cd "${source.dir}/gradle"
 
             # TODO cd: we need to download the gradle wrapper ahead of time
-            ./gradlew :distributions-full:binDistributionZip -Pversion="9.2.1"
+            ./gradlew :distributions-full:binDistributionZip -Pversion="9.3.0"
 
-            unzip "packaging/distributions-full/build/distributions/gradle-9.2.1-bin.zip"
-            mkdir -p "${target.dir}/opt/java/gradle/gradle-9.2.1"
+            unzip "packaging/distributions-full/build/distributions/gradle-9.3.0-bin.zip"
+            mkdir -p "${target.dir}/opt/java/gradle/gradle-9.3.0"
             cd gradle-*
 
             # shellcheck disable=SC2035
-            cp -r * "${target.dir}/opt/java/gradle/gradle-9.2.1"
+            cp -r * "${target.dir}/opt/java/gradle/gradle-9.3.0"
 
             mkdir -p "${target.dir}/usr/local/bin"
-            find "${target.dir}/opt/java/gradle/gradle-9.2.1/bin" -type f -executable -o -type l | while read -r file; do
+            find "${target.dir}/opt/java/gradle/gradle-9.3.0/bin" -type f -executable -o -type l | while read -r file; do
               filename=$(basename "$file")
-              ln -s "/opt/java/gradle/gradle-9.2.1/bin/$filename" "${target.dir}/usr/local/bin/$filename"
+              ln -s "/opt/java/gradle/gradle-9.3.0/bin/$filename" "${target.dir}/usr/local/bin/$filename"
             done
         - name: test
           runs: |
             set -eux -o pipefail
 
-            "${target.dir}/opt/java/gradle/gradle-9.2.1/bin/gradle" --version
+            "${target.dir}/opt/java/gradle/gradle-9.3.0/bin/gradle" --version
       paths:
         - type: file
           path: ${source.dir}/patch/0001-Update-org.bouncycastle-bcprov-jdk18on-1.78.patch
@@ -117,8 +113,8 @@ contents:
           gid: 0
           source: package/gradle/patch/0004-Disable-deprecation-warnings.patch
       outputs:
-        - source: ${target.dir}/opt/java/gradle/gradle-9.2.1
-          target: /opt/java/gradle/gradle-9.2.1
+        - source: ${target.dir}/opt/java/gradle/gradle-9.3.0
+          target: /opt/java/gradle/gradle-9.3.0
           uid: 0
           gid: 0
         - source: ${target.dir}/usr/local/bin
@@ -141,5 +137,5 @@ os-release:
   home-url: https://docker.com/products/hardened-images/
   bug-report-url: https://docker.com/support/
 environment:
-  GRADLE_HOME: /opt/java/gradle/gradle-9.2.1
-  GRADLE_VERSION: 9.2.1
+  GRADLE_HOME: /opt/java/gradle/gradle-9.3.0
+  GRADLE_VERSION: 9.3.0

@@ -48,5 +48,9 @@
     "package": "@modelcontextprotocol/sdk",
     "dev": false,
     "version": "1.25.2"
+  },
+  {
+    "package": "tar",
+    "version": "^7.5.3"
   }
 ]

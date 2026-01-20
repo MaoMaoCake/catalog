@@ -72,6 +72,11 @@ contents:
             uid: 0
             gid: 0
       pipeline:
+        - name: patch Cargo.lock
+          uses: git/patch@v1
+          work-dir: ${source.dir}/ztunnel-8bda303b0cfac76d3ab99b7e1ed3def71082fc9f
+          with:
+            patch: ${source.dir}/patch/lru-1.28.patch
         - name: patch CVEs
           work-dir: ${source.dir}/ztunnel-8bda303b0cfac76d3ab99b7e1ed3def71082fc9f
           privileged: true
@@ -109,6 +114,12 @@ contents:
 
             cargo build --release --locked --target-dir "${target.dir}" $CARGO_FLAGS
             install -D -m 755 "${target.dir}/release/ztunnel" "${target.dir}/usr/local/bin/ztunnel"
+      paths:
+        - type: file
+          path: ${source.dir}/patch/lru-1.28.patch
+          uid: 0
+          gid: 0
+          source: image/ztunnel/patch/lru-1.28.patch
       outputs:
         - source: ${target.dir}/usr/local/bin/ztunnel
           target: /usr/local/bin/ztunnel

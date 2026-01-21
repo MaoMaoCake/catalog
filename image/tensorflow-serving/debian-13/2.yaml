@@ -17,7 +17,7 @@ vars:
   ARCH: '#{ target.arch == "amd64" ? "x86_64" : "arm64" }'
   BAZEL_VERSION: 6.5.0
   COMMIT_SHA: eab9c3529b785dc685ab8c687f298e67016c8f81
-  PYTHON_BUILD_DIGEST: sha256:e889132947fa13502118da58bb349be3715b4ec388b7a31cef6c25ace5c42d0a
+  PYTHON_BUILD_DIGEST: sha256:040feae104600d898d471b158ad0cf9429add0ce056fd2f9670cc4e1c8c864a8
   PYTHON_BUILD_TAG: 3.11.14-debian13-dev
   PYTHON_MAJOR_MINOR_VERSION: "3.11"
   SEMVER_MAJOR_MINOR_VERSION: "2.19"
@@ -32,7 +32,7 @@ contents:
     - libstdc++6
   builds:
     - name: tensorflow-serving
-      uses: dhi.io/python:3.11.14-debian13-dev@sha256:e889132947fa13502118da58bb349be3715b4ec388b7a31cef6c25ace5c42d0a
+      uses: dhi.io/python:3.11.14-debian13-dev@sha256:040feae104600d898d471b158ad0cf9429add0ce056fd2f9670cc4e1c8c864a8
       privileged: true
       contents:
         packages:

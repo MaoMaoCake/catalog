@@ -17,7 +17,7 @@ vars:
   COMMIT_SHA: 4cc9d5bd7cd1962f7f34017e8d8f133f89ad8d69
   NODE_DIGEST: sha256:027182eb872d9b722722c77e4a4f631c71fab95d96126d34f695f27a73cda858
   NODE_VERSION: 22.22.0
-  PYTHON_DIGEST: sha256:65e3d2289d1e2bcb1419af38d0ce9182d6f2cf1b51338ca947cae2744b38ec46
+  PYTHON_DIGEST: sha256:8fdf129968594c319caf810dcf15b2541d08d2b166a9306f6aaf3637c3168e06
   PYTHON_MAJOR_MINOR_VERSION: "3.12"
   PYTHON_VERSION: 3.12.12
   SEMVER_MAJOR_MINOR_VERSION: "3.8"
@@ -32,7 +32,7 @@ contents:
     - base-files
   builds:
     - name: mlflow
-      uses: dhi.io/python:3.12.12-debian13@sha256:65e3d2289d1e2bcb1419af38d0ce9182d6f2cf1b51338ca947cae2744b38ec46
+      uses: dhi.io/python:3.12.12-debian13@sha256:8fdf129968594c319caf810dcf15b2541d08d2b166a9306f6aaf3637c3168e06
       privileged: true
       contents:
         packages:
@@ -93,7 +93,7 @@ contents:
           uid: 0
           gid: 0
   artifacts:
-    - name: dhi.io/python:3.12.12-debian13@sha256:65e3d2289d1e2bcb1419af38d0ce9182d6f2cf1b51338ca947cae2744b38ec46
+    - name: dhi.io/python:3.12.12-debian13@sha256:8fdf129968594c319caf810dcf15b2541d08d2b166a9306f6aaf3637c3168e06
       includes:
         - opt/**
         - usr/**

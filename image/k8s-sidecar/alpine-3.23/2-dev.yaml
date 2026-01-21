@@ -12,8 +12,8 @@ platforms:
   - linux/arm64
 vars:
   COMMIT_SHA: 4df442cbc46cdb75a9c4b46b50e9a1b86ed2c4a7
-  PYTHON_BUILD_REF: dhi/python:3.14.2-alpine3.23-dev@sha256:f1e19fdf31b64b0afc69e98c1c16131e7fa28426951c32b31deee52e309ed761
-  PYTHON_REF: dhi/python:3.14.2-alpine3.23@sha256:8c590a8fbf77d49f0958ef1356d963f3b0936b6bd5df11f6d4144d18d11c65b5
+  PYTHON_BUILD_REF: dhi/python:3.14.2-alpine3.23-dev@sha256:ee27a9cba9a88b3b6e2882160c4901891f3eb8af973530a1e4e5f4a9e6bc05d2
+  PYTHON_REF: dhi/python:3.14.2-alpine3.23@sha256:e061a236a329d5abb0391dc81b566fdd87c492e5ab3e0558883c606a70290c64
   SEMVER_MAJOR_MINOR_VERSION: "2.5"
   SEMVER_MAJOR_VERSION: "2"
   SEMVER_VERSION: 2.5.0
@@ -33,7 +33,7 @@ contents:
     - tzdata
   builds:
     - name: k8s-sidecar
-      uses: dhi.io/python:3.14.2-alpine3.23-dev@sha256:f1e19fdf31b64b0afc69e98c1c16131e7fa28426951c32b31deee52e309ed761
+      uses: dhi.io/python:3.14.2-alpine3.23-dev@sha256:ee27a9cba9a88b3b6e2882160c4901891f3eb8af973530a1e4e5f4a9e6bc05d2
       contents:
         repositories:
           - https://dl-cdn.alpinelinux.org/alpine/v3.23/main
@@ -107,7 +107,7 @@ contents:
           uid: 0
           gid: 0
   artifacts:
-    - name: dhi.io/python:3.14.2-alpine3.23@sha256:8c590a8fbf77d49f0958ef1356d963f3b0936b6bd5df11f6d4144d18d11c65b5
+    - name: dhi.io/python:3.14.2-alpine3.23@sha256:e061a236a329d5abb0391dc81b566fdd87c492e5ab3e0558883c606a70290c64
       includes:
         - opt/**
         - usr/**

@@ -24,9 +24,9 @@ vars:
   PYTHON_MAJOR_MINOR_VERSION: "3.10"
   PYTHON_MAJOR_VERSION: "3"
   PYTHON_VERSION: 3.10.19
-  SETUPTOOLS_CHECKSUM: sha256:062d34222ad13e0cc312a4c02d73f059e86a4acbfbdea8f8f76b28c99f306922
-  SETUPTOOLS_URL: https://files.pythonhosted.org/packages/a3/dc/17031897dae0efacfea57dfd3a82fdd2a2aeb58e0ff71b77b87e44edc772/setuptools-80.9.0-py3-none-any.whl
-  SETUPTOOLS_VERSION: 80.9.0
+  SETUPTOOLS_CHECKSUM: sha256:fc30c51cbcb8199a219c12cc9c281b5925a4978d212f84229c909636d9f6984e
+  SETUPTOOLS_URL: https://files.pythonhosted.org/packages/e0/76/f963c61683a39084aa575f98089253e1e852a4417cb8a3a8a422923a5246/setuptools-80.10.1-py3-none-any.whl
+  SETUPTOOLS_VERSION: 80.10.1
   VERSION: 3.10.19
 contents:
   packages:
@@ -103,9 +103,9 @@ contents:
             path: ${source.dir}/patch/CVE-2025-12084.patch
             uid: 0
             gid: 0
-          - url: https://files.pythonhosted.org/packages/a3/dc/17031897dae0efacfea57dfd3a82fdd2a2aeb58e0ff71b77b87e44edc772/setuptools-80.9.0-py3-none-any.whl
-            checksum: sha256:062d34222ad13e0cc312a4c02d73f059e86a4acbfbdea8f8f76b28c99f306922
-            path: ${source.dir}/setuptools-80.9.0-py3-none-any.whl
+          - url: https://files.pythonhosted.org/packages/e0/76/f963c61683a39084aa575f98089253e1e852a4417cb8a3a8a422923a5246/setuptools-80.10.1-py3-none-any.whl
+            checksum: sha256:fc30c51cbcb8199a219c12cc9c281b5925a4978d212f84229c909636d9f6984e
+            path: ${source.dir}/setuptools-80.10.1-py3-none-any.whl
             uid: 0
             gid: 0
           - url: https://files.pythonhosted.org/packages/44/3c/d717024885424591d5376220b5e836c2d5293ce2011523c9de23ff7bf068/pip-25.3-py3-none-any.whl
@@ -167,10 +167,10 @@ contents:
               sed -i "s/_PIP_VERSION = \".*\"/_PIP_VERSION = \"25.3\"/g" Lib/ensurepip/__init__.py
             fi
 
-            if [ -f "setuptools-80.9.0-py3-none-any.whl" ]; then
+            if [ -f "setuptools-80.10.1-py3-none-any.whl" ]; then
               rm -rf Lib/ensurepip/_bundled/setuptools*
-              cp "setuptools-80.9.0-py3-none-any.whl" Lib/ensurepip/_bundled/
-              sed -i "s/_SETUPTOOLS_VERSION = \".*\"/_SETUPTOOLS_VERSION = \"80.9.0\"/g" Lib/ensurepip/__init__.py
+              cp "setuptools-80.10.1-py3-none-any.whl" Lib/ensurepip/_bundled/
+              sed -i "s/_SETUPTOOLS_VERSION = \".*\"/_SETUPTOOLS_VERSION = \"80.10.1\"/g" Lib/ensurepip/__init__.py
             fi
 
             ./configure --prefix="/opt/python-3.10.19" \
@@ -238,5 +238,5 @@ environment:
   LD_LIBRARY_PATH: /opt/python/lib
   PATH: /opt/python/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
   PYTHON_VERSION: 3.10.19
-  SETUPTOOLS_VERSION: 80.9.0
+  SETUPTOOLS_VERSION: 80.10.1
   SSL_CERT_FILE: /etc/ssl/certs/ca-certificates.crt

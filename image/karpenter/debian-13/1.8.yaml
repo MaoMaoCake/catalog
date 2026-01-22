@@ -6,22 +6,22 @@ variant: runtime
 tags:
   - "1"
   - "1.8"
-  - 1.8.5
+  - 1.8.6
   - 1-debian13
   - 1.8-debian13
-  - 1.8.5-debian13
+  - 1.8.6-debian13
 platforms:
   - linux/amd64
   - linux/arm64
 vars:
   BASE_DIGEST: sha256:74fc43fa240887b8159970e434244039aab0c6efaaa9cf044004cdc22aa2a34d
   BASE_TAG: 20250419-debian13
-  COMMIT_SHA: 51932b426e597ef03c9c4dccf21f676db0330a93
+  COMMIT_SHA: f29079cdbf564b1f8729434382d82f2c55015acc
   GO_REFERENCE: dhi/golang:1.25.6-debian13-dev@sha256:a0607a787c801dba5f5637b939566066da29bebc0e6512e3fa0af1695c5090bc
   SEMVER_MAJOR_MINOR_VERSION: "1.8"
   SEMVER_MAJOR_VERSION: "1"
-  SEMVER_VERSION: 1.8.5
-  VERSION: 1.8.5
+  SEMVER_VERSION: 1.8.6
+  VERSION: 1.8.6
 contents:
   packages:
     - '!base-files'
@@ -30,15 +30,15 @@ contents:
       uses: dhi.io/golang:1.25.6-debian13-dev@sha256:a0607a787c801dba5f5637b939566066da29bebc0e6512e3fa0af1695c5090bc
       contents:
         files:
-          - url: git+https://github.com/aws/karpenter-provider-aws#v1.8.5
-            checksum: 51932b426e597ef03c9c4dccf21f676db0330a93
+          - url: git+https://github.com/aws/karpenter-provider-aws#v1.8.6
+            checksum: f29079cdbf564b1f8729434382d82f2c55015acc
             path: /go/src/github.com/aws/karpenter-provider-aws
             spdx:
               name: karpenter
-              version: 1.8.5
+              version: 1.8.6
               packages:
                 - name: karpenter
-                  purl: pkg:dhi/karpenter@1.8.5
+                  purl: pkg:dhi/karpenter@1.8.6
                   license: Apache-2.0
             uid: 0
             gid: 0
@@ -54,8 +54,8 @@ contents:
           work-dir: /go/src/github.com/aws/karpenter-provider-aws
           with:
             ldflags:
-              - -X main.Version=1.8.5
-              - -X main.GitSHA=51932b426e597ef03c9c4dccf21f676db0330a93
+              - -X main.Version=1.8.6
+              - -X main.GitSHA=f29079cdbf564b1f8729434382d82f2c55015acc
               - -X main.BuiltAt=$(date -u -d @${SOURCE_DATE_EPOCH} +'%F-%T')
             output: ${target.dir}/usr/local/bin/controller
             packages: ./cmd/controller

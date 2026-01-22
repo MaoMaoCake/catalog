@@ -14,7 +14,7 @@ vars:
   DHI_REGISTRY: dhi.io
   DHI_SKIP_CONTEXT_COPY: "true"
   HELM_REFERENCE: dhi/helm:3.19.5-debian13-dev@sha256:9fa0f8ba70052f17df5a7a3469c2e306d18b5f934f3439ce781c9dd5a2f6b96a
-  OPENSEARCH_DASHBOARDS_REFERENCE: dhi/opensearch-dashboards:3.4.0-debian13@sha256:5b224e27dc26e41d35237dd7315d68297a3c6cf3fa538b5f1921233871deb7c7
+  OPENSEARCH_DASHBOARDS_REFERENCE: dhi/opensearch-dashboards:3.4.0-debian13@sha256:75d5fc6785e24d7a1f2d8226187cc9dbea7b9101e228cdc7ec77ef5e16cdf59d
   SEMVER_MAJOR_MINOR_VERSION: "3.4"
   SEMVER_MAJOR_VERSION: "3"
   SEMVER_VERSION: 3.4.0
@@ -39,7 +39,7 @@ contents:
               description: Docker Hardened Images Helm chart for OpenSearch Dashboards
               images:
                 - name: opensearch-dashboards
-                  ref: dhi/opensearch-dashboards:3.4.0-debian13@sha256:5b224e27dc26e41d35237dd7315d68297a3c6cf3fa538b5f1921233871deb7c7
+                  ref: dhi/opensearch-dashboards:3.4.0-debian13@sha256:75d5fc6785e24d7a1f2d8226187cc9dbea7b9101e228cdc7ec77ef5e16cdf59d
               name: opensearch-dashboards-chart
               notes: ${source.dir}/config/NOTES.txt
               sourceUrl: https://github.com/opensearch-project/helm-charts

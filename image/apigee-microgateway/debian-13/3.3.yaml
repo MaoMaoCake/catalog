@@ -15,8 +15,8 @@ vars:
   BASE_DIGEST: sha256:74fc43fa240887b8159970e434244039aab0c6efaaa9cf044004cdc22aa2a34d
   BASE_TAG: 20250419-debian13
   COMMIT_SHA: 899ab34fdc6f84ee69b232ab27e0ad4524ea42c8
-  NODE_DEV_DIGEST: sha256:0885e8d074fa4bce93cb80e564ae339a678b72add6fcfa057a1d0b07dc7dc013
-  NODE_DIGEST: sha256:7ec6f31778af2ec3d38ea30a17c5a0ff0b24d79d156749b5ef804e48bd60f988
+  NODE_DEV_DIGEST: sha256:7391687c0ebc6ddacb1be52bee3c05e19a213f483f87fc6a5fc1af1140aaf283
+  NODE_DIGEST: sha256:233313cdd094c7b9ddcf396735ec0cb91c27860a2b823fc04028ce4c4a110ac8
   NODE_VERSION: 22.22.0
   SEMVER_MAJOR_MINOR_VERSION: "3.3"
   SEMVER_MAJOR_VERSION: "3"
@@ -27,7 +27,7 @@ contents:
     - '!base-files'
   builds:
     - name: apigee-npm
-      uses: dhi.io/node:22.22.0-debian13-dev@sha256:0885e8d074fa4bce93cb80e564ae339a678b72add6fcfa057a1d0b07dc7dc013
+      uses: dhi.io/node:22.22.0-debian13-dev@sha256:7391687c0ebc6ddacb1be52bee3c05e19a213f483f87fc6a5fc1af1140aaf283
       contents:
         packages:
           - bash
@@ -103,7 +103,7 @@ contents:
           uid: 65532
           gid: 65532
   artifacts:
-    - name: dhi.io/node:22.22.0-debian13@sha256:7ec6f31778af2ec3d38ea30a17c5a0ff0b24d79d156749b5ef804e48bd60f988
+    - name: dhi.io/node:22.22.0-debian13@sha256:233313cdd094c7b9ddcf396735ec0cb91c27860a2b823fc04028ce4c4a110ac8
       includes:
         - opt/**
         - usr/**

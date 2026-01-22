@@ -16,7 +16,7 @@ vars:
   GRADLE_MAJOR_MINOR_VERSION: "8.14"
   GRADLE_MAJOR_VERSION: "8"
   GRADLE_VERSION: 8.14.3
-  JAVA_DIGEST: sha256:fd54ddddb31498d2425da8ddc55fb8ecf24bdf18be589bcd1712435bdb0d2dd7
+  JAVA_DIGEST: sha256:0600b0b6cde79426d0d966b97da1f553f94d6553910b3fe85b0592b2c62b977a
   JAVA_MAJOR_VERSION: "11"
   JAVA_VERSION: 11.0.29.7
 contents:
@@ -32,7 +32,7 @@ contents:
     - musl
     - tzdata
   artifacts:
-    - name: dhi.io/eclipse-temurin:11.0.29.7-jdk-alpine3.22-dev@sha256:fd54ddddb31498d2425da8ddc55fb8ecf24bdf18be589bcd1712435bdb0d2dd7
+    - name: dhi.io/eclipse-temurin:11.0.29.7-jdk-alpine3.22-dev@sha256:0600b0b6cde79426d0d966b97da1f553f94d6553910b3fe85b0592b2c62b977a
       includes:
         - opt/**
       uid: 0

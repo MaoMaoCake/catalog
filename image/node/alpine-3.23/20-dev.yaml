@@ -16,7 +16,7 @@ dates:
 vars:
   NODEJS_VERSION_MAJOR: "20"
   NODEJS_VERSION_MAJOR_MINOR: "20.20"
-  PKG_NODE_REFERENCE: dhi/pkg-node:20.20.0-alpine3.23@sha256:c16ebee098f3fd6cadf8110726a0592402cdd52cbbf9e54658805cbbeed62c22
+  PKG_NODE_REFERENCE: dhi/pkg-node:20.20.0-alpine3.23@sha256:3faf698b6cb783cb3b987b5b76d303114b72ad156183f132ff6887c772696081
   VERSION: 20.20.0
 contents:
   repositories:
@@ -33,7 +33,7 @@ contents:
     - libstdc++
     - musl
   artifacts:
-    - name: dhi.io/pkg-node:20.20.0-alpine3.23@sha256:c16ebee098f3fd6cadf8110726a0592402cdd52cbbf9e54658805cbbeed62c22
+    - name: dhi.io/pkg-node:20.20.0-alpine3.23@sha256:3faf698b6cb783cb3b987b5b76d303114b72ad156183f132ff6887c772696081
       includes:
         - opt/docker
         - opt/nodejs

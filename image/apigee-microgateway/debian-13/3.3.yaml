@@ -49,6 +49,10 @@ contents:
             path: ${source.dir}/qs-6.14.1.tgz
             uid: 0
             gid: 0
+          - url: https://registry.npmjs.org/diff/-/diff-8.0.3.tgz
+            path: ${source.dir}/diff-8.0.3.tgz
+            uid: 0
+            gid: 0
       pipeline:
         - name: install dependencies
           work-dir: ${source.dir}/edgemicro
@@ -75,6 +79,25 @@ contents:
             done
 
             rm -rf /tmp/qs-fix
+        - name: patch nested diff packages
+          work-dir: ${source.dir}/edgemicro
+          privileged: true
+          runs: |
+            set -eux -o pipefail
+
+            # Extract fixed diff version (downloaded in files section)
+            mkdir -p /tmp/diff-fix
+            tar -xzf ${source.dir}/diff-8.0.3.tgz -C /tmp/diff-fix
+
+            # Find and replace ALL diff packages in node_modules
+            # Only match directories named "diff" that contain package.json (actual npm packages)
+            find node_modules -type d -name "diff" -exec test -f {}/package.json \; -print0 | while IFS= read -r -d '' diff_dir; do
+              echo "Replacing $diff_dir"
+              rm -rf "$diff_dir"
+              cp -r /tmp/diff-fix/package "$diff_dir"
+            done
+
+            rm -rf /tmp/diff-fix
         - name: create config
           work-dir: ${source.dir}/edgemicro
           runs: |

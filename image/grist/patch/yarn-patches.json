@@ -73,5 +73,10 @@
         "package": "tar",
         "dev": false,
         "version": "7.5.4"
+    },
+    {
+        "package": "diff",
+        "dev": false,
+        "version": "4.0.4"
     }
 ]

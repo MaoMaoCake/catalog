@@ -16,9 +16,9 @@ platforms:
 vars:
   COMMIT_SHA: 75773ed9b45b0a5adf3c42872d2e5494da669427
   DEBIAN_REFERENCE: dhi/debian-base:trixie-debian13@sha256:1244523a2f7b6c096c6f98ce0349df6798c775c57322c51f8a4982daf60c256c
-  JDK_DIGEST: sha256:38b228ea69b2f3cbd3202741e73bb3115217a6283be4955e8f9e181d9a3156df
+  JDK_DIGEST: sha256:ed528dbe9717e6ce59d1e534905137119f549778e3cb16f76b9eb9a5e296ec5b
   JDK_VERSION: 21.0.9.10
-  JRE_DIGEST: sha256:e0c3e71b08e1051e402957c08de745011f9f1209d27d1e9e8cab1fe6edf9a44b
+  JRE_DIGEST: sha256:0261fc5162735dbbd5a002ecd8e17957652aa80314c8af19d4c1f2805a92000a
   JRE_VERSION: 21.0.9.10
   SEMVER_MAJOR_MINOR_VERSION: "4.33"
   SEMVER_MAJOR_VERSION: "4"
@@ -48,7 +48,7 @@ contents:
     - util-linux
   builds:
     - name: liquibase
-      uses: dhi.io/eclipse-temurin:21.0.9.10-jdk-debian13-dev@sha256:38b228ea69b2f3cbd3202741e73bb3115217a6283be4955e8f9e181d9a3156df
+      uses: dhi.io/eclipse-temurin:21.0.9.10-jdk-debian13-dev@sha256:ed528dbe9717e6ce59d1e534905137119f549778e3cb16f76b9eb9a5e296ec5b
       contents:
         packages:
           - coreutils
@@ -141,7 +141,7 @@ contents:
           uid: 0
           gid: 0
   artifacts:
-    - name: dhi.io/eclipse-temurin:21.0.9.10-debian13@sha256:e0c3e71b08e1051e402957c08de745011f9f1209d27d1e9e8cab1fe6edf9a44b
+    - name: dhi.io/eclipse-temurin:21.0.9.10-debian13@sha256:0261fc5162735dbbd5a002ecd8e17957652aa80314c8af19d4c1f2805a92000a
       includes:
         - opt/**
       uid: 0

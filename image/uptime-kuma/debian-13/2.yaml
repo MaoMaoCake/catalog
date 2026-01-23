@@ -15,9 +15,9 @@ platforms:
   - linux/arm64
 vars:
   COMMIT_SHA: c451db542d7c36c66d10a4218628bc6cc0d314a9
-  NODE_BUILD_REFERENCE: dhi/node:24.13.0-debian13-dev@sha256:ff063dd5994d291e7f32802546e9d625c2c2bd01e2baea62ec7535ec805dac1b
+  NODE_BUILD_REFERENCE: dhi/node:24.13.0-debian13-dev@sha256:718a3be75bc28f1ebfac3463cf0e0e1e4d228ca344c80dcc1a3f267bcc46efb9
   NODE_BUILD_VERSION: 24.13.0
-  NODE_RUNTIME_REFERENCE: dhi/node:24.13.0-debian13@sha256:f54ded37c928b9b67ad8e52bd40faf8a943404ee14f2b1cc304352139b95789f
+  NODE_RUNTIME_REFERENCE: dhi/node:24.13.0-debian13@sha256:c2368c70538c2459b90d588e5344013064da76aeba6fc4443457b2c376e60cd7
   NODE_RUNTIME_VERSION: 24.13.0
   SEMVER_MAJOR_MINOR_VERSION: "2.0"
   SEMVER_MAJOR_VERSION: "2"
@@ -29,7 +29,7 @@ contents:
     - iputils-ping
   builds:
     - name: uptime-kuma
-      uses: dhi.io/node:24.13.0-debian13-dev@sha256:ff063dd5994d291e7f32802546e9d625c2c2bd01e2baea62ec7535ec805dac1b
+      uses: dhi.io/node:24.13.0-debian13-dev@sha256:718a3be75bc28f1ebfac3463cf0e0e1e4d228ca344c80dcc1a3f267bcc46efb9
       contents:
         packages:
           - jq
@@ -134,7 +134,7 @@ contents:
           uid: 0
           gid: 0
   artifacts:
-    - name: dhi.io/node:24.13.0-debian13@sha256:f54ded37c928b9b67ad8e52bd40faf8a943404ee14f2b1cc304352139b95789f
+    - name: dhi.io/node:24.13.0-debian13@sha256:c2368c70538c2459b90d588e5344013064da76aeba6fc4443457b2c376e60cd7
       uid: 0
       gid: 0
 accounts:

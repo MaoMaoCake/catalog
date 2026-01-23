@@ -45,6 +45,7 @@ contents:
   builds:
     - name: trivy
       uses: dhi.io/golang:1.25.6-debian13-dev@sha256:a0607a787c801dba5f5637b939566066da29bebc0e6512e3fa0af1695c5090bc
+      work-dir: /go/src/github.com/aquasecurity/trivy
       caches:
         - path: /go/pkg/mod
       contents:
@@ -68,23 +69,16 @@ contents:
       pipeline:
         - name: install mage
           privileged: true
-          caches:
-            - path: /go/pkg/mod
           runs: |
             set -eux -o pipefail
 
             GODEBUG="" GOFIPS140="" go install "github.com/magefile/mage@v1.15.0"
-            mage -init
         - name: apply patch
           uses: git/patch@v1
-          work-dir: /go/src/github.com/aquasecurity/trivy
           with:
             patch: ${source.dir}/patch/2f3ae9346db5575a700e7e0e9c16ca8958528ef4.patch
         - name: update go dependencies
           uses: go/bump@v1
-          work-dir: /go/src/github.com/aquasecurity/trivy
-          caches:
-            - path: /go/pkg/mod
           with:
             deps:
               - github.com/containerd/containerd@v1.7.29
@@ -97,19 +91,13 @@ contents:
               - github.com/containerd/cgroups/v3=github.com/containerd/cgroups/v3@v3.1.0
               - github.com/sigstore/timestamp-authority=github.com/docker-hardened-images/sigstore-timestamp-authority@v1.2.10-0.20251207163215-621a8cc1532f
         - name: test
-          work-dir: /go/src/github.com/aquasecurity/trivy
           privileged: true
-          caches:
-            - path: /go/pkg/mod
           runs: |
             set -eux -o pipefail
 
-            GODEBUG="" GOFIPS140="" CGO_ENABLED=0 mage test:unit
+            GODEBUG="" GOFIPS140="" CGO_ENABLED=0 GOEXPERIMENT=jsonv2 mage test:unit
         - name: build
           uses: go/build@v1
-          work-dir: /go/src/github.com/aquasecurity/trivy
-          caches:
-            - path: /go/pkg/mod
           with:
             experiments: jsonv2
             ldflags:

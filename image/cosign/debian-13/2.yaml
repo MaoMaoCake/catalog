@@ -28,6 +28,7 @@ contents:
   builds:
     - name: cosign
       uses: dhi.io/golang:1.25.6-debian13-dev@sha256:a0607a787c801dba5f5637b939566066da29bebc0e6512e3fa0af1695c5090bc
+      work-dir: /go/src/github.com/sigstore/cosign
       caches:
         - path: /go/pkg/mod
       contents:
@@ -47,7 +48,6 @@ contents:
       pipeline:
         - name: update go dependencies
           uses: go/bump@v1
-          work-dir: /go/src/github.com/sigstore/cosign
           with:
             deps:
               - github.com/sigstore/fulcio@v1.8.5
@@ -58,25 +58,18 @@ contents:
           runs: |
             set -eux -o pipefail
 
-            GODEBUG=fips140=on CGO_ENABLED=0 go test -C /go/src/github.com/sigstore/cosign ./...
+            GODEBUG=fips140=on CGO_ENABLED=0 go test ./...
         - name: build
-          runs: |
-            set -eux -o pipefail
-
-            GOLDFLAGS="-X github.com/sigstore/cosign/version.Version=2.6.2
-                       -X sigs.k8s.io/release-utils/version.gitVersion=2.6.2
-                       -X sigs.k8s.io/release-utils/version.gitCommit=3ade80c5f77cefc904f8c994e88618e5892e8f1c
-                       -X sigs.k8s.io/release-utils/version.gitTreeState=clean
-                       -X sigs.k8s.io/release-utils/version.buildDate=$(date -ud @${SOURCE_DATE_EPOCH} +'%Y-%m-%dT%H:%M:%SZ')"
-
-            if [ "${target.dev}" != "true" ]; then
-              GOLDFLAGS="-s -w $GOLDFLAGS"
-            fi
-
-            mkdir -p "${target.dir}/usr/local/bin"
-            CGO_ENABLED=0 go build -C /go/src/github.com/sigstore/cosign \
-              -ldflags="$GOLDFLAGS" \
-              -o "${target.dir}/usr/local/bin/cosign" ./cmd/cosign
+          uses: go/build@v1
+          with:
+            ldflags:
+              - -X github.com/sigstore/cosign/version.Version=2.6.2
+              - -X sigs.k8s.io/release-utils/version.gitVersion=2.6.2
+              - -X sigs.k8s.io/release-utils/version.gitCommit=3ade80c5f77cefc904f8c994e88618e5892e8f1c
+              - -X sigs.k8s.io/release-utils/version.gitTreeState=clean
+              - -X sigs.k8s.io/release-utils/version.buildDate=$(date -ud @${SOURCE_DATE_EPOCH} +'%Y-%m-%dT%H:%M:%SZ')
+            output: ${target.dir}/usr/local/bin/cosign
+            packages: ./cmd/cosign
       outputs:
         - source: ${target.dir}/usr/local/bin
           target: /usr/local/bin

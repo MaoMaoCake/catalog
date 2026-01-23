@@ -14,7 +14,7 @@ dates:
   release: "2022-10-24"
   end-of-life: "2027-10-31"
 vars:
-  PKG_PYTHON_REFERENCE: dhi/pkg-python:3.11.14-alpine3.23@sha256:44508c0c7b1dfc69303e995952ccdf43791dada02be5cf6cdcd36ae19946774f
+  PKG_PYTHON_REFERENCE: dhi/pkg-python:3.11.14-alpine3.23@sha256:c30d68672b051d9ea9c437a092e5a777b6ec68fe7e31195cee8c783da9e138f2
   PYTHON_MAJOR_MINOR_VERSION: "3.11"
   PYTHON_MAJOR_VERSION: "3"
   PYTHON_VERSION: 3.11.14
@@ -85,7 +85,7 @@ contents:
           uid: 0
           gid: 0
   artifacts:
-    - name: dhi.io/pkg-python:3.11.14-alpine3.23@sha256:44508c0c7b1dfc69303e995952ccdf43791dada02be5cf6cdcd36ae19946774f
+    - name: dhi.io/pkg-python:3.11.14-alpine3.23@sha256:c30d68672b051d9ea9c437a092e5a777b6ec68fe7e31195cee8c783da9e138f2
       includes:
         - opt/**
       uid: 0

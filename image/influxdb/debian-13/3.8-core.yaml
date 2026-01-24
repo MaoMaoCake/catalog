@@ -21,7 +21,7 @@ vars:
   BASE_TAG: 20250419-glibc-debian13
   COMMIT_SHA: c2bb0eb1c0f6c9893c7630b7b8936dc799ffb5cd
   PYTHON_MAJOR_MINOR_VERSION: "3.13"
-  PYTHON_REFERENCE: dhi/python:3.13.11-debian13@sha256:35297112400b81eb2061e82a3c1f0b50b71ef020552060dd93ba55c31268d874
+  PYTHON_REFERENCE: dhi/python:3.13.11-debian13@sha256:5fd3551daebdf1bf487037d2b009fc363aea96c04ecca755b52d6cdc0e734ea1
   PYTHON_VERSION: 3.13.11
   RUST_REFERENCE: dhi/rust:1.93.0-debian13@sha256:341eb393e8afb4c8d486555d6919e2e8ed060f6e097b74cd9b702ee805576920
   RUST_VERSION: 1.93.0
@@ -58,7 +58,7 @@ contents:
             uid: 0
             gid: 0
         artifacts:
-          - name: dhi.io/python:3.13.11-debian13@sha256:35297112400b81eb2061e82a3c1f0b50b71ef020552060dd93ba55c31268d874
+          - name: dhi.io/python:3.13.11-debian13@sha256:5fd3551daebdf1bf487037d2b009fc363aea96c04ecca755b52d6cdc0e734ea1
             excludes:
               - etc/group
               - etc/passwd
@@ -120,7 +120,7 @@ contents:
           uid: 0
           gid: 0
   artifacts:
-    - name: dhi.io/python:3.13.11-debian13@sha256:35297112400b81eb2061e82a3c1f0b50b71ef020552060dd93ba55c31268d874
+    - name: dhi.io/python:3.13.11-debian13@sha256:5fd3551daebdf1bf487037d2b009fc363aea96c04ecca755b52d6cdc0e734ea1
       excludes:
         - etc/group
         - etc/passwd

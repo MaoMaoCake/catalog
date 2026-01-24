@@ -18,9 +18,9 @@ dates:
 vars:
   COMMIT_SHA: be816b82d25370ceac697ccf7c88cea873e9b4e3
   DEBIAN_REFERENCE: dhi/debian-base:trixie-debian13@sha256:1244523a2f7b6c096c6f98ce0349df6798c775c57322c51f8a4982daf60c256c
-  GRADLE_REFERENCE: dhi/gradle:8.14.3-jdk21-debian13-dev@sha256:eb8d725f32a98e1e2f2931bd7df2fd78b40a5356faf670133e6d87e2e4b77053
+  GRADLE_REFERENCE: dhi/gradle:8.14.3-jdk21-debian13-dev@sha256:71eafcb31b02846d3e3e95aa42f1df7bf08091f5a25ff645ba2bb4ae289805eb
   GRADLE_VERSION: 8.14.3
-  JAVA_REFERENCE: dhi/eclipse-temurin:21.0.9.10-debian13@sha256:e0c3e71b08e1051e402957c08de745011f9f1209d27d1e9e8cab1fe6edf9a44b
+  JAVA_REFERENCE: dhi/eclipse-temurin:21.0.9.10-debian13@sha256:0261fc5162735dbbd5a002ecd8e17957652aa80314c8af19d4c1f2805a92000a
   JAVA_VERSION: 21.0.9.10
   KAFKA_MAJOR_MINOR_VERSION: ${KAFKA_VERSION:([0-9]+.[0-9]+).*$}
   KAFKA_MAJOR_VERSION: ${KAFKA_VERSION:([0-9]+).*$}
@@ -44,7 +44,7 @@ contents:
     - tzdata
   builds:
     - name: kafka
-      uses: dhi.io/gradle:8.14.3-jdk21-debian13-dev@sha256:eb8d725f32a98e1e2f2931bd7df2fd78b40a5356faf670133e6d87e2e4b77053
+      uses: dhi.io/gradle:8.14.3-jdk21-debian13-dev@sha256:71eafcb31b02846d3e3e95aa42f1df7bf08091f5a25ff645ba2bb4ae289805eb
       contents:
         packages:
           - gzip
@@ -162,7 +162,7 @@ contents:
           uid: 0
           gid: 0
   artifacts:
-    - name: dhi.io/eclipse-temurin:21.0.9.10-debian13@sha256:e0c3e71b08e1051e402957c08de745011f9f1209d27d1e9e8cab1fe6edf9a44b
+    - name: dhi.io/eclipse-temurin:21.0.9.10-debian13@sha256:0261fc5162735dbbd5a002ecd8e17957652aa80314c8af19d4c1f2805a92000a
       includes:
         - opt/**
       uid: 0

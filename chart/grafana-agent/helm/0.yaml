@@ -14,7 +14,7 @@ vars:
   DHI_PREFIX: ""
   DHI_REGISTRY: dhi.io
   DHI_SKIP_CONTEXT_COPY: "true"
-  GRAFANA_AGENT_REFERENCE: dhi/grafana-agent:0.44.6-debian13@sha256:70457e3368a881fd8d73567c6eabe9350805a3f1afcf6be12590d5519e444380
+  GRAFANA_AGENT_REFERENCE: dhi/grafana-agent:0.44.7-debian13@sha256:431571473c0f35015ab6927a0e1c9037d0f431f6af7f1641ea4e113c6117e802
   HELM_REFERENCE: dhi/helm:3.19.5-debian13-dev@sha256:9fa0f8ba70052f17df5a7a3469c2e306d18b5f934f3439ce781c9dd5a2f6b96a
   SEMVER_MAJOR_MINOR_VERSION: "0.44"
   SEMVER_MAJOR_VERSION: "0"
@@ -48,7 +48,7 @@ contents:
               description: Docker Hardened Images Helm chart for Grafana Agent
               images:
                 - name: grafana-agent
-                  ref: dhi/grafana-agent:0.44.6-debian13@sha256:70457e3368a881fd8d73567c6eabe9350805a3f1afcf6be12590d5519e444380
+                  ref: dhi/grafana-agent:0.44.7-debian13@sha256:431571473c0f35015ab6927a0e1c9037d0f431f6af7f1641ea4e113c6117e802
                 - name: configmap-reload
                   ref: dhi/configmap-reload:0.15.0-debian13@sha256:c1a3250e18dfaee1a72e52a5fcefeaf98d41067b9c7f9edbd3008fd3623a757a
               name: grafana-agent-chart

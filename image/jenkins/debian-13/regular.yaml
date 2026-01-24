@@ -15,8 +15,8 @@ vars:
   BCRNGJENT_VERSION: 1.3.6
   BCTLSFIPS_VERSION: 2.1.22
   BCUTILFIPS_VERSION: 2.1.5
-  BUILD_JDK_DIGEST: sha256:38b228ea69b2f3cbd3202741e73bb3115217a6283be4955e8f9e181d9a3156df
-  BUILD_JDK_REF: dhi/eclipse-temurin:21.0.9.10-jdk-debian13-dev@sha256:38b228ea69b2f3cbd3202741e73bb3115217a6283be4955e8f9e181d9a3156df
+  BUILD_JDK_DIGEST: sha256:ed528dbe9717e6ce59d1e534905137119f549778e3cb16f76b9eb9a5e296ec5b
+  BUILD_JDK_REF: dhi/eclipse-temurin:21.0.9.10-jdk-debian13-dev@sha256:ed528dbe9717e6ce59d1e534905137119f549778e3cb16f76b9eb9a5e296ec5b
   BUILD_JDK_VERSION: 21.0.9.10
   COMMIT_SHA: be1adbf5ccea5b9c1cc1a9375349d56576b459cd
   DEBIAN_REFERENCE: dhi/debian-base:trixie-debian13@sha256:1244523a2f7b6c096c6f98ce0349df6798c775c57322c51f8a4982daf60c256c
@@ -25,12 +25,12 @@ vars:
   JAVA_HOME_PATH: /opt/java/openjdk/21-jre
   JAVA_MAJOR_VERSION: "21"
   JDK_MAJOR_VERSION: "21"
-  JRE_DIGEST: sha256:e0c3e71b08e1051e402957c08de745011f9f1209d27d1e9e8cab1fe6edf9a44b
-  JRE_REF: dhi/eclipse-temurin:21.0.9.10-debian13@sha256:e0c3e71b08e1051e402957c08de745011f9f1209d27d1e9e8cab1fe6edf9a44b
+  JRE_DIGEST: sha256:0261fc5162735dbbd5a002ecd8e17957652aa80314c8af19d4c1f2805a92000a
+  JRE_REF: dhi/eclipse-temurin:21.0.9.10-debian13@sha256:0261fc5162735dbbd5a002ecd8e17957652aa80314c8af19d4c1f2805a92000a
   JRE_VERSION: 21.0.9.10
   LIBPNG_REF: dhi/pkg-libpng:1.6.54-debian13@sha256:8f1202ad965c1cf70b86c74e96c34c90c98399d42f6a8de0e8477fb6aa4e7caa
-  MAVEN_DIGEST: sha256:5483e50d4bcaac95572eb056d2c1717d921935c5f7f6a8bca5d217d04b1b6a38
-  MAVEN_REF: dhi/maven:3.9.12-jdk21-debian13-dev@sha256:5483e50d4bcaac95572eb056d2c1717d921935c5f7f6a8bca5d217d04b1b6a38
+  MAVEN_DIGEST: sha256:6c01d18d2ed53b76cdd3c377bd007a88cd11e9c94e8ca24b81ffe22cdbb828ed
+  MAVEN_REF: dhi/maven:3.9.12-jdk21-debian13-dev@sha256:6c01d18d2ed53b76cdd3c377bd007a88cd11e9c94e8ca24b81ffe22cdbb828ed
   MAVEN_VERSION: 3.9.12
   SEMVER_MAJOR_MINOR_VERSION: "2.547"
   SEMVER_MAJOR_VERSION: "2"
@@ -56,7 +56,7 @@ contents:
     - unzip
   builds:
     - name: jenkins
-      uses: dhi.io/eclipse-temurin:21.0.9.10-jdk-debian13-dev@sha256:38b228ea69b2f3cbd3202741e73bb3115217a6283be4955e8f9e181d9a3156df
+      uses: dhi.io/eclipse-temurin:21.0.9.10-jdk-debian13-dev@sha256:ed528dbe9717e6ce59d1e534905137119f549778e3cb16f76b9eb9a5e296ec5b
       contents:
         packages:
           - coreutils
@@ -86,7 +86,7 @@ contents:
             uid: 0
             gid: 0
         artifacts:
-          - name: dhi.io/maven:3.9.12-jdk21-debian13-dev@sha256:5483e50d4bcaac95572eb056d2c1717d921935c5f7f6a8bca5d217d04b1b6a38
+          - name: dhi.io/maven:3.9.12-jdk21-debian13-dev@sha256:6c01d18d2ed53b76cdd3c377bd007a88cd11e9c94e8ca24b81ffe22cdbb828ed
             includes:
               - opt/**
               - usr/local/bin/**
@@ -165,7 +165,7 @@ contents:
           uid: 0
           gid: 0
   artifacts:
-    - name: dhi.io/eclipse-temurin:21.0.9.10-debian13@sha256:e0c3e71b08e1051e402957c08de745011f9f1209d27d1e9e8cab1fe6edf9a44b
+    - name: dhi.io/eclipse-temurin:21.0.9.10-debian13@sha256:0261fc5162735dbbd5a002ecd8e17957652aa80314c8af19d4c1f2805a92000a
       includes:
         - opt/**
         - usr/local/bin/**

@@ -133,13 +133,14 @@ contents:
             pip install PyJWT==2.9.0 --no-cache-dir
 
             # CVE remediation: Upgrade packages to fix known vulnerabilities
-            pip install --upgrade 'starlette>=0.49.1'    # Fix CVE-2025-62727
-            pip install --upgrade 'aiohttp>=3.12.14'     # Fix CVE-2025-53643
-            pip install --upgrade 'cryptography>=44.0.1' # Fix CVE-2024-12797
-            pip install --upgrade 'mcp>=1.23.0'          # Fix CVE-2025-66416
-            pip install --upgrade 'fastapi-sso>=0.19.0'  # Fix CVE-2025-14546
-            pip install --upgrade 'urllib3>=2.6.3'       # Fix CVE-2026-21441
-            pip install --upgrade 'pynacl>=1.6.2'        # Fix CVE-2025-69277
+            pip install --upgrade 'starlette>=0.49.1'              # Fix CVE-2025-62727
+            pip install --upgrade 'aiohttp>=3.12.14'               # Fix CVE-2025-53643
+            pip install --upgrade 'cryptography>=44.0.1'           # Fix CVE-2024-12797
+            pip install --upgrade 'mcp>=1.23.0'                    # Fix CVE-2025-66416
+            pip install --upgrade 'fastapi-sso>=0.19.0'            # Fix CVE-2025-14546
+            pip install --upgrade 'urllib3>=2.6.3'                 # Fix CVE-2026-21441
+            pip install --upgrade 'pynacl>=1.6.2'                  # Fix CVE-2025-69277
+            pip install --upgrade 'nodejs-wheel-binaries>=24.13.0' # Fix CVE-2025-55130, CVE-2025-55131, CVE-2025-59466, CVE-2026-21637, CVE-2025-55132
         - name: patch diff package in nodejs_wheel
           privileged: true
           runs: |

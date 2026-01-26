@@ -19,7 +19,7 @@ vars:
   COMMIT_SHA: e5ccf1998d5583a9fca75b07d5df6beeb7529c5e
   NODE_BUILD_REFERENCE: dhi/node:24.13.0-debian13-sfw-dev@sha256:546513dbe0c5bb8605abde323b0af9fe9a113edb6eb0ba82f56be28391bcd962
   NODE_RUNTIME_REFERENCE: dhi/node:24.13.0-debian13@sha256:c2368c70538c2459b90d588e5344013064da76aeba6fc4443457b2c376e60cd7
-  PNPM_VERSION: 10.28.1
+  PNPM_VERSION: 10.28.2
   SEMVER_MAJOR_MINOR_VERSION: "2.1"
   SEMVER_MAJOR_VERSION: "2"
   SEMVER_VERSION: 2.1.0
@@ -35,7 +35,7 @@ contents:
       uses: dhi.io/node:24.13.0-debian13-sfw-dev@sha256:546513dbe0c5bb8605abde323b0af9fe9a113edb6eb0ba82f56be28391bcd962
       contents:
         files:
-          - url: https://github.com/pnpm/pnpm/releases/download/v10.28.1/pnpm-linux-${ARCH}
+          - url: https://github.com/pnpm/pnpm/releases/download/v10.28.2/pnpm-linux-${ARCH}
             path: /usr/local/bin/pnpm
             uid: 0
             gid: 0

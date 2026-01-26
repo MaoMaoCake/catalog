@@ -6,16 +6,16 @@ variant: runtime
 tags:
   - 11-jre23
   - 11.20-jre23
-  - 11.20.2-jre23
+  - 11.20.3-jre23
   - 11-jre23-debian13
   - 11.20-jre23-debian13
-  - 11.20.2-jre23-debian13
+  - 11.20.3-jre23-debian13
 platforms:
   - linux/amd64
   - linux/arm64
 vars:
   DEBIAN_REFERENCE: dhi/debian-base:trixie-debian13@sha256:1244523a2f7b6c096c6f98ce0349df6798c775c57322c51f8a4982daf60c256c
-  DIGEST: c78c70b258c2e2e156d19d2c35f802d74f45bf82
+  DIGEST: 6aa438ea6f9905ac34e95caacfa8357f4b479439
   GITHUB_USERNAME: docker-hardened-images
   JDK_DIGEST: sha256:1fbc09d023f6fa08248856cc8c5957745cede8171ae5263e3efe4c7dd12fc03a
   JDK_MAJOR_VERSION: "23"
@@ -27,8 +27,8 @@ vars:
   MAVEN_VERSION: 3.9.11
   SEMVER_MAJOR_MINOR_VERSION: "11.20"
   SEMVER_MAJOR_VERSION: "11"
-  SEMVER_VERSION: 11.20.2
-  VERSION: 11.20.2
+  SEMVER_VERSION: 11.20.3
+  VERSION: 11.20.3
 contents:
   packages:
     - '!libelogind0'
@@ -50,14 +50,14 @@ contents:
           - findutils
           - yq
         files:
-          - url: git+https://github.com/flyway/flyway.git#flyway-11.20.2
+          - url: git+https://github.com/flyway/flyway.git#flyway-11.20.3
             path: ${source.dir}/src/flyway
             spdx:
               name: flyway
-              version: 11.20.2
+              version: 11.20.3
               packages:
                 - name: flyway
-                  purl: pkg:dhi/flyway@11.20.2
+                  purl: pkg:dhi/flyway@11.20.3
                   license: Apache-2.0
             uid: 0
             gid: 0
@@ -78,7 +78,7 @@ contents:
           uses: git/checkout@v1
           with:
             dir: src/flyway
-            expected-commit: c78c70b258c2e2e156d19d2c35f802d74f45bf82
+            expected-commit: 6aa438ea6f9905ac34e95caacfa8357f4b479439
         - name: patch properties
           uses: mvn/patch@v1
           with:
@@ -144,7 +144,7 @@ contents:
               --settings ~/.m2/settings.xml
 
             # Copy main JAR
-            cp "flyway-commandline/target/flyway-commandline-11.20.2.jar" "${target.dir}/flyway/flyway.jar"
+            cp "flyway-commandline/target/flyway-commandline-11.20.3.jar" "${target.dir}/flyway/flyway.jar"
 
             # Copy runtime dependencies
             mvn dependency:copy-dependencies \

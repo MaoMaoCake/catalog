@@ -5,40 +5,42 @@ image: dhi.io/external-secrets
 variant: runtime
 tags:
   - "1"
-  - "1.2"
-  - 1.2.1
+  - "1.3"
+  - 1.3.1
   - 1-debian13
-  - 1.2-debian13
-  - 1.2.1-debian13
+  - 1.3-debian13
+  - 1.3.1-debian13
 platforms:
   - linux/amd64
   - linux/arm64
 vars:
   BASE_DIGEST: sha256:74fc43fa240887b8159970e434244039aab0c6efaaa9cf044004cdc22aa2a34d
   BASE_TAG: 20250419-debian13
-  COMMIT_SHA: 0e31d72d7afd14733df74b41ad58317219a40f4e
+  COMMIT_SHA: 6e121990e3a9fd9f5f73b380f3b34fd3328fcbc6
   GO_REFERENCE: dhi/golang:1.25.6-debian13-dev@sha256:a0607a787c801dba5f5637b939566066da29bebc0e6512e3fa0af1695c5090bc
-  SEMVER_MAJOR_MINOR_VERSION: "1.2"
+  SEMVER_MAJOR_MINOR_VERSION: "1.3"
   SEMVER_MAJOR_VERSION: "1"
-  SEMVER_VERSION: 1.2.1
-  VERSION: 1.2.1
+  SEMVER_VERSION: 1.3.1
+  VERSION: 1.3.1
 contents:
   packages:
     - '!base-files'
   builds:
     - name: external-secrets
       uses: dhi.io/golang:1.25.6-debian13-dev@sha256:a0607a787c801dba5f5637b939566066da29bebc0e6512e3fa0af1695c5090bc
+      caches:
+        - path: /go/pkg/mod
       contents:
         files:
-          - url: git+https://github.com/external-secrets/external-secrets#v1.2.1
-            checksum: 0e31d72d7afd14733df74b41ad58317219a40f4e
+          - url: git+https://github.com/external-secrets/external-secrets#v1.3.1
+            checksum: 6e121990e3a9fd9f5f73b380f3b34fd3328fcbc6
             path: /go/src/github.com/external-secrets/external-secrets
             spdx:
               name: external-secrets
-              version: 1.2.1
+              version: 1.3.1
               packages:
                 - name: external-secrets
-                  purl: pkg:dhi/external-secrets@1.2.1
+                  purl: pkg:dhi/external-secrets@1.3.1
                   license: Apache-2.0
             uid: 0
             gid: 0
@@ -47,8 +49,7 @@ contents:
           uses: go/bump@v1
           work-dir: /go/src/github.com/external-secrets/external-secrets
           with:
-            deps:
-              - golang.org/x/crypto@v0.45.0
+            deps: []
             download: true
         - name: build external-secrets
           uses: go/build@v1

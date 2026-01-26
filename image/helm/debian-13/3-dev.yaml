@@ -5,22 +5,21 @@ image: dhi.io/helm
 variant: dev
 tags:
   - 3-dev
-  - 3.19-dev
-  - 3.19.5-dev
+  - 3.20-dev
+  - 3.20.0-dev
   - 3-debian13-dev
-  - 3.19-debian13-dev
-  - 3.19.5-debian13-dev
+  - 3.20-debian13-dev
+  - 3.20.0-debian13-dev
 platforms:
   - linux/amd64
   - linux/arm64
 vars:
-  COMMIT_SHA: 4a19a5b6fb912c5c28a779e73f2e0880d9e239a4
-  GO_DIGEST: sha256:0321bd51a66050dec733d26d791377273598a4f5078d70a0b8a47633af01f55b
-  GO_VERSION: 1.24.12
-  SEMVER_MAJOR_MINOR_VERSION: "3.19"
+  COMMIT_SHA: b2e4314fa0f229a1de7b4c981273f61d69ee5a59
+  GOLANG_REFERENCE: dhi/golang:1.25.6-debian13-dev@sha256:a0607a787c801dba5f5637b939566066da29bebc0e6512e3fa0af1695c5090bc
+  SEMVER_MAJOR_MINOR_VERSION: "3.20"
   SEMVER_MAJOR_VERSION: "3"
-  SEMVER_VERSION: 3.19.5
-  VERSION: 3.19.5
+  SEMVER_VERSION: 3.20.0
+  VERSION: 3.20.0
   YQ_REFERENCE: dhi/pkg-go-yq:4.49.2-debian13@sha256:e96d74340c5ca018b01bbcb322ef8f53ae667b61b11e32b8bc642a2d211bdf7f
   YQ_VERSION: 4.49.2
 contents:
@@ -44,45 +43,43 @@ contents:
     - util-linux
   builds:
     - name: helm
-      uses: dhi.io/golang:1.24.12-debian13-dev@sha256:0321bd51a66050dec733d26d791377273598a4f5078d70a0b8a47633af01f55b
+      uses: dhi.io/golang:1.25.6-debian13-dev@sha256:a0607a787c801dba5f5637b939566066da29bebc0e6512e3fa0af1695c5090bc
+      work-dir: /go/src/github.com/helm/helm
       contents:
         packages:
           - sed
         files:
-          - url: git+https://github.com/helm/helm.git#v3.19.5
-            checksum: 4a19a5b6fb912c5c28a779e73f2e0880d9e239a4
+          - url: git+https://github.com/helm/helm.git#v3.20.0
+            checksum: b2e4314fa0f229a1de7b4c981273f61d69ee5a59
             path: /go/src/github.com/helm/helm
             spdx:
               name: helm
-              version: 3.19.5
+              version: 3.20.0
               packages:
                 - name: helm
-                  purl: pkg:golang/helm.sh/helm/v3@3.19.5
+                  purl: pkg:golang/helm.sh/helm/v3@3.20.0
                   license: Apache-2.0
             uid: 65532
             gid: 65532
       pipeline:
         - name: update go dependencies
           uses: go/bump@v1
-          work-dir: /go/src/github.com/helm/helm
           with:
-            deps:
-              - golang.org/x/crypto@v0.45.0
+            deps: []
             download: true
         - name: build
-          work-dir: /go/src/github.com/helm/helm
-          runs: |
-            set -eux -o pipefail
-
-            GOLDFLAGS="-X helm.sh/helm/v3/internal/version.version=3.19.5
-                       -X helm.sh/helm/v3/internal/version.gitCommit=4a19a5b6fb912c5c28a779e73f2e0880d9e239a4
-                       -X helm.sh/helm/v3/internal/version.gitTreeState=clean
-                       -X helm.sh/helm/v3/internal/version.metadata="
-
-            mkdir -p "${target.dir}/usr/local/bin"
-            CGO_ENABLED=0 go build \
-              -ldflags="$GOLDFLAGS" \
-              -o "${target.dir}/usr/local/bin/helm" ./cmd/helm
+          uses: go/build@v1
+          environment:
+            GOFLAGS: -buildvcs=false
+          with:
+            cgo_enabled: 0
+            ldflags:
+              - -X helm.sh/helm/v3/internal/version.version=3.20.0
+              - -X helm.sh/helm/v3/internal/version.gitCommit=b2e4314fa0f229a1de7b4c981273f61d69ee5a59
+              - -X helm.sh/helm/v3/internal/version.gitTreeState=clean
+              - -X helm.sh/helm/v3/internal/version.metadata=
+            output: ${target.dir}/usr/local/bin/helm
+            packages: ./cmd/helm
       accounts:
         run-as: nonroot
         users:

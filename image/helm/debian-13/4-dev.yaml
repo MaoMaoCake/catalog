@@ -15,8 +15,7 @@ platforms:
   - linux/arm64
 vars:
   COMMIT_SHA: 1b6053d48b51673c5581973f5ae7e104f627fcf5
-  GO_DIGEST: sha256:a0607a787c801dba5f5637b939566066da29bebc0e6512e3fa0af1695c5090bc
-  GO_VERSION: 1.25.6
+  GOLANG_REFERENCE: dhi/golang:1.25.6-debian13-dev@sha256:a0607a787c801dba5f5637b939566066da29bebc0e6512e3fa0af1695c5090bc
   SEMVER_MAJOR_MINOR_VERSION: "4.0"
   SEMVER_MAJOR_VERSION: "4"
   SEMVER_VERSION: 4.0.5
@@ -45,6 +44,7 @@ contents:
   builds:
     - name: helm
       uses: dhi.io/golang:1.25.6-debian13-dev@sha256:a0607a787c801dba5f5637b939566066da29bebc0e6512e3fa0af1695c5090bc
+      work-dir: /go/src/github.com/helm/helm
       contents:
         packages:
           - sed
@@ -64,25 +64,22 @@ contents:
       pipeline:
         - name: update go dependencies
           uses: go/bump@v1
-          work-dir: /go/src/github.com/helm/helm
           with:
-            deps:
-              - golang.org/x/crypto@v0.45.0
+            deps: []
             download: true
         - name: build
-          work-dir: /go/src/github.com/helm/helm
-          runs: |
-            set -eux -o pipefail
-
-            GOLDFLAGS="-X helm.sh/helm/v4/internal/version.version=4.0.5
-                       -X helm.sh/helm/v4/internal/version.gitCommit=1b6053d48b51673c5581973f5ae7e104f627fcf5
-                       -X helm.sh/helm/v4/internal/version.gitTreeState=clean
-                       -X helm.sh/helm/v4/internal/version.metadata="
-
-            mkdir -p "${target.dir}/usr/local/bin"
-            CGO_ENABLED=0 go build \
-              -ldflags="$GOLDFLAGS" \
-              -o "${target.dir}/usr/local/bin/helm" ./cmd/helm
+          uses: go/build@v1
+          environment:
+            GOFLAGS: -buildvcs=false
+          with:
+            cgo_enabled: 0
+            ldflags:
+              - -X helm.sh/helm/v4/internal/version.version=4.0.5
+              - -X helm.sh/helm/v4/internal/version.gitCommit=1b6053d48b51673c5581973f5ae7e104f627fcf5
+              - -X helm.sh/helm/v4/internal/version.gitTreeState=clean
+              - -X helm.sh/helm/v4/internal/version.metadata=
+            output: ${target.dir}/usr/local/bin/helm
+            packages: ./cmd/helm
       accounts:
         run-as: nonroot
         users:

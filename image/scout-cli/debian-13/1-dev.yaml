@@ -57,8 +57,17 @@ contents:
           work-dir: /go/src/github.com/docker/scout-cli-plugin
           with:
             deps:
-              - github.com/theupdateframework/go-tuf/v2@v2.3.1
+              - github.com/theupdateframework/go-tuf/v2@v2.4.1
+              - github.com/sigstore/rekor@v1.5.0
+              - github.com/sigstore/sigstore@v1.10.4
+              - github.com/sigstore/sigstore/pkg/signature/kms/aws@v1.10.4
+              - github.com/sigstore/sigstore/pkg/signature/kms/azure@v1.10.4
+              - github.com/sigstore/sigstore/pkg/signature/kms/gcp@v1.10.4
+              - github.com/sigstore/sigstore/pkg/signature/kms/hashivault@v1.10.4
+              - github.com/go-chi/chi/v5@v5.2.4
             download: true
+            replaces:
+              - github.com/sigstore/sigstore=github.com/sigstore/sigstore@v1.10.4
         - name: build
           uses: go/build@v1
           work-dir: /go/src/github.com/docker/scout-cli-plugin

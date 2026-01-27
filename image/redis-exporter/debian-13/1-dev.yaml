@@ -6,22 +6,22 @@ variant: dev
 tags:
   - 1-dev
   - 1.80-dev
-  - 1.80.1-dev
+  - 1.80.2-dev
   - 1-debian13-dev
   - 1.80-debian13-dev
-  - 1.80.1-debian13-dev
+  - 1.80.2-debian13-dev
 platforms:
   - linux/amd64
   - linux/arm64
 vars:
   BASE_DIGEST: sha256:74fc43fa240887b8159970e434244039aab0c6efaaa9cf044004cdc22aa2a34d
   BASE_TAG: 20250419-debian13
-  COMMIT_SHA: b0a03b20062314a8ac2918f5c377ebaf44cc8bd8
+  COMMIT_SHA: 3980c9100940be154765f115e3a3079ff75b08ea
   GO_REFERENCE: dhi/golang:1.25.6-debian13-dev@sha256:a0607a787c801dba5f5637b939566066da29bebc0e6512e3fa0af1695c5090bc
   SEMVER_MAJOR_MINOR_VERSION: "1.80"
   SEMVER_MAJOR_VERSION: "1"
-  SEMVER_VERSION: 1.80.1
-  VERSION: 1.80.1
+  SEMVER_VERSION: 1.80.2
+  VERSION: 1.80.2
 contents:
   packages:
     - '!base-files'
@@ -46,15 +46,15 @@ contents:
       uses: dhi.io/golang:1.25.6-debian13-dev@sha256:a0607a787c801dba5f5637b939566066da29bebc0e6512e3fa0af1695c5090bc
       contents:
         files:
-          - url: git+https://github.com/oliver006/redis_exporter.git#v1.80.1
-            checksum: b0a03b20062314a8ac2918f5c377ebaf44cc8bd8
+          - url: git+https://github.com/oliver006/redis_exporter.git#v1.80.2
+            checksum: 3980c9100940be154765f115e3a3079ff75b08ea
             path: /go/src/github.com/oliver006/redis_exporter
             spdx:
               name: redis-exporter
-              version: 1.80.1
+              version: 1.80.2
               packages:
                 - name: redis-exporter
-                  purl: pkg:dhi/redis-exporter@1.80.1
+                  purl: pkg:dhi/redis-exporter@1.80.2
                   license: MIT
             uid: 0
             gid: 0
@@ -69,7 +69,7 @@ contents:
           uses: go/build@v1
           work-dir: /go/src/github.com/oliver006/redis_exporter
           with:
-            ldflags: -X main.BuildVersion=1.80.1 -X main.BuildCommitSha=b0a03b20062314a8ac2918f5c377ebaf44cc8bd8 -X main.BuildDate=$(date -d @${SOURCE_DATE_EPOCH} +'%F-%T')
+            ldflags: -X main.BuildVersion=1.80.2 -X main.BuildCommitSha=3980c9100940be154765f115e3a3079ff75b08ea -X main.BuildDate=$(date -d @${SOURCE_DATE_EPOCH} +'%F-%T')
             output: ${target.dir}/usr/local/bin/redis-exporter
       outputs:
         - source: ${target.dir}/usr/local/bin/redis-exporter

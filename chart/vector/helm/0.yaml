@@ -13,7 +13,7 @@ vars:
   DHI_PREFIX: ""
   DHI_REGISTRY: dhi.io
   DHI_SKIP_CONTEXT_COPY: "true"
-  HAPROXY_REFERENCE: dhi/haproxy:3.0.14-debian13@sha256:fbe08eb3353cb4376e0912d95903e59365af1c670bbe1a1ae8ddf10cc51835c4
+  HAPROXY_REFERENCE: dhi/haproxy:3.0.15-debian13@sha256:ed639c1bd643df71e1092e54a8260628dcce9869efc51fc0c376ea3d5ac19aa8
   HELM_REFERENCE: dhi/helm:3.20.0-debian13-dev@sha256:a9247b60e56f190fb6de43042004c80b6ad903fe8df5becc513d89066aa3221c
   SEMVER_MAJOR_MINOR_VERSION: "0.50"
   SEMVER_MAJOR_VERSION: "0"
@@ -42,7 +42,7 @@ contents:
                 - name: vector
                   ref: dhi/vector:0.52.0-debian13@sha256:7eb6d3f9fc6c7be0982a6a4a8a2aedb4c47eba89c69a1dda21b7f4f31e4d843d
                 - name: haproxy
-                  ref: dhi/haproxy:3.0.14-debian13@sha256:fbe08eb3353cb4376e0912d95903e59365af1c670bbe1a1ae8ddf10cc51835c4
+                  ref: dhi/haproxy:3.0.15-debian13@sha256:ed639c1bd643df71e1092e54a8260628dcce9869efc51fc0c376ea3d5ac19aa8
               name: vector-chart
               notes: ${source.dir}/config/NOTES.txt
               sourceUrl: https://github.com/vectordotdev/helm-charts

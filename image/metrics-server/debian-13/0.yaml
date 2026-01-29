@@ -6,22 +6,22 @@ variant: runtime
 tags:
   - "0"
   - "0.8"
-  - 0.8.0
+  - 0.8.1
   - 0-debian13
   - 0.8-debian13
-  - 0.8.0-debian13
+  - 0.8.1-debian13
 platforms:
   - linux/amd64
   - linux/arm64
 vars:
   BASE_DIGEST: sha256:74fc43fa240887b8159970e434244039aab0c6efaaa9cf044004cdc22aa2a34d
   BASE_TAG: 20250419-debian13
-  COMMIT_SHA: d66279c6426c6581d9656fe3d42bc52db7c29597
+  COMMIT_SHA: 9ce65a47f9262e19e482c259ace815f01135a898
   GOLANG_REFERENCE: dhi/golang:1.24.12-debian13-dev@sha256:0321bd51a66050dec733d26d791377273598a4f5078d70a0b8a47633af01f55b
   SEMVER_MAJOR_MINOR_VERSION: "0.8"
   SEMVER_MAJOR_VERSION: "0"
-  SEMVER_VERSION: 0.8.0
-  VERSION: 0.8.0
+  SEMVER_VERSION: 0.8.1
+  VERSION: 0.8.1
 contents:
   packages:
     - '!base-files'
@@ -30,15 +30,15 @@ contents:
       uses: dhi.io/golang:1.24.12-debian13-dev@sha256:0321bd51a66050dec733d26d791377273598a4f5078d70a0b8a47633af01f55b
       contents:
         files:
-          - url: git+https://github.com/kubernetes-sigs/metrics-server.git#v0.8.0
-            checksum: d66279c6426c6581d9656fe3d42bc52db7c29597
+          - url: git+https://github.com/kubernetes-sigs/metrics-server.git#v0.8.1
+            checksum: 9ce65a47f9262e19e482c259ace815f01135a898
             path: /go/src/sigs.k8s.io/metrics-server
             spdx:
               name: metrics-server
-              version: 0.8.0
+              version: 0.8.1
               packages:
                 - name: metrics-server
-                  purl: pkg:golang/sigs.k8s.io/metrics-server@0.8.0
+                  purl: pkg:golang/sigs.k8s.io/metrics-server@0.8.1
                   license: Apache-2.0
             uid: 0
             gid: 0
@@ -55,8 +55,8 @@ contents:
           work-dir: /go/src/sigs.k8s.io/metrics-server
           with:
             ldflags:
-              - -X k8s.io/client-go/pkg/version.gitVersion=0.8.0
-              - -X k8s.io/client-go/pkg/version.gitCommit=d66279c6426c6581d9656fe3d42bc52db7c29597
+              - -X k8s.io/client-go/pkg/version.gitVersion=0.8.1
+              - -X k8s.io/client-go/pkg/version.gitCommit=9ce65a47f9262e19e482c259ace815f01135a898
               - -X k8s.io/client-go/pkg/version.BuildDate=$(date -u -d @${SOURCE_DATE_EPOCH} +'%FT%TZ')
             output: ${target.dir}/usr/local/bin/metrics-server
             packages: ./cmd/metrics-server

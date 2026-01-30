@@ -57,6 +57,8 @@ contents:
   builds:
     - name: jenkins
       uses: dhi.io/eclipse-temurin:21.0.9.10-jdk-debian13-dev@sha256:ed528dbe9717e6ce59d1e534905137119f549778e3cb16f76b9eb9a5e296ec5b
+      caches:
+        - path: /root/.m2/repository
       contents:
         packages:
           - coreutils

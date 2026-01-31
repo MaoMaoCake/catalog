@@ -6,16 +6,16 @@ variant: dev
 flavor: node22.22
 tags:
   - 4-node22.22-dev
-  - 4.1046-node22.22-dev
+  - 4.1047-node22.22-dev
   - 4-debian13-node22.22-dev
-  - 4.1046.100-node22.22-dev
-  - 4.1046-debian13-node22.22-dev
-  - 4.1046.100-debian13-node22.22-dev
+  - 4.1047.100-node22.22-dev
+  - 4.1047-debian13-node22.22-dev
+  - 4.1047.100-debian13-node22.22-dev
 platforms:
   - linux/amd64
 vars:
   BUILD_NUMBER: "100"
-  COMMIT_SHA: c9b95f32abaeb2f441c42464c43ce959e6afc9d8
+  COMMIT_SHA: d2b723ade785c2630569ea74606a94486029c8a4
   DOTNET_REFERENCE: dhi/dotnet:8.0.417-sdk-debian13@sha256:3ceb0d48a944dc2acd4861f37a9a272f886ee46ebfd27d86020ed986d2f57bed
   DOTNET_VERSION: 8.0.417
   EXT_BUNDLE_COMMIT_SHA: 3d5750b4307aa5e29111721f8308bff40f4f5c09
@@ -25,12 +25,12 @@ vars:
   NODE_MAJOR_VERSION: "22"
   NODE_REFERENCE: dhi/node:22.22.0-debian13@sha256:0a373b51361acbd29226f71f1605b34c8876a9c4749744c7ba82d25eb954e515
   NODE_VERSION: 22.22.0
-  SEMVER_MAJOR_MINOR_VERSION: "4.1046"
+  SEMVER_MAJOR_MINOR_VERSION: "4.1047"
   SEMVER_MAJOR_VERSION: "4"
-  SEMVER_VERSION: 4.1046.100
+  SEMVER_VERSION: 4.1047.100
   TEMPLATES_BUILDID: "258167"
   TEMPLATES_DOWNLOADURL: https://artprodwus21.artifacts.visualstudio.com/Ad1c51fbc-4477-4a0f-b99f-fc9013009a58/ae7e3bf3-d41a-4480-9ac0-b6cf9df9ac24/_apis/artifact/cGlwZWxpbmVhcnRpZmFjdDovL2F6ZnVuYy9wcm9qZWN0SWQvYWU3ZTNiZjMtZDQxYS00NDgwLTlhYzAtYjZjZjlkZjlhYzI0L2J1aWxkSWQvMjU4MTY3L2FydGlmYWN0TmFtZS9kcm9w0/content?format=zip
-  VERSION: 4.1046.100
+  VERSION: 4.1047.100
 contents:
   repositories:
     - deb [signed-by=/usr/share/keyrings/microsoft-signing-key] https://packages.microsoft.com/debian/13/prod trixie main
@@ -71,15 +71,15 @@ contents:
           - bash
           - findutils
         files:
-          - url: git+https://github.com/Azure/azure-functions-host.git#v4.1046.100
-            checksum: c9b95f32abaeb2f441c42464c43ce959e6afc9d8
+          - url: git+https://github.com/Azure/azure-functions-host.git#v4.1047.100
+            checksum: d2b723ade785c2630569ea74606a94486029c8a4
             path: ${source.dir}/azure-functions-host
             spdx:
               name: azure-functions-host
-              version: 4.1046.100
+              version: 4.1047.100
               packages:
                 - name: azure-functions-host
-                  purl: pkg:github/Azure/azure-functions-host@4.1046.100
+                  purl: pkg:github/Azure/azure-functions-host@4.1047.100
                   license: MIT
             uid: 0
             gid: 0
@@ -91,7 +91,7 @@ contents:
             set -eux -o pipefail
 
             dotnet publish -v q \
-              /p:BuildNumber='100' /p:CommitHash='c9b95f32abaeb2f441c42464c43ce959e6afc9d8' \
+              /p:BuildNumber='100' /p:CommitHash='d2b723ade785c2630569ea74606a94486029c8a4' \
               src/WebJobs.Script.WebHost/WebJobs.Script.WebHost.csproj \
               -c Release \
               --output '${target.dir}/azure-functions-host' \

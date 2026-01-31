@@ -6,22 +6,22 @@ variant: dev
 tags:
   - 10-dev
   - 10.1-dev
-  - 10.1.3-dev
+  - 10.1.4-dev
   - 10-debian13-dev
   - 10.1-debian13-dev
-  - 10.1.3-debian13-dev
+  - 10.1.4-debian13-dev
 platforms:
   - linux/amd64
   - linux/arm64
 vars:
   BASE_DIGEST: sha256:74fc43fa240887b8159970e434244039aab0c6efaaa9cf044004cdc22aa2a34d
   BASE_TAG: 20250419-debian13
-  COMMIT_SHA: e2df222ded28ee3315ccedbfa4dbc9914de8c482
+  COMMIT_SHA: 517c8899d701bd8e19cdd9ba0c22ddf63e68eb93
   GO_REFERENCE: dhi/golang:1.25.6-debian13-dev@sha256:a0607a787c801dba5f5637b939566066da29bebc0e6512e3fa0af1695c5090bc
   SEMVER_MAJOR_MINOR_VERSION: "10.1"
   SEMVER_MAJOR_VERSION: "10"
-  SEMVER_VERSION: 10.1.3
-  VERSION: 10.1.3
+  SEMVER_VERSION: 10.1.4
+  VERSION: 10.1.4
 contents:
   packages:
     - '!base-files'
@@ -46,15 +46,15 @@ contents:
       uses: dhi.io/golang:1.25.6-debian13-dev@sha256:a0607a787c801dba5f5637b939566066da29bebc0e6512e3fa0af1695c5090bc
       contents:
         files:
-          - url: git+https://github.com/fairwindsops/polaris.git#10.1.3
-            checksum: e2df222ded28ee3315ccedbfa4dbc9914de8c482
+          - url: git+https://github.com/fairwindsops/polaris.git#10.1.4
+            checksum: 517c8899d701bd8e19cdd9ba0c22ddf63e68eb93
             path: /go/src/github.com/fairwindsops/polaris
             spdx:
               name: polaris
-              version: 10.1.3
+              version: 10.1.4
               packages:
                 - name: polaris
-                  purl: pkg:golang/github.com/fairwindsops/polaris@10.1.3
+                  purl: pkg:golang/github.com/fairwindsops/polaris@10.1.4
                   license: Apache-2.0
             uid: 0
             gid: 0
@@ -71,8 +71,8 @@ contents:
           with:
             ldflags:
               - -s -w
-              - -X main.Version=10.1.3
-              - -X main.Commit=e2df222ded28ee3315ccedbfa4dbc9914de8c482
+              - -X main.Version=10.1.4
+              - -X main.Commit=517c8899d701bd8e19cdd9ba0c22ddf63e68eb93
               - -X main.buildDate=$(date -d @${SOURCE_DATE_EPOCH} +'%F-%T')
             output: ${target.dir}/usr/local/bin/polaris
             packages: main.go

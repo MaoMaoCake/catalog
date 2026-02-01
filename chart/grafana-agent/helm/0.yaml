@@ -15,7 +15,7 @@ vars:
   DHI_REGISTRY: dhi.io
   DHI_SKIP_CONTEXT_COPY: "true"
   GRAFANA_AGENT_REFERENCE: dhi/grafana-agent:0.44.7-debian13@sha256:b7a4da4e5fee5a2c7561204f69529543761d63f872478f8846ae0c119d0e50f0
-  HELM_REFERENCE: dhi/helm:3.20.0-debian13-dev@sha256:8ae259169a30387938ec0314da8084fd0c74a3726412e78e852205ab043a2673
+  HELM_REFERENCE: dhi/helm:3.20.0-debian13-dev@sha256:7cb2e3261500133ea8b5a670b731b6d200e5637b9b1d8451ccc759c358fca0dc
   SEMVER_MAJOR_MINOR_VERSION: "0.44"
   SEMVER_MAJOR_VERSION: "0"
   SEMVER_VERSION: 0.44.2
@@ -23,7 +23,7 @@ vars:
 contents:
   builds:
     - name: grafana-agent
-      uses: dhi.io/helm:3.20.0-debian13-dev@sha256:8ae259169a30387938ec0314da8084fd0c74a3726412e78e852205ab043a2673
+      uses: dhi.io/helm:3.20.0-debian13-dev@sha256:7cb2e3261500133ea8b5a670b731b6d200e5637b9b1d8451ccc759c358fca0dc
       contents:
         packages:
           - bash

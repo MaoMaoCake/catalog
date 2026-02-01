@@ -16,7 +16,7 @@ vars:
   DHI_REGISTRY: dhi.io
   DHI_SKIP_CONTEXT_COPY: "true"
   HELM_REFERENCE: dhi/helm:3.20.0-debian13-dev@sha256:8ae259169a30387938ec0314da8084fd0c74a3726412e78e852205ab043a2673
-  PROMETHEUS_CONFIG_RELOADER_REFERENCE: dhi/prometheus-config-reloader:0.88.1-debian13@sha256:8f97144b4f19800091e9509fe5b6a11054596e880dc6f933909b479cbdc36169
+  PROMETHEUS_CONFIG_RELOADER_REFERENCE: dhi/prometheus-config-reloader:0.88.1-debian13@sha256:06b110960985ddb6dfd5c48217302ae28bf8ea8a73183ed69c220c0a9b7d3f49
   SEMVER_MAJOR_MINOR_VERSION: "1.5"
   SEMVER_MAJOR_VERSION: "1"
   SEMVER_VERSION: 1.5.3
@@ -54,7 +54,7 @@ contents:
                 - name: alloy
                   ref: dhi/alloy:1.12.2-debian13@sha256:f2a0ee46216e25ed379070a0a3e95999398a2b8952460689ae17b535b6e2c130
                 - name: prometheus-config-reloader
-                  ref: dhi/prometheus-config-reloader:0.88.1-debian13@sha256:8f97144b4f19800091e9509fe5b6a11054596e880dc6f933909b479cbdc36169
+                  ref: dhi/prometheus-config-reloader:0.88.1-debian13@sha256:06b110960985ddb6dfd5c48217302ae28bf8ea8a73183ed69c220c0a9b7d3f49
               name: alloy-chart
               notes: ${source.dir}/config/NOTES.txt
               sourceUrl: https://github.com/grafana/alloy

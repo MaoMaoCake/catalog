@@ -33,6 +33,9 @@ contents:
   builds:
     - name: kubectl
       uses: dhi.io/golang:1.25.6-debian13-dev@sha256:1c001ad95e22efced3c6cc3cf875bbfe69c061a383d3b787d4f0a8103e73311c
+      work-dir: /go/src/k8s.io/kubernetes
+      caches:
+        - path: /go/pkg/mod
       contents:
         packages:
           - bash
@@ -58,8 +61,9 @@ contents:
             gid: 0
       pipeline:
         - name: update dependencies
-          work-dir: /go/src/k8s.io/kubernetes
           privileged: true
+          environment:
+            GOFIPS140: "off"
           runs: |
             set -eux -o pipefail
 
@@ -67,14 +71,12 @@ contents:
             ./hack/pin-dependency.sh golang.org/x/oauth2 v0.27.0
             ./hack/update-vendor.sh
         - name: build
-          work-dir: /go/src/k8s.io/kubernetes
           runs: |
             set -eux -o pipefail
 
             make WHAT=cmd/kubectl DBG=${DBG}
             make WHAT=cmd/kubectl-convert DBG=${DBG}
         - name: install
-          work-dir: /go/src/k8s.io/kubernetes
           runs: |
             set -eux -o pipefail
 

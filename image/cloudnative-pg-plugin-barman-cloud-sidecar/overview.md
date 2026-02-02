@@ -1,7 +1,8 @@
-## About CloudnativePG Barman Cloud Plugin
+## About CloudNativePG Barman Cloud Plugin Sidecar
 
-The CloudnativePG Barman Cloud Plugin is a plugin for CloudNative PG that enables enables online continuous physical
-backups of PostgreSQL clusters to object storage using the barman-cloud suite from the Barman project.
+The CloudNativePG Barman Cloud Plugin Sidecar is a plugin for CloudNativePG that enables enables online continuous
+physical backups of PostgreSQL clusters to object storage using the barman-cloud suite from the Barman project. The
+Barman Cloud Plugin Sidecar is a version of this plugin designed to run as a sidecar container within PostgreSQL pods.
 
 For more details, see https://cloudnative-pg.io/plugin-barman-cloud/docs/intro.
 

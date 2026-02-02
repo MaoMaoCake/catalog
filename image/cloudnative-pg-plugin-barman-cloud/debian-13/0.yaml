@@ -1,6 +1,6 @@
 # syntax=dhi.io/build:2-debian13
 
-name: Cloudnative PG Plugin Barman Cloud 0.x
+name: CloudnativePG Barman Cloud Plugin 0.x
 image: dhi.io/cloudnative-pg-plugin-barman-cloud
 variant: runtime
 tags:
@@ -105,7 +105,7 @@ os-release:
   home-url: https://docker.com/products/hardened-images/
   bug-report-url: https://docker.com/support/
 annotations:
-  org.opencontainers.image.description: A minimal Cloudnative PG Plugin Barman Cloud image
+  org.opencontainers.image.description: A minimal CloudnativePG Barman Cloud Plugin image
   org.opencontainers.image.licenses: Apache 2.0
 entrypoint:
   - manager

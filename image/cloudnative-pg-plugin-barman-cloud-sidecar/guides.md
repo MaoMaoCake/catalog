@@ -10,11 +10,11 @@ For example:
 
 For the examples, you must first use `docker login dhi.io` to authenticate to the registry to pull the images.
 
-## What's included in this CloudnativePG Barman Cloud Plugin image
+## What's included in this CloudNativePG Barman Cloud Plugin Sidecar image
 
-This Docker Hardened CloudnativePG Barman Cloud Plugin image contains the barman cloud plugin for CloudNativePG that
-enables enables online continuous physical backups of PostgreSQL clusters to object storage using the barman-cloud suite
-from the Barman project.
+This Docker Hardened CloudNativePG Barman Cloud Plugin Sidecar image contains the plugin for CloudNativePG that enables
+enables online continuous physical backups of PostgreSQL clusters to object storage using the barman-cloud suite from
+the Barman project. This sidecar plugin is designed to run as a sidecar container within PostgreSQL pods.
 
 ## Installing CloudNativePG Barman Cloud Plugin using Helm
 
@@ -30,18 +30,12 @@ helm repo add cloudnative-pg https://cloudnative-pg.io/charts/
 helm install barman-cloud cloudnative-pg/plugin-barman-cloud \
   -n cnpg --create-namespace \
   --set "images.pullSecrets[0].name=<your-registry-secret>" \
-  --set image.registry=dhi.io \
-  --set image.repository=cloudnative-pg-plugin-barman-cloud \
-  --set image.tag=<tag>  
+  --set sidecarImage.registry=dhi.io \
+  --set sidecarImage.repository=cloudnative-pg-plugin-barman-cloud-sidecar \
+  --set sidecarImage.tag=<tag>  
 ```
 
 Once installed, verify the deployment is running.
-
-```
-kubectl get -n cnpg pods,services,deployments
-```
-
-Once installed, verify the deployment is running
 
 ```
 kubectl get -n cnpg pods,services,deployments

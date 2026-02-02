@@ -1,6 +1,6 @@
 metadata:
-  display-name: Cloudnative PG Plugin Barman Cloud
-  short-description: Cloudnative PG Plugin Barman Cloud is a plugin for CloudnativePG for backing up and restoring Kubernetes Postgres clusters
+  display-name: CloudnativePG Ba Plugin
+  short-description: CloudnativePG Barman Cloud Plugin is a plugin for CloudnativePG for backing up and restoring Kubernetes Postgres clusters
   featured: false
   home-url: https://cloudnative-pg.io
   categories:

@@ -42,6 +42,7 @@ contents:
     - name: litellm-build
       uses: dhi.io/python:3.13.11-debian13-dev@sha256:9781560a0ae891f2830b69d0b3709adb71137ebe601ef02e1b8a06b77e03a92d
       environment:
+        PATH: /opt/python/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
         VIRTUAL_ENV: /opt/litellm
       contents:
         packages:
@@ -131,6 +132,7 @@ contents:
             pip install --upgrade 'pynacl>=1.6.2'                  # Fix CVE-2025-69277
             pip install --upgrade 'nodejs-wheel-binaries>=24.13.0' # Fix CVE-2025-55130, CVE-2025-55131, CVE-2025-59466, CVE-2026-21637, CVE-2025-55132
             pip install --upgrade 'python-multipart>=0.0.22'       # Fix CVE-2026-24486
+            pip install --upgrade 'orjson>=3.11.5'                 # Fix CVE-2025-67221
         - name: patch diff package in nodejs_wheel
           privileged: true
           runs: |

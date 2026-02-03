@@ -6,29 +6,29 @@ variant: dev
 tags:
   - 4-dev
   - 4.13-dev
-  - 4.13.0-dev
+  - 4.13.1-dev
   - 4-debian13-dev
   - 4-python3.13-dev
   - 4.13-debian13-dev
   - 4.13-python3.13-dev
-  - 4.13.0-debian13-dev
-  - 4.13.0-python3.13-dev
+  - 4.13.1-debian13-dev
+  - 4.13.1-python3.13-dev
   - 4-python3.13-debian13-dev
   - 4.13-python3.13-debian13-dev
-  - 4.13.0-python3.13-debian13-dev
+  - 4.13.1-python3.13-debian13-dev
 platforms:
   - linux/amd64
   - linux/arm64
 vars:
-  COMMIT_SHA: 29e817623b4522c28a0d07311d68e1cff849613f
+  COMMIT_SHA: 77ef41bc37999a5bc5006248bb9cc6e890b9f46f
   PYTHON_BUILD_REFERENCE: dhi/python:3.13.11-debian13-dev@sha256:9781560a0ae891f2830b69d0b3709adb71137ebe601ef02e1b8a06b77e03a92d
   PYTHON_MAJOR_MINOR_VERSION: "3.13"
   PYTHON_REFERENCE: dhi/python:3.13.11-debian13@sha256:82f87b495af6eea80c889c028756a1929a71a8d6b424ebd511b557294a97e55e
   PYTHON_VERSION: 3.13.11
   SEMVER_MAJOR_MINOR_VERSION: "4.13"
   SEMVER_MAJOR_VERSION: "4"
-  SEMVER_VERSION: 4.13.0
-  VERSION: 4.13.0
+  SEMVER_VERSION: 4.13.1
+  VERSION: 4.13.1
 contents:
   packages:
     - '!gawk'
@@ -61,15 +61,15 @@ contents:
           - sed
           - '!libexpat1'
         files:
-          - url: git+https://github.com/localstack/localstack.git#v4.13.0
-            checksum: 29e817623b4522c28a0d07311d68e1cff849613f
+          - url: git+https://github.com/localstack/localstack.git#v4.13.1
+            checksum: 77ef41bc37999a5bc5006248bb9cc6e890b9f46f
             path: ${source.dir}/localstack
             spdx:
               name: localstack
-              version: 4.13.0
+              version: 4.13.1
               packages:
                 - name: localstack
-                  purl: pkg:dhi/localstack@4.13.0
+                  purl: pkg:dhi/localstack@4.13.1
                   license: Apache-2.0
             uid: 0
             gid: 0
@@ -92,7 +92,7 @@ contents:
             python3 -m venv "$VIRTUAL_ENV"
 
             # Since we modified the source, we need to set the version explicitly to avoid undesired bumps
-            export SETUPTOOLS_SCM_PRETEND_VERSION="4.13.0"
+            export SETUPTOOLS_SCM_PRETEND_VERSION="4.13.1"
             "$VIRTUAL_ENV/bin/python3" -m pip install -r requirements-runtime.txt
             "$VIRTUAL_ENV/bin/python3" -m pip install -e .[runtime]
             "$VIRTUAL_ENV/bin/python3" -m plux --workdir . entrypoints

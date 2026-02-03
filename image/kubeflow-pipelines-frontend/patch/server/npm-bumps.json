@@ -57,5 +57,15 @@
     "overridePath": [
       "body-parser"
     ]
+  },
+  {
+    "package": "fast-xml-parser",
+    "version": "5.3.4",
+    "overridePath": [
+      "fast-xml-parser"
+    ],
+    "removeLockfileEntries": [
+      "node_modules/fast-xml-parser"
+    ]
   }
 ]

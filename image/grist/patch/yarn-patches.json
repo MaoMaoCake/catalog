@@ -72,11 +72,16 @@
     {
         "package": "tar",
         "dev": false,
-        "version": "7.5.4"
+        "version": "7.5.7"
     },
     {
         "package": "diff",
         "dev": false,
         "version": "4.0.4"
+    },
+    {
+        "package": "fast-xml-parser",
+        "dev": false,
+        "version": "5.3.4"
     }
 ]

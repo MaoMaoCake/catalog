@@ -14,7 +14,7 @@ platforms:
   - linux/arm64
 vars:
   COMMIT_SHA: 2be0094729a1006f61e8339ce9934bfb3cbb549f
-  GOLANG_REFERENCE: dhi/golang:1.25.6-debian13@sha256:cb0ea0651b90830450438288e426be1b82ffdc4a4e1346b94a0e65cb0093f1e3
+  GOLANG_REFERENCE: dhi/golang:1.25.6-debian13@sha256:f63c7e5291b3b50ad283cb0af91a5455c161605a87af546fbff10d2a46565186
   GOLANG_VERSION: 1.25.6
   SEMVER_MAJOR_MINOR_VERSION: "4.52"
   SEMVER_MAJOR_VERSION: "4"
@@ -25,7 +25,7 @@ contents:
     - '!base-files'
   builds:
     - name: go-yq
-      uses: dhi.io/golang:1.25.6-debian13@sha256:cb0ea0651b90830450438288e426be1b82ffdc4a4e1346b94a0e65cb0093f1e3
+      uses: dhi.io/golang:1.25.6-debian13@sha256:f63c7e5291b3b50ad283cb0af91a5455c161605a87af546fbff10d2a46565186
       contents:
         files:
           - url: git+https://github.com/mikefarah/yq.git#v4.52.2

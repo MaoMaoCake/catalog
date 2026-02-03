@@ -1,25 +1,25 @@
 # syntax=dhi.io/build:2-debian13
 
-name: Vector 0.52.x (dev)
+name: Vector 0.53.x (dev)
 image: dhi.io/vector
 variant: dev
 tags:
   - 0-dev
-  - 0.52-dev
-  - 0.52.0-dev
+  - 0.53-dev
+  - 0.53.0-dev
   - 0-debian13-dev
-  - 0.52-debian13-dev
-  - 0.52.0-debian13-dev
+  - 0.53-debian13-dev
+  - 0.53.0-debian13-dev
 platforms:
   - linux/amd64
   - linux/arm64
 vars:
-  COMMIT_SHA: ca5bf2690ffcfc2c95d320cf7156b1df1b28a080
+  COMMIT_SHA: 2b51b40a7a0b40996350d73cf46791c7e991fcb6
   RUST_REFERENCE: dhi/rust:1.93.0-debian13-dev@sha256:807ce071240b3032c6cea7483ed68c8c6c23f77a93487732b4103af1028ec835
-  SEMVER_MAJOR_MINOR_VERSION: "0.52"
+  SEMVER_MAJOR_MINOR_VERSION: "0.53"
   SEMVER_MAJOR_VERSION: "0"
-  SEMVER_VERSION: 0.52.0
-  VERSION: 0.52.0
+  SEMVER_VERSION: 0.53.0
+  VERSION: 0.53.0
 contents:
   packages:
     - '!gawk'
@@ -62,46 +62,36 @@ contents:
           - ca-certificates
           - libsasl2-dev
         files:
-          - url: git+https://github.com/vectordotdev/vector.git#v0.52.0
-            checksum: ca5bf2690ffcfc2c95d320cf7156b1df1b28a080
-            path: ${source.dir}/vector-ca5bf2690ffcfc2c95d320cf7156b1df1b28a080
+          - url: git+https://github.com/vectordotdev/vector.git#v0.53.0
+            checksum: 2b51b40a7a0b40996350d73cf46791c7e991fcb6
+            path: ${source.dir}/vector-2b51b40a7a0b40996350d73cf46791c7e991fcb6
             spdx:
               name: vector
-              version: 0.52.0
+              version: 0.53.0
               packages:
                 - name: vector
-                  purl: pkg:dhi/vector@0.52.0
+                  purl: pkg:dhi/vector@0.53.0
                   license: MPL-2.0
-            uid: 0
-            gid: 0
-          - url: https://github.com/vectordotdev/vector/commit/236928a042a71db77b050d5afbb392ad5d4e6cdc.patch
-            path: ${source.dir}/upstream-patch/bump-rkyv-0.7.46.patch
-            uid: 0
-            gid: 0
-          - url: https://github.com/vectordotdev/vector/commit/a5a6b5e82f3000c3d1284c8a88a7577806b3ef1d.patch
-            path: ${source.dir}/upstream-patch/bump-lru-0.16.3.patch
             uid: 0
             gid: 0
       pipeline:
         - name: patch source
           uses: patch@v1
-          work-dir: ${source.dir}/vector-ca5bf2690ffcfc2c95d320cf7156b1df1b28a080
+          work-dir: ${source.dir}/vector-2b51b40a7a0b40996350d73cf46791c7e991fcb6
           privileged: true
           with:
             options: -p1
             patches:
               - ${source.dir}/patch/allow_dead_code.patch
-              - ${source.dir}/upstream-patch/bump-rkyv-0.7.46.patch
-              - ${source.dir}/upstream-patch/bump-lru-0.16.3.patch
               - ${source.dir}/patch/bump-aws-sdk-and-rsa.patch
         - name: ui sbom
           uses: sbom@v1
           with:
             extra-scanners: rust-cargo-lock-cataloger
             prefix: vector-cargo
-            source: ${source.dir}/vector-ca5bf2690ffcfc2c95d320cf7156b1df1b28a080
+            source: ${source.dir}/vector-2b51b40a7a0b40996350d73cf46791c7e991fcb6
         - name: build and install
-          work-dir: ${source.dir}/vector-ca5bf2690ffcfc2c95d320cf7156b1df1b28a080
+          work-dir: ${source.dir}/vector-2b51b40a7a0b40996350d73cf46791c7e991fcb6
           privileged: true
           runs: |
             set -eux -o pipefail

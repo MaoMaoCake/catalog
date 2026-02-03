@@ -1,53 +1,5 @@
-diff --git a/Cargo.toml b/Cargo.toml
-index 5dff02b..5a913ba 100644
---- a/Cargo.toml
-+++ b/Cargo.toml
-@@ -255,22 +255,22 @@ metrics-tracing-context.workspace = true
- aws-runtime = { version = "1.5.9", optional = true }
- aws-config = { version = "1.6.1", default-features = false, features = ["behavior-version-latest", "credentials-process", "sso", "rt-tokio"], optional = true }
- aws-credential-types = { version = "1.2.4", default-features = false, features = ["hardcoded-credentials"], optional = true }
--aws-sdk-cloudwatch = { version = "1.70.0", default-features = false, features = ["behavior-version-latest", "rt-tokio"], optional = true }
--aws-sdk-cloudwatchlogs = { version = "1.76.0", default-features = false, features = ["behavior-version-latest", "rt-tokio"], optional = true }
--aws-sdk-elasticsearch = { version = "1.67.0", default-features = false, features = ["behavior-version-latest", "rt-tokio"], optional = true }
--aws-sdk-firehose = { version = "1.71.0", default-features = false, features = ["behavior-version-latest", "rt-tokio"], optional = true }
--aws-sdk-kinesis = { version = "1.66.0", default-features = false, features = ["behavior-version-latest", "rt-tokio"], optional = true }
--aws-sdk-kms = { version = "1.75.0", default-features = false, features = ["behavior-version-latest", "rt-tokio"], optional = true }
--aws-sdk-s3 = { version = "1.15.0", default-features = false, features = ["behavior-version-latest", "rt-tokio"], optional = true }
--aws-sdk-secretsmanager = { version = "1.76.0", default-features = false, features = ["behavior-version-latest", "rt-tokio"], optional = true }
--aws-sdk-sns = { version = "1.73.0", default-features = false, features = ["behavior-version-latest", "rt-tokio"], optional = true }
--aws-sdk-sqs = { version = "1.64.0", default-features = false, features = ["behavior-version-latest", "rt-tokio"], optional = true }
-+aws-sdk-cloudwatch = { version = "1.97.0", default-features = false, features = ["behavior-version-latest", "rt-tokio"], optional = true }
-+aws-sdk-cloudwatchlogs = { version = "1.107.0", default-features = false, features = ["behavior-version-latest", "rt-tokio"], optional = true }
-+aws-sdk-elasticsearch = { version = "1.92.0", default-features = false, features = ["behavior-version-latest", "rt-tokio"], optional = true }
-+aws-sdk-firehose = { version = "1.97.0", default-features = false, features = ["behavior-version-latest", "rt-tokio"], optional = true }
-+aws-sdk-kinesis = { version = "1.95.0", default-features = false, features = ["behavior-version-latest", "rt-tokio"], optional = true }
-+aws-sdk-kms = { version = "1.93.0", default-features = false, features = ["behavior-version-latest", "rt-tokio"], optional = true }
-+aws-sdk-s3 = { version = "1.112.0", default-features = false, features = ["behavior-version-latest", "rt-tokio"], optional = true }
-+aws-sdk-secretsmanager = { version = "1.93.0", default-features = false, features = ["behavior-version-latest", "rt-tokio"], optional = true }
-+aws-sdk-sns = { version = "1.90.0", default-features = false, features = ["behavior-version-latest", "rt-tokio"], optional = true }
-+aws-sdk-sqs = { version = "1.89.0", default-features = false, features = ["behavior-version-latest", "rt-tokio"], optional = true }
- aws-types = { version = "1.3.8", default-features = false, optional = true }
- 
- # The sts crate is needed despite not being referred to anywhere in the code because we need to set the
- # `behavior-version-latest` feature. Without this we get a runtime panic when `auth.assume_role` authentication
- # is configured.
--aws-sdk-sts = { version = "1.73.0", default-features = false, features = ["behavior-version-latest", "rt-tokio"], optional = true }
-+aws-sdk-sts = { version = "1.91.0", default-features = false, features = ["behavior-version-latest", "rt-tokio"], optional = true }
- 
- # The `aws-sdk-sts` crate is needed despite not being referred to anywhere in the code because we need to set the
- # `behavior-version-latest` feature. Without this we get a runtime panic when `auth.assume_role` authentication is configured.
-@@ -404,6 +404,9 @@ rand_distr.workspace = true
- rdkafka = { version = "0.38.0", default-features = false, features = ["curl-static", "tokio", "libz", "ssl", "zstd"], optional = true }
- redis = { version = "0.32.4", default-features = false, features = ["connection-manager", "sentinel", "tokio-comp", "tokio-native-tls-comp"], optional = true }
- regex.workspace = true
-+rsa = { version = "0.9.10", default-features = false }
-+aws-sdk-sso = { version = "1.89.0", default-features = false }
-+aws-sdk-ssooidc = { version = "1.91.0", default-features = false }
- roaring = { version = "0.11.2", default-features = false, features = ["std"], optional = true }
- rumqttc = { version = "0.24.0", default-features = false, features = ["use-rustls"], optional = true }
- rust_decimal = { workspace = true, optional = true }
 diff --git a/Cargo.lock b/Cargo.lock
-index 84bc391..f02fefc 100644
+index 9f98186..8e02bfb 100644
 --- a/Cargo.lock
 +++ b/Cargo.lock
 @@ -1013,9 +1013,9 @@ dependencies = [
@@ -235,10 +187,10 @@ index 84bc391..f02fefc 100644
  [[package]]
  name = "aws-sdk-s3"
 -version = "1.82.0"
-+version = "1.120.0"
++version = "1.121.0"
  source = "registry+https://github.com/rust-lang/crates.io-index"
 -checksum = "e6eab2900764411ab01c8e91a76fd11a63b4e12bc3da97d9e14a0ce1343d86d3"
-+checksum = "06673901e961f20fa8d7da907da48f7ad6c1b383e3726c22bd418900f015abe1"
++checksum = "61948728b681f88a1e49b9500469cf9e36575a424e745e2c5a651a42386e7d9c"
  dependencies = [
   "aws-credential-types",
   "aws-runtime",
@@ -412,10 +364,10 @@ index 84bc391..f02fefc 100644
  [[package]]
  name = "aws-smithy-async"
 -version = "1.2.5"
-+version = "1.2.7"
++version = "1.2.11"
  source = "registry+https://github.com/rust-lang/crates.io-index"
 -checksum = "1e190749ea56f8c42bf15dd76c65e14f8f765233e6df9b0506d9d934ebef867c"
-+checksum = "9ee19095c7c4dda59f1697d028ce704c24b2d33c6718790c7f1d5a3015b4107c"
++checksum = "52eec3db979d18cb807fc1070961cc51d87d069abe9ab57917769687368a8c6c"
  dependencies = [
   "futures-util",
   "pin-project-lite",
@@ -606,41 +558,7 @@ index 84bc391..f02fefc 100644
  dependencies = [
   "aws-credential-types",
   "aws-smithy-async",
-@@ -1938,7 +1951,7 @@ dependencies = [
-  "bitflags 2.10.0",
-  "cexpr",
-  "clang-sys",
-- "itertools 0.10.5",
-+ "itertools 0.13.0",
-  "proc-macro2 1.0.101",
-  "quote 1.0.40",
-  "regex",
-@@ -2635,7 +2648,7 @@ checksum = "fe6d2e5af09e8c8ad56c969f2157a3d4238cebc7c55f0a517728c38f7b200f81"
- dependencies = [
-  "serde",
-  "termcolor",
-- "unicode-width 0.1.13",
-+ "unicode-width 0.2.0",
- ]
- 
- [[package]]
-@@ -2851,6 +2864,15 @@ dependencies = [
-  "unicode-segmentation",
- ]
- 
-+[[package]]
-+name = "convert_case"
-+version = "0.10.0"
-+source = "registry+https://github.com/rust-lang/crates.io-index"
-+checksum = "633458d4ef8c78b72454de2d54fd6ab2e60f9e02be22f3c6104cdc8a4e0fceb9"
-+dependencies = [
-+ "unicode-segmentation",
-+]
-+
- [[package]]
- name = "cookie"
- version = "0.18.1"
-@@ -2946,12 +2968,15 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
+@@ -2960,12 +2973,15 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
  checksum = "19d374276b40fb8bbdee95aef7c7fa6b5316ec764510eb64b8dd0e2ed0d7e7f5"
  
  [[package]]
@@ -660,7 +578,7 @@ index 84bc391..f02fefc 100644
  ]
  
  [[package]]
-@@ -2963,15 +2988,6 @@ dependencies = [
+@@ -2977,15 +2993,6 @@ dependencies = [
   "cfg-if",
  ]
  
@@ -676,53 +594,7 @@ index 84bc391..f02fefc 100644
  [[package]]
  name = "criterion"
  version = "0.7.0"
-@@ -3069,7 +3085,7 @@ checksum = "d8b9f2e4c67f833b660cdb0a3523065869fb35570177239812ed4c905aeff87b"
- dependencies = [
-  "bitflags 2.10.0",
-  "crossterm_winapi",
-- "derive_more 2.0.1",
-+ "derive_more 2.1.1",
-  "document-features",
-  "futures-core",
-  "mio",
-@@ -3468,6 +3484,28 @@ dependencies = [
-  "syn 1.0.109",
- ]
- 
-+[[package]]
-+name = "derive_more"
-+version = "2.1.1"
-+source = "registry+https://github.com/rust-lang/crates.io-index"
-+checksum = "d751e9e49156b02b44f9c1815bcb94b984cdcc4396ecc32521c739452808b134"
-+dependencies = [
-+ "derive_more-impl",
-+]
-+
-+[[package]]
-+name = "derive_more-impl"
-+version = "2.1.1"
-+source = "registry+https://github.com/rust-lang/crates.io-index"
-+checksum = "799a97264921d8623a957f6c3b9011f3b5492f557bbb7a5a19b7fa6d06ba8dcb"
-+dependencies = [
-+ "convert_case 0.10.0",
-+ "proc-macro2 1.0.101",
-+ "quote 1.0.40",
-+ "rustc_version",
-+ "syn 2.0.106",
-+]
-+
- [[package]]
- name = "difflib"
- version = "0.4.0"
-@@ -3534,7 +3572,6 @@ version = "0.2.5"
- source = "registry+https://github.com/rust-lang/crates.io-index"
- checksum = "97369cbbc041bc366949bc74d34658d6cda5621039731c6310521892a3a20ae0"
- dependencies = [
-- "convert_case 0.7.1",
-  "proc-macro2 1.0.101",
-  "quote 1.0.40",
-  "syn 2.0.106",
-@@ -3693,15 +3730,16 @@ dependencies = [
+@@ -3731,15 +3738,16 @@ dependencies = [
  
  [[package]]
  name = "ed25519-dalek"
@@ -741,7 +613,7 @@ index 84bc391..f02fefc 100644
   "zeroize",
  ]
  
-@@ -5339,7 +5377,6 @@ dependencies = [
+@@ -5367,7 +5375,6 @@ dependencies = [
   "hyper 0.14.32",
   "log",
   "rustls 0.21.12",
@@ -749,7 +621,7 @@ index 84bc391..f02fefc 100644
   "tokio",
   "tokio-rustls 0.24.1",
  ]
-@@ -6510,15 +6547,6 @@ dependencies = [
+@@ -6538,15 +6545,6 @@ dependencies = [
   "prost-types 0.12.6",
  ]
  
@@ -765,7 +637,7 @@ index 84bc391..f02fefc 100644
  [[package]]
  name = "lru"
  version = "0.16.3"
-@@ -6814,6 +6842,27 @@ dependencies = [
+@@ -6842,6 +6840,27 @@ dependencies = [
   "unicase",
  ]
  
@@ -793,16 +665,7 @@ index 84bc391..f02fefc 100644
  [[package]]
  name = "minimal-lexical"
  version = "0.2.1"
-@@ -6946,7 +6995,7 @@ dependencies = [
-  "bson",
-  "chrono",
-  "derive-where",
-- "derive_more",
-+ "derive_more 0.99.17",
-  "futures-core",
-  "futures-executor",
-  "futures-io",
-@@ -7345,11 +7394,10 @@ dependencies = [
+@@ -7373,11 +7392,10 @@ dependencies = [
  
  [[package]]
  name = "num-bigint-dig"
@@ -816,36 +679,7 @@ index 84bc391..f02fefc 100644
   "lazy_static",
   "libm",
   "num-integer",
-@@ -8538,7 +8586,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
- checksum = "22505a5c94da8e3b7c2996394d1c933236c4d743e81a410bcca4e6989fc066a4"
- dependencies = [
-  "bytes 1.10.1",
-- "heck 0.4.1",
-+ "heck 0.5.0",
-  "itertools 0.12.1",
-  "log",
-  "multimap",
-@@ -8558,8 +8606,8 @@ version = "0.13.5"
- source = "registry+https://github.com/rust-lang/crates.io-index"
- checksum = "be769465445e8c1474e9c5dac2018218498557af32d9ed057325ec9a41ae81bf"
- dependencies = [
-- "heck 0.4.1",
-- "itertools 0.10.5",
-+ "heck 0.5.0",
-+ "itertools 0.14.0",
-  "log",
-  "multimap",
-  "once_cell",
-@@ -8605,7 +8653,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
- checksum = "8a56d757972c98b346a9b766e3f02746cde6dd1cd1d1d563472929fdd74bec4d"
- dependencies = [
-  "anyhow",
-- "itertools 0.10.5",
-+ "itertools 0.14.0",
-  "proc-macro2 1.0.101",
-  "quote 1.0.40",
-  "syn 2.0.106",
-@@ -9060,7 +9108,7 @@ dependencies = [
+@@ -9088,7 +9106,7 @@ dependencies = [
   "indoc",
   "itertools 0.14.0",
   "kasuari",
@@ -854,7 +688,7 @@ index 84bc391..f02fefc 100644
   "strum 0.27.2",
   "thiserror 2.0.17",
   "unicode-segmentation",
-@@ -9627,9 +9675,9 @@ checksum = "6c20b6793b5c2fa6553b250154b78d6d0db37e72700ae35fad9387a46f487c97"
+@@ -9658,9 +9676,9 @@ dependencies = [
  
  [[package]]
  name = "rsa"
@@ -866,7 +700,7 @@ index 84bc391..f02fefc 100644
  dependencies = [
   "const-oid",
   "digest",
-@@ -9820,18 +9868,6 @@ dependencies = [
+@@ -9851,18 +9869,6 @@ dependencies = [
   "zeroize",
  ]
  
@@ -885,7 +719,7 @@ index 84bc391..f02fefc 100644
  [[package]]
  name = "rustls-native-certs"
  version = "0.7.0"
-@@ -10471,9 +10507,9 @@ dependencies = [
+@@ -10514,9 +10520,9 @@ dependencies = [
  
  [[package]]
  name = "signature"
@@ -897,16 +731,7 @@ index 84bc391..f02fefc 100644
  dependencies = [
   "digest",
   "rand_core 0.6.4",
-@@ -10619,7 +10655,7 @@ version = "0.8.9"
- source = "registry+https://github.com/rust-lang/crates.io-index"
- checksum = "c1c97747dbf44bb1ca44a561ece23508e99cb592e862f22222dcf42f51d1e451"
- dependencies = [
-- "heck 0.4.1",
-+ "heck 0.5.0",
-  "proc-macro2 1.0.101",
-  "quote 1.0.40",
-  "syn 2.0.106",
-@@ -10676,6 +10712,12 @@ dependencies = [
+@@ -10719,6 +10725,12 @@ dependencies = [
   "lock_api",
  ]
  
@@ -919,7 +744,7 @@ index 84bc391..f02fefc 100644
  [[package]]
  name = "spinning_top"
  version = "0.3.0"
-@@ -10687,9 +10729,9 @@ dependencies = [
+@@ -10730,9 +10742,9 @@ dependencies = [
  
  [[package]]
  name = "spki"
@@ -931,7 +756,7 @@ index 84bc391..f02fefc 100644
  dependencies = [
   "base64ct",
   "der",
-@@ -12584,6 +12626,8 @@ dependencies = [
+@@ -12630,6 +12642,8 @@ dependencies = [
   "aws-sdk-secretsmanager",
   "aws-sdk-sns",
   "aws-sdk-sqs",
@@ -940,7 +765,7 @@ index 84bc391..f02fefc 100644
   "aws-sdk-sts",
   "aws-sigv4",
   "aws-smithy-async",
-@@ -12659,7 +12703,7 @@ dependencies = [
+@@ -12706,7 +12720,7 @@ dependencies = [
   "libc",
   "listenfd",
   "loki-logproto",
@@ -949,7 +774,7 @@ index 84bc391..f02fefc 100644
   "maxminddb",
   "md-5",
   "metrics",
-@@ -12702,6 +12746,7 @@ dependencies = [
+@@ -12749,6 +12763,7 @@ dependencies = [
   "rmp-serde",
   "rmpv",
   "roaring",
@@ -957,3 +782,51 @@ index 84bc391..f02fefc 100644
   "rstest",
   "rumqttc",
   "rust_decimal",
+diff --git a/Cargo.toml b/Cargo.toml
+index abcf19f..ea3dc20 100644
+--- a/Cargo.toml
++++ b/Cargo.toml
+@@ -262,22 +262,22 @@ metrics-tracing-context.workspace = true
+ aws-runtime = { version = "1.5.9", optional = true }
+ aws-config = { version = "1.6.1", default-features = false, features = ["behavior-version-latest", "credentials-process", "sso", "rt-tokio"], optional = true }
+ aws-credential-types = { version = "1.2.4", default-features = false, features = ["hardcoded-credentials"], optional = true }
+-aws-sdk-cloudwatch = { version = "1.70.0", default-features = false, features = ["behavior-version-latest", "rt-tokio"], optional = true }
+-aws-sdk-cloudwatchlogs = { version = "1.76.0", default-features = false, features = ["behavior-version-latest", "rt-tokio"], optional = true }
+-aws-sdk-elasticsearch = { version = "1.67.0", default-features = false, features = ["behavior-version-latest", "rt-tokio"], optional = true }
+-aws-sdk-firehose = { version = "1.71.0", default-features = false, features = ["behavior-version-latest", "rt-tokio"], optional = true }
+-aws-sdk-kinesis = { version = "1.66.0", default-features = false, features = ["behavior-version-latest", "rt-tokio"], optional = true }
+-aws-sdk-kms = { version = "1.75.0", default-features = false, features = ["behavior-version-latest", "rt-tokio"], optional = true }
+-aws-sdk-s3 = { version = "1.15.0", default-features = false, features = ["behavior-version-latest", "rt-tokio"], optional = true }
+-aws-sdk-secretsmanager = { version = "1.76.0", default-features = false, features = ["behavior-version-latest", "rt-tokio"], optional = true }
+-aws-sdk-sns = { version = "1.73.0", default-features = false, features = ["behavior-version-latest", "rt-tokio"], optional = true }
+-aws-sdk-sqs = { version = "1.64.0", default-features = false, features = ["behavior-version-latest", "rt-tokio"], optional = true }
++aws-sdk-cloudwatch = { version = "1.97.0", default-features = false, features = ["behavior-version-latest", "rt-tokio"], optional = true }
++aws-sdk-cloudwatchlogs = { version = "1.107.0", default-features = false, features = ["behavior-version-latest", "rt-tokio"], optional = true }
++aws-sdk-elasticsearch = { version = "1.92.0", default-features = false, features = ["behavior-version-latest", "rt-tokio"], optional = true }
++aws-sdk-firehose = { version = "1.97.0", default-features = false, features = ["behavior-version-latest", "rt-tokio"], optional = true }
++aws-sdk-kinesis = { version = "1.95.0", default-features = false, features = ["behavior-version-latest", "rt-tokio"], optional = true }
++aws-sdk-kms = { version = "1.93.0", default-features = false, features = ["behavior-version-latest", "rt-tokio"], optional = true }
++aws-sdk-s3 = { version = "1.112.0", default-features = false, features = ["behavior-version-latest", "rt-tokio"], optional = true }
++aws-sdk-secretsmanager = { version = "1.93.0", default-features = false, features = ["behavior-version-latest", "rt-tokio"], optional = true }
++aws-sdk-sns = { version = "1.90.0", default-features = false, features = ["behavior-version-latest", "rt-tokio"], optional = true }
++aws-sdk-sqs = { version = "1.89.0", default-features = false, features = ["behavior-version-latest", "rt-tokio"], optional = true }
+ aws-types = { version = "1.3.8", default-features = false, optional = true }
+ 
+ # The sts crate is needed despite not being referred to anywhere in the code because we need to set the
+ # `behavior-version-latest` feature. Without this we get a runtime panic when `auth.assume_role` authentication
+ # is configured.
+-aws-sdk-sts = { version = "1.73.0", default-features = false, features = ["behavior-version-latest", "rt-tokio"], optional = true }
++aws-sdk-sts = { version = "1.91.0", default-features = false, features = ["behavior-version-latest", "rt-tokio"], optional = true }
+ 
+ # The `aws-sdk-sts` crate is needed despite not being referred to anywhere in the code because we need to set the
+ # `behavior-version-latest` feature. Without this we get a runtime panic when `auth.assume_role` authentication is configured.
+@@ -412,6 +412,9 @@ rand_distr.workspace = true
+ rdkafka = { version = "0.38.0", default-features = false, features = ["curl-static", "tokio", "libz", "ssl", "zstd"], optional = true }
+ redis = { version = "0.32.4", default-features = false, features = ["connection-manager", "sentinel", "tokio-comp", "tokio-native-tls-comp"], optional = true }
+ regex.workspace = true
++rsa = { version = "0.9.10", default-features = false }
++aws-sdk-sso = { version = "1.89.0", default-features = false }
++aws-sdk-ssooidc = { version = "1.91.0", default-features = false }
+ roaring = { version = "0.11.2", default-features = false, features = ["std"], optional = true }
+ rumqttc = { version = "0.24.0", default-features = false, features = ["use-rustls"], optional = true }
+ rust_decimal = { workspace = true, optional = true }

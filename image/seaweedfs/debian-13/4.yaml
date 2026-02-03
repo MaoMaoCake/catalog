@@ -5,35 +5,36 @@ image: dhi.io/seaweedfs
 variant: runtime
 tags:
   - "4"
-  - "4.00"
+  - "4.08"
   - 4-debian13
-  - 4.00-debian13
+  - 4.08-debian13
 platforms:
   - linux/amd64
   - linux/arm64
 vars:
   BASE_DIGEST: sha256:74fc43fa240887b8159970e434244039aab0c6efaaa9cf044004cdc22aa2a34d
   BASE_TAG: 20250419-debian13
-  COMMIT_SHA: a154ef9a0fca4155b799effe432153cd45273d1d
-  GO_REFERENCE: dhi/golang:1.25.5-debian13-dev@sha256:8c2284d70af13cb934da5f05f5fa58a776aa963e88ebf542970ba09f4e3a0bbf
+  COMMIT_SHA: 330bd92ddce763649d07e078d550cb03eda6a593
+  GO_REFERENCE: dhi/golang:1.25.6-debian13-dev@sha256:1c001ad95e22efced3c6cc3cf875bbfe69c061a383d3b787d4f0a8103e73311c
   MAJOR_VERSION: "4"
-  VERSION: "4.00"
+  VERSION: "4.08"
 contents:
   packages:
     - '!base-files'
   builds:
     - name: seaweedfs
-      uses: dhi.io/golang:1.25.5-debian13-dev@sha256:8c2284d70af13cb934da5f05f5fa58a776aa963e88ebf542970ba09f4e3a0bbf
+      uses: dhi.io/golang:1.25.6-debian13-dev@sha256:1c001ad95e22efced3c6cc3cf875bbfe69c061a383d3b787d4f0a8103e73311c
       contents:
         files:
-          - url: git+https://github.com/seaweedfs/seaweedfs.git#4.00
+          - url: git+https://github.com/seaweedfs/seaweedfs.git#4.08
+            checksum: 330bd92ddce763649d07e078d550cb03eda6a593
             path: /go/src/github.com/seaweedfs/seaweedfs
             spdx:
               name: seaweedfs
-              version: "4.00"
+              version: "4.08"
               packages:
                 - name: seaweedfs
-                  purl: pkg:golang/github.com/seaweedfs/seaweedfs@4.00
+                  purl: pkg:golang/github.com/seaweedfs/seaweedfs@4.08
                   license: Apache-2.0
             uid: 0
             gid: 0
@@ -43,9 +44,7 @@ contents:
           work-dir: /go/src/github.com/seaweedfs/seaweedfs
           privileged: true
           with:
-            deps:
-              - golang.org/x/crypto@v0.45.0
-              - github.com/quic-go/quic-go@v0.57.0
+            deps: []
             download: true
         - name: test
           work-dir: /go/src/github.com/seaweedfs/seaweedfs/weed
@@ -65,7 +64,7 @@ contents:
           work-dir: /go/src/github.com/seaweedfs/seaweedfs/weed
           with:
             ldflags:
-              - -X github.com/seaweedfs/seaweedfs/weed/util/version.COMMIT=a154ef9a0fca4155b799effe432153cd45273d1d
+              - -X github.com/seaweedfs/seaweedfs/weed/util/version.COMMIT=330bd92ddce763649d07e078d550cb03eda6a593
             output: ${target.dir}/usr/bin/weed
       outputs:
         - source: ${target.dir}/usr/bin/weed

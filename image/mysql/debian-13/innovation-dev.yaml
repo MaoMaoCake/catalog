@@ -1,13 +1,13 @@
 # syntax=dhi.io/build:2-debian13
 
-name: MySQL 9.5.x (dev)
+name: MySQL 9.6.x (dev)
 image: dhi.io/mysql
 variant: dev
 tags:
-  - 9.5-dev
-  - 9.5.0-dev
-  - 9.5-debian13-dev
-  - 9.5.0-debian13-dev
+  - 9.6-dev
+  - 9.6.0-dev
+  - 9.6-debian13-dev
+  - 9.6.0-debian13-dev
 platforms:
   - linux/amd64
   - linux/arm64
@@ -15,13 +15,13 @@ dates:
   release: "2025-10-21"
 vars:
   ARCH: '#{ target.arch == "amd64" ? "x86_64" : "aarch64" }'
-  COMMIT_SHA: 056a391cdc1af9b17b5415aee243483d1bac532d
-  DEBIAN_EPOCH_MAJOR_MINOR_VERSION: "9.5"
+  COMMIT_SHA: 447eb26e094b444a88c532028647e48228c3c04f
+  DEBIAN_EPOCH_MAJOR_MINOR_VERSION: "9.6"
   DEBIAN_EPOCH_MAJOR_VERSION: "9"
-  DEBIAN_EPOCH_VERSION: 9.5.0
+  DEBIAN_EPOCH_VERSION: 9.6.0
   GOSU_REFERENCE: dhi/pkg-gosu:1.19-debian13@sha256:21c6f50effa2c329fee8cbd2326db957286238b4294cf19319435e96a81b1209
   GOSU_VERSION: "1.19"
-  VERSION: 9.5.0
+  VERSION: 9.6.0
 contents:
   packages:
     - '!gawk'
@@ -74,15 +74,15 @@ contents:
           - xz-utils
           - zlib1g-dev
         files:
-          - url: git+https://github.com/mysql/mysql-server#mysql-9.5.0
-            checksum: 056a391cdc1af9b17b5415aee243483d1bac532d
+          - url: git+https://github.com/mysql/mysql-server#mysql-9.6.0
+            checksum: 447eb26e094b444a88c532028647e48228c3c04f
             path: ${source.dir}/mysql
             spdx:
               name: mysql
-              version: 9.5.0
+              version: 9.6.0
               packages:
                 - name: mysql
-                  purl: pkg:github/mysql/mysql-server@9.5.0
+                  purl: pkg:github/mysql/mysql-server@9.6.0
                   license: GPL-2.0-only
             uid: 0
             gid: 0
@@ -107,7 +107,7 @@ contents:
               -DWITH_NDB=OFF"
 
             # This is not an in later versions of Mysql
-            if [ "9.5" = "8.0" ]; then
+            if [ "9.6" = "8.0" ]; then
               CMAKE_FLAGS="${CMAKE_FLAGS} -DWITH_BOOST=${source.dir}/boost"
             fi
 

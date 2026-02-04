@@ -5,29 +5,29 @@ image: dhi.io/activemq-artemis
 variant: dev
 tags:
   - 2-dev
-  - 2.50-dev
-  - 2.50.0-dev
+  - 2.51-dev
+  - 2.51.0-dev
   - 2-debian13-dev
-  - 2.50-debian13-dev
-  - 2.50.0-debian13-dev
+  - 2.51-debian13-dev
+  - 2.51.0-debian13-dev
 platforms:
   - linux/amd64
   - linux/arm64
 dates:
   release: "2025-10-13"
 vars:
-  ACTIVEMQ_ARTEMIS_MAJOR_MINOR_VERSION: "2.50"
+  ACTIVEMQ_ARTEMIS_MAJOR_MINOR_VERSION: "2.51"
   ACTIVEMQ_ARTEMIS_MAJOR_VERSION: "2"
   ARCH: '#{ target.arch == "amd64" ? "x64" : "aarch64" }'
-  COMMIT_SHA: 0ae68ef46e4e12ae251cdebaa047f53b7bb78aff
+  COMMIT_SHA: 670b373d575d845e698cf31681229f69168b09df
   DEBIAN_REFERENCE: dhi/debian-base:trixie-debian13@sha256:1244523a2f7b6c096c6f98ce0349df6798c775c57322c51f8a4982daf60c256c
   JRE_PATH: /opt/java/openjdk/21-jre
   JRE_REF: dhi/eclipse-temurin:21.0.9.10-debian13@sha256:0261fc5162735dbbd5a002ecd8e17957652aa80314c8af19d4c1f2805a92000a
-  MAVEN_REF: dhi/maven:3.9.12-jdk21-debian13-dev@sha256:8865d3259daff83e4114913b6291d5f3216f02f710e52a4f2a15ef42355448d6
-  SEMVER_MAJOR_MINOR_VERSION: "2.50"
+  MAVEN_REF: dhi/maven:3.9.12-jdk21-debian13-dev@sha256:50d1124c3ead0fb112213d6578160a29774c98db966d55f2e3a3a76329e8a3db
+  SEMVER_MAJOR_MINOR_VERSION: "2.51"
   SEMVER_MAJOR_VERSION: "2"
-  SEMVER_VERSION: 2.50.0
-  VERSION: 2.50.0
+  SEMVER_VERSION: 2.51.0
+  VERSION: 2.51.0
 contents:
   packages:
     - '!gawk'
@@ -50,20 +50,20 @@ contents:
     - util-linux
   builds:
     - name: activemq-artemis
-      uses: dhi.io/maven:3.9.12-jdk21-debian13-dev@sha256:8865d3259daff83e4114913b6291d5f3216f02f710e52a4f2a15ef42355448d6
+      uses: dhi.io/maven:3.9.12-jdk21-debian13-dev@sha256:50d1124c3ead0fb112213d6578160a29774c98db966d55f2e3a3a76329e8a3db
       contents:
         packages:
           - coreutils
         files:
-          - url: git+https://github.com/apache/activemq-artemis.git#2.50.0
-            checksum: 0ae68ef46e4e12ae251cdebaa047f53b7bb78aff
+          - url: git+https://github.com/apache/activemq-artemis.git#2.51.0
+            checksum: 670b373d575d845e698cf31681229f69168b09df
             path: ${source.dir}/activemq-artemis
             spdx:
               name: activemq-artemis
-              version: 2.50.0
+              version: 2.51.0
               packages:
                 - name: activemq-artemis
-                  purl: pkg:dhi/activemq-artemis@2.50.0
+                  purl: pkg:dhi/activemq-artemis@2.51.0
                   license: Apache-2.0
             uid: 0
             gid: 0
@@ -94,7 +94,7 @@ contents:
           gid: 0
           source: image/activemq-artemis/patch
       outputs:
-        - source: ${source.dir}/activemq-artemis/artemis-distribution/target/apache-artemis-2.50.0-bin/apache-artemis-2.50.0
+        - source: ${source.dir}/activemq-artemis/artemis-distribution/target/apache-artemis-2.51.0-bin/apache-artemis-2.51.0
           target: /opt/activemq-artemis
           uid: 0
           gid: 0

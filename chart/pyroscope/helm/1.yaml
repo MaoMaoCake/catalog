@@ -14,12 +14,12 @@ vars:
   DHI_REGISTRY: dhi.io
   DHI_SKIP_CONTEXT_COPY: "true"
   GRAFANA_PYROSCOPE_REFERENCE: dhi/pyroscope:1.16.2-debian13@sha256:c36ca157dbf0db1aca1094256efc4aa0d8aa31af905d0d56dedadbb24c92c9c0
-  HELM_REFERENCE: dhi/helm:3.20.0-debian13-dev@sha256:7cb2e3261500133ea8b5a670b731b6d200e5637b9b1d8451ccc759c358fca0dc
+  HELM_REFERENCE: dhi/helm:3.20.0-debian13-dev@sha256:71b7163acd69b29d5d2c431646ad54a453b27a9915cce53b4d277796e0dabc79
   VERSION: 1.16.2
 contents:
   builds:
     - name: pyroscope
-      uses: dhi.io/helm:3.20.0-debian13-dev@sha256:7cb2e3261500133ea8b5a670b731b6d200e5637b9b1d8451ccc759c358fca0dc
+      uses: dhi.io/helm:3.20.0-debian13-dev@sha256:71b7163acd69b29d5d2c431646ad54a453b27a9915cce53b4d277796e0dabc79
       contents:
         files:
           - url: git+https://github.com/grafana/pyroscope.git#3f3d87b4629bccbd0b8a9fffa43a3aa03e4c20bf

@@ -9,7 +9,7 @@ platforms:
   - linux/arm64
 vars:
   COMMIT: 70d5aa7ba25f23b02d87512c5a6b6a9c699334ee
-  GO_REFERENCE: dhi/pkg-golang:1.25.6-debian12@sha256:4ad1e51b7dd57c59bcb8b2f15c87f16c4a78ba9982461b20ff8449feb1fb2e66
+  GO_REFERENCE: dhi/pkg-golang:1.25.7-debian12@sha256:912afa579d7f7d0d27b73892c04e5832c8998a187841f19e055306cd0de71abd
   VERSION: 1.26rc3
 contents:
   packages:
@@ -40,7 +40,7 @@ contents:
             uid: 0
             gid: 0
         artifacts:
-          - name: dhi.io/pkg-golang:1.25.6-debian12@sha256:4ad1e51b7dd57c59bcb8b2f15c87f16c4a78ba9982461b20ff8449feb1fb2e66
+          - name: dhi.io/pkg-golang:1.25.7-debian12@sha256:912afa579d7f7d0d27b73892c04e5832c8998a187841f19e055306cd0de71abd
             includes:
               - usr/local/go
             uid: 0

@@ -25,7 +25,7 @@ vars:
   ERLANG_REFERENCE: dhi/erlang-otp:27.3-debian13@sha256:f91c9a0513b63081ba2ffaa71c54af4dc9bfaac7ca569affc10cce2bce72fadd
   GOSU_REFERENCE: dhi/pkg-gosu:1.19-debian13@sha256:21838cdbc7876e163da0f2bc4db1228cc32ebfd66284f4bbdc15ce06f40349e4
   GOSU_VERSION: "1.19"
-  NODE_REFERENCE: dhi/node:22.22.0-debian13-dev@sha256:8057fbd8048c78f13b277d9cb456c6c0875cd1c59872929e034df0367f867485
+  NODE_REFERENCE: dhi/node:22.22.0-debian13-dev@sha256:992058adf730d1c5f0c03396dd13f4771efc4946777871b3d2ace8803b622223
   PYTHON_REFERENCE: dhi/python:3.13.11-debian13-dev@sha256:9781560a0ae891f2830b69d0b3709adb71137ebe601ef02e1b8a06b77e03a92d
   REBAR_COMMIT_SHA: f2b8b08862e00db4b0306852c9a0291dd7e69650
   REBAR_VERSION: 3.26.0
@@ -142,7 +142,7 @@ contents:
             gid: 65532
             mode: "0644"
         artifacts:
-          - name: dhi.io/node:22.22.0-debian13-dev@sha256:8057fbd8048c78f13b277d9cb456c6c0875cd1c59872929e034df0367f867485
+          - name: dhi.io/node:22.22.0-debian13-dev@sha256:992058adf730d1c5f0c03396dd13f4771efc4946777871b3d2ace8803b622223
             includes:
               - opt/**
               - usr/**

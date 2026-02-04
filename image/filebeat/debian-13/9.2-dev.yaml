@@ -6,22 +6,22 @@ variant: dev
 tags:
   - 9-dev
   - 9.2-dev
-  - 9.2.4-dev
+  - 9.2.5-dev
   - 9-debian13-dev
   - 9.2-debian13-dev
-  - 9.2.4-debian13-dev
+  - 9.2.5-debian13-dev
 platforms:
   - linux/amd64
   - linux/arm64
 vars:
   BASE_DIGEST: sha256:74fc43fa240887b8159970e434244039aab0c6efaaa9cf044004cdc22aa2a34d
   BASE_TAG: 20250419-debian13
-  COMMIT_SHA: fd909e2bd4416ce14162971875d6013334f6fd44
+  COMMIT_SHA: 090edf6777335b72756841fc32203573a0cc1073
   GOLANG_REFERENCE: dhi/golang:1.24.12-debian13-dev@sha256:7486068e365dd29bd664fe0ad2f153d7a5f61f6b104c259b7ff642edd7cf40b5
   SEMVER_MAJOR_MINOR_VERSION: "9.2"
   SEMVER_MAJOR_VERSION: "9"
-  SEMVER_VERSION: 9.2.4
-  VERSION: 9.2.4
+  SEMVER_VERSION: 9.2.5
+  VERSION: 9.2.5
 contents:
   packages:
     - '!gawk'
@@ -47,8 +47,8 @@ contents:
       uses: dhi.io/golang:1.24.12-debian13-dev@sha256:7486068e365dd29bd664fe0ad2f153d7a5f61f6b104c259b7ff642edd7cf40b5
       contents:
         files:
-          - url: git+https://github.com/elastic/beats#v9.2.4
-            checksum: fd909e2bd4416ce14162971875d6013334f6fd44
+          - url: git+https://github.com/elastic/beats#v9.2.5
+            checksum: 090edf6777335b72756841fc32203573a0cc1073
             path: /go/src/github.com/elastic/beats
             uid: 0
             gid: 0
@@ -68,8 +68,8 @@ contents:
 
             # Reproducible version metadata
             # https://github.com/elastic/beats/issues/46314#issuecomment-3250659340
-            GOLDFLAGS="-X github.com/elastic/beats/v7/libbeat/version.commit=fd909e2bd4416ce14162971875d6013334f6fd44
-                      -X github.com/elastic/beats/v7/libbeat/version.version=9.2.4
+            GOLDFLAGS="-X github.com/elastic/beats/v7/libbeat/version.commit=090edf6777335b72756841fc32203573a0cc1073
+                      -X github.com/elastic/beats/v7/libbeat/version.version=9.2.5
                       -X github.com/elastic/beats/v7/libbeat/version.buildTime=$(date -u -d @${SOURCE_DATE_EPOCH} +'%F-%T')"
 
             mkdir -p "${target.dir}/usr/share/filebeat"

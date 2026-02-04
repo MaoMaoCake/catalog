@@ -14,17 +14,17 @@ vars:
   DHI_PREFIX: ""
   DHI_REGISTRY: dhi.io
   DHI_SKIP_CONTEXT_COPY: "true"
-  HELM_REFERENCE: dhi/helm:3.20.0-debian13-dev@sha256:7cb2e3261500133ea8b5a670b731b6d200e5637b9b1d8451ccc759c358fca0dc
+  HELM_REFERENCE: dhi/helm:3.20.0-debian13-dev@sha256:71b7163acd69b29d5d2c431646ad54a453b27a9915cce53b4d277796e0dabc79
   SEMVER_MAJOR_MINOR_VERSION: "37.4"
   SEMVER_MAJOR_VERSION: "37"
   SEMVER_VERSION: 37.4.0
-  TRAEFIK_REFERENCE: dhi/traefik:3.6.7-debian13@sha256:eb9a5f300e0995f67de057dd35e1f5c01ad169ea58c5fd09dac943b6d2c3511b
+  TRAEFIK_REFERENCE: dhi/traefik:3.6.7-debian13@sha256:295172b8b3de07732429c92448d1b7030861096f35d89099b688680f997f777d
   TRAEFIK_VERSION: 3.6.5
   VERSION: 37.4.0
 contents:
   builds:
     - name: traefik
-      uses: dhi.io/helm:3.20.0-debian13-dev@sha256:7cb2e3261500133ea8b5a670b731b6d200e5637b9b1d8451ccc759c358fca0dc
+      uses: dhi.io/helm:3.20.0-debian13-dev@sha256:71b7163acd69b29d5d2c431646ad54a453b27a9915cce53b4d277796e0dabc79
       contents:
         files:
           - url: git+https://github.com/traefik/traefik-helm-chart.git#v37.4.0
@@ -41,7 +41,7 @@ contents:
               description: Docker Hardened Images Helm chart for Traefik
               images:
                 - name: traefik
-                  ref: dhi/traefik:3.6.7-debian13@sha256:eb9a5f300e0995f67de057dd35e1f5c01ad169ea58c5fd09dac943b6d2c3511b
+                  ref: dhi/traefik:3.6.7-debian13@sha256:295172b8b3de07732429c92448d1b7030861096f35d89099b688680f997f777d
               name: traefik-chart
               notes: ${source.dir}/config/NOTES.txt
               sourceUrl: https://github.com/traefik/traefik-helm-chart

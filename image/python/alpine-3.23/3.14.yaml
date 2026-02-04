@@ -6,7 +6,7 @@ variant: runtime
 tags:
   - 3-alpine3.23
   - 3.14-alpine3.23
-  - 3.14.2-alpine3.23
+  - 3.14.3-alpine3.23
 platforms:
   - linux/amd64
   - linux/arm64
@@ -14,11 +14,11 @@ dates:
   release: "2025-10-07"
   end-of-life: "2030-10-31"
 vars:
-  PKG_PYTHON_REFERENCE: dhi/pkg-python:3.14.2-alpine3.23@sha256:db31a2d74fad6fe515fc010adc2eab708a669526007ac6ab4d79dbbd9075bf8f
+  PKG_PYTHON_REFERENCE: dhi/pkg-python:3.14.3-alpine3.23@sha256:3a92d7d8fd3acf71ee81fe710a4bf9395c69d35c204568942f70bc1e0b81b2a8
   PYTHON_MAJOR_MINOR_VERSION: "3.14"
   PYTHON_MAJOR_VERSION: "3"
-  PYTHON_VERSION: 3.14.2
-  VERSION: 3.14.2
+  PYTHON_VERSION: 3.14.3
+  VERSION: 3.14.3
 contents:
   repositories:
     - https://dl-cdn.alpinelinux.org/alpine/v3.23/main
@@ -39,7 +39,7 @@ contents:
     - tzdata
     - zlib
   artifacts:
-    - name: dhi.io/pkg-python:3.14.2-alpine3.23@sha256:db31a2d74fad6fe515fc010adc2eab708a669526007ac6ab4d79dbbd9075bf8f
+    - name: dhi.io/pkg-python:3.14.3-alpine3.23@sha256:3a92d7d8fd3acf71ee81fe710a4bf9395c69d35c204568942f70bc1e0b81b2a8
       includes:
         - opt/**
       uid: 0
@@ -65,7 +65,7 @@ os-release:
 environment:
   LD_LIBRARY_PATH: /opt/python/lib
   PATH: /opt/python/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
-  PYTHON_VERSION: 3.14.2
+  PYTHON_VERSION: 3.14.3
   SSL_CERT_FILE: /etc/ssl/certs/ca-certificates.crt
 paths:
   - type: directory

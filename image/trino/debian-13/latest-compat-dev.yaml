@@ -16,7 +16,7 @@ vars:
   ARCH: '#{ target.arch == "amd64" ? "amd64" : "arm64" }'
   COMMIT_SHA: 1b3a3e39a657642b0c4f76a5439dae859f93b4b1
   DEBIAN_REFERENCE: dhi/debian-base:trixie-debian13@sha256:1244523a2f7b6c096c6f98ce0349df6798c775c57322c51f8a4982daf60c256c
-  GO_REF: dhi/golang:1.25.6-debian13-dev@sha256:1c001ad95e22efced3c6cc3cf875bbfe69c061a383d3b787d4f0a8103e73311c
+  GO_REF: dhi/golang:1.25.7-debian13-dev@sha256:d241d31631f6bcfdef4f42f70083bb06d51e6401d9ce172a05b9ba37f27c2940
   JAVA_MAJOR_VERSION: "25"
   JAVA_VERSION: 25.0.2
   JDK_REF: dhi/eclipse-temurin:25.0.1-jdk-debian13-dev@sha256:79208312bdfd04cb8d73821c60a9b5225c2b9c1a42ee0e497c42d3a051615a9a
@@ -24,9 +24,9 @@ vars:
   JVM_KILL_COMMIT: 8a6ae95b38905f98ce6b7b727efb2dc75da16e11
   LAUNCHER_COMMIT_SHA: dba71d80b53f24ac930176ec6b4071ba4a4b9da1
   LAUNCHER_VERSION: "313"
-  MAVEN_REF: dhi/maven:3.9.12-jdk25-debian13-dev@sha256:7c58b9bf5d063e2c845b59e000805bc0c5fa2e414209bb1efb8de4dcfb7bb06d
+  MAVEN_REF: dhi/maven:3.9.12-jdk25-debian13-dev@sha256:dace02fb67919d893ae11aac8bb70d499a00307da1e4d54e3bbed694c0374dd6
   MAVEN_VERSION: 3.9.12
-  NODE_REF: dhi/node:22.22.0-debian13@sha256:1fddcc146af360e21fea512f7d020696b79090a69c91321a8677653bfef4a522
+  NODE_REF: dhi/node:22.22.0-debian13@sha256:4cc4baaea9766c69050e1df17605d639016565fb0fc141f54bf16a804d7a107c
   VERSION: "479"
 contents:
   packages:
@@ -89,7 +89,7 @@ contents:
           uid: 0
           gid: 0
     - name: trino
-      uses: dhi.io/golang:1.25.6-debian13-dev@sha256:1c001ad95e22efced3c6cc3cf875bbfe69c061a383d3b787d4f0a8103e73311c
+      uses: dhi.io/golang:1.25.7-debian13-dev@sha256:d241d31631f6bcfdef4f42f70083bb06d51e6401d9ce172a05b9ba37f27c2940
       environment:
         JAVA_HOME: /opt/java/openjdk/25
       contents:
@@ -124,7 +124,7 @@ contents:
             uid: 0
             gid: 0
         artifacts:
-          - name: dhi.io/node:22.22.0-debian13@sha256:1fddcc146af360e21fea512f7d020696b79090a69c91321a8677653bfef4a522
+          - name: dhi.io/node:22.22.0-debian13@sha256:4cc4baaea9766c69050e1df17605d639016565fb0fc141f54bf16a804d7a107c
             includes:
               - opt/nodejs
               - usr/local/bin
@@ -135,7 +135,7 @@ contents:
               - opt/**
             uid: 0
             gid: 0
-          - name: dhi.io/maven:3.9.12-jdk25-debian13-dev@sha256:7c58b9bf5d063e2c845b59e000805bc0c5fa2e414209bb1efb8de4dcfb7bb06d
+          - name: dhi.io/maven:3.9.12-jdk25-debian13-dev@sha256:dace02fb67919d893ae11aac8bb70d499a00307da1e4d54e3bbed694c0374dd6
             includes:
               - opt/**
               - usr/local/bin/**

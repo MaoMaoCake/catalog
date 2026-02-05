@@ -4,26 +4,26 @@ name: Temporal UI 2.x
 image: dhi.io/temporalio-ui
 variant: runtime
 tags:
-  - "2.44"
-  - 2.44.1
-  - 2.44-debian13
-  - 2.44.1-debian13
+  - "2.45"
+  - 2.45.0
+  - 2.45-debian13
+  - 2.45.0-debian13
 platforms:
   - linux/amd64
   - linux/arm64
 vars:
-  COMMIT_SHA: 8537bf45a48e52cf8ab0b3c16bf4c04bf9099666
+  COMMIT_SHA: 2af35df1d19f1df40b1e7a11aa90a8617b0eda01
   DEBIAN_VERSION: "13"
   DOCKERIZE_COMMIT_SHA: 90dbb4fc2ef9098acd41e8c3ca98d2f730c741d6
   DOCKERIZE_VERSION: 0.9.5
-  GO_REFERENCE: dhi/golang:1.24.12-debian13-dev@sha256:7486068e365dd29bd664fe0ad2f153d7a5f61f6b104c259b7ff642edd7cf40b5
-  GO_VERSION: 1.24.12
+  GO_REFERENCE: dhi/golang:1.24.13-debian13-dev@sha256:ab5aa6c5769f20dd35a2fd530954d59efc7940e6e37870d02b935f413b7229a0
+  GO_VERSION: 1.24.13
   NODE_REFERENCE: dhi/node:24.13.0-debian13-dev@sha256:e41e6c832a75e6b86f3ce6b271ce412dfa71df26828589983766800e2942582b
   NODE_VERSION: 24.13.0
-  SEMVER_MAJOR_MINOR_VERSION: "2.44"
+  SEMVER_MAJOR_MINOR_VERSION: "2.45"
   SEMVER_MAJOR_VERSION: "2"
-  SEMVER_VERSION: 2.44.1
-  VERSION: 2.44.1
+  SEMVER_VERSION: 2.45.0
+  VERSION: 2.45.0
 contents:
   packages:
     - '!libelogind0'
@@ -35,20 +35,20 @@ contents:
     - tzdata
   builds:
     - name: build-ui
-      uses: dhi.io/golang:1.24.12-debian13-dev@sha256:7486068e365dd29bd664fe0ad2f153d7a5f61f6b104c259b7ff642edd7cf40b5
+      uses: dhi.io/golang:1.24.13-debian13-dev@sha256:ab5aa6c5769f20dd35a2fd530954d59efc7940e6e37870d02b935f413b7229a0
       contents:
         packages:
           - bash
         files:
-          - url: git+https://github.com/temporalio/ui.git#v2.44.1
-            checksum: 8537bf45a48e52cf8ab0b3c16bf4c04bf9099666
+          - url: git+https://github.com/temporalio/ui.git#v2.45.0
+            checksum: 2af35df1d19f1df40b1e7a11aa90a8617b0eda01
             path: ${source.dir}/ui
             spdx:
               name: temporalio-ui
-              version: 2.44.1
+              version: 2.45.0
               packages:
                 - name: temporalio-ui
-                  purl: pkg:dhi/temporalio-ui@2.44.1
+                  purl: pkg:dhi/temporalio-ui@2.45.0
                   license: MIT
             uid: 0
             gid: 0
@@ -148,7 +148,7 @@ contents:
           uid: 0
           gid: 0
     - name: build-base-dockerize
-      uses: dhi.io/golang:1.24.12-debian13-dev@sha256:7486068e365dd29bd664fe0ad2f153d7a5f61f6b104c259b7ff642edd7cf40b5
+      uses: dhi.io/golang:1.24.13-debian13-dev@sha256:ab5aa6c5769f20dd35a2fd530954d59efc7940e6e37870d02b935f413b7229a0
       contents:
         packages:
           - bash

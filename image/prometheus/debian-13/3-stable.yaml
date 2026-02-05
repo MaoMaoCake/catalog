@@ -18,9 +18,9 @@ vars:
   DEBIAN_EPOCH_MAJOR_MINOR_VERSION: "3.9"
   DEBIAN_EPOCH_MAJOR_VERSION: "3"
   DEBIAN_EPOCH_VERSION: 3.9.1
-  GO_REF: dhi/golang:1.25.6-debian13-dev@sha256:1c001ad95e22efced3c6cc3cf875bbfe69c061a383d3b787d4f0a8103e73311c
-  GO_VERSION: 1.25.6
-  NODE_REF: dhi/node:22.22.0-debian13-dev@sha256:992058adf730d1c5f0c03396dd13f4771efc4946777871b3d2ace8803b622223
+  GO_REF: dhi/golang:1.25.7-debian13-dev@sha256:d241d31631f6bcfdef4f42f70083bb06d51e6401d9ce172a05b9ba37f27c2940
+  GO_VERSION: 1.25.7
+  NODE_REF: dhi/node:22.22.0-debian13-dev@sha256:1ebcf6c1d3a8ae9dbacd5a3c52a60e3c7c0455de57b80080602c35328053a870
   NODE_VERSION: 22.22.0
   RELEASE_TYPE: stable
   VERSION: 3.9.1
@@ -29,7 +29,7 @@ contents:
     - '!base-files'
   builds:
     - name: prometheus
-      uses: dhi.io/golang:1.25.6-debian13-dev@sha256:1c001ad95e22efced3c6cc3cf875bbfe69c061a383d3b787d4f0a8103e73311c
+      uses: dhi.io/golang:1.25.7-debian13-dev@sha256:d241d31631f6bcfdef4f42f70083bb06d51e6401d9ce172a05b9ba37f27c2940
       environment:
         USER: root
       contents:
@@ -52,7 +52,7 @@ contents:
             uid: 0
             gid: 0
         artifacts:
-          - name: dhi.io/node:22.22.0-debian13-dev@sha256:992058adf730d1c5f0c03396dd13f4771efc4946777871b3d2ace8803b622223
+          - name: dhi.io/node:22.22.0-debian13-dev@sha256:1ebcf6c1d3a8ae9dbacd5a3c52a60e3c7c0455de57b80080602c35328053a870
             excludes:
               - usr/lib/ssl
             uid: 0

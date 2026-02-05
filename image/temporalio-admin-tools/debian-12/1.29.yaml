@@ -5,8 +5,8 @@ image: dhi.io/temporalio-admin-tools
 variant: runtime
 tags:
   - 1.29-debian12
-  - 1.29.2-debian12
-  - 1.29.2-cli-1.5.1-debian12
+  - 1.29.3-debian12
+  - 1.29.3-cli-1.5.1-debian12
 platforms:
   - linux/amd64
   - linux/arm64
@@ -14,7 +14,7 @@ vars:
   CLI_VERSION: 1.5.1
   DEBIAN_EPOCH_MAJOR_MINOR_VERSION: "1.29"
   DEBIAN_EPOCH_MAJOR_VERSION: "1"
-  DEBIAN_EPOCH_VERSION: 1.29.2
+  DEBIAN_EPOCH_VERSION: 1.29.3
   DEBIAN_VERSION: "12"
   PYTHON_DIGEST_BUILD: sha256:b04d4821cbedfa401fc53fe6771e1f5b59caca23efe1e3988b00ee1189a4700f
   PYTHON_DIGEST_FINAL: sha256:4c952d9c4699d66ad71af9d88138863b3659f3dfa1c13befa3591ed168b0e47f
@@ -22,10 +22,10 @@ vars:
   PYTHON_VERSION_FINAL: 3.12.12
   SEMVER_MAJOR_MINOR_VERSION: "1.29"
   SEMVER_MAJOR_VERSION: "1"
-  SEMVER_VERSION: 1.29.2
-  TEMPORALIO_SERVER_DIGEST: sha256:f4533c1acb1b912e02a0e9a0580450723faed48f0010e122b652f51a573160f0
+  SEMVER_VERSION: 1.29.3
+  TEMPORALIO_SERVER_DIGEST: sha256:c10214d73779ecf407bbe6f58f8907392445922b1be35fe51d8e133f0c482fd3
   VARIANT_SUFFIX: ""
-  VERSION: 1.29.2
+  VERSION: 1.29.3
 contents:
   packages:
     - bash
@@ -43,7 +43,7 @@ contents:
           - bash
           - coreutils
         artifacts:
-          - name: dhi.io/temporalio-server:1.29.2-debian12@sha256:f4533c1acb1b912e02a0e9a0580450723faed48f0010e122b652f51a573160f0
+          - name: dhi.io/temporalio-server:1.29.3-debian12@sha256:c10214d73779ecf407bbe6f58f8907392445922b1be35fe51d8e133f0c482fd3
             includes:
               - usr/local/bin/temporal
             uid: 0
@@ -128,7 +128,7 @@ contents:
           uid: 0
           gid: 0
   artifacts:
-    - name: dhi.io/temporalio-server:1.29.2-debian12@sha256:f4533c1acb1b912e02a0e9a0580450723faed48f0010e122b652f51a573160f0
+    - name: dhi.io/temporalio-server:1.29.3-debian12@sha256:c10214d73779ecf407bbe6f58f8907392445922b1be35fe51d8e133f0c482fd3
       includes:
         - etc/temporal/schema/**
         - usr/local/bin/tdbg

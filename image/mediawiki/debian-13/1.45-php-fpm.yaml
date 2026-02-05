@@ -26,7 +26,7 @@ vars:
   PHP_PREFIX: /opt/php-8.3
   PHP_REFERENCE: dhi/php:8.3.30-debian13-fpm@sha256:109286536b679f18939ab544572f098104a5d49e51f70870489ebf5b150553a2
   PHP_VERSION: 8.3.30
-  PYTHON_REFERENCE: dhi/python:3.13.11-debian13@sha256:82f87b495af6eea80c889c028756a1929a71a8d6b424ebd511b557294a97e55e
+  PYTHON_REFERENCE: dhi/python:3.13.12-debian13@sha256:b8ab2d350cf8b832825e80338f1b38c2ebe5ad21918d465404e9f91b77343044
   SEMVER_MAJOR_MINOR_VERSION: "1.45"
   SEMVER_MAJOR_VERSION: "1"
   SEMVER_VERSION: 1.45.1
@@ -275,7 +275,7 @@ contents:
         - var/www/html/**
       uid: 0
       gid: 0
-    - name: dhi.io/python:3.13.11-debian13@sha256:82f87b495af6eea80c889c028756a1929a71a8d6b424ebd511b557294a97e55e
+    - name: dhi.io/python:3.13.12-debian13@sha256:b8ab2d350cf8b832825e80338f1b38c2ebe5ad21918d465404e9f91b77343044
       includes:
         - opt/**
       uid: 0

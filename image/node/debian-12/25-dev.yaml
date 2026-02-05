@@ -14,7 +14,7 @@ dates:
   release: "2025-10-15"
   end-of-life: "2026-06-01"
 vars:
-  DIGEST: sha256:3fc67295efeb4c72d152916ebcc5007ceb8088e52bfa0ea65ad0a79ee7e43cbd
+  DIGEST: sha256:7e75813d2d61dd4408171b6523346a4ce4436ad47fe918bf0029951d328198d6
   EXPAT_DIGEST: sha256:1135126380318703e38e851688e0bf3dd973d079f73dd4a9d662219a455a7207
   EXPAT_VERSION: 2.7.4
   NODEJS_VERSION_MAJOR: "25"
@@ -44,7 +44,7 @@ contents:
     - sed
     - util-linux
   artifacts:
-    - name: dhi.io/pkg-node:25.6.0-debian12@sha256:3fc67295efeb4c72d152916ebcc5007ceb8088e52bfa0ea65ad0a79ee7e43cbd
+    - name: dhi.io/pkg-node:25.6.0-debian12@sha256:7e75813d2d61dd4408171b6523346a4ce4436ad47fe918bf0029951d328198d6
       includes:
         - opt/docker
         - opt/nodejs

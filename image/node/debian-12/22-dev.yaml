@@ -74,7 +74,6 @@ environment:
   DEBIAN_FRONTEND: noninteractive
   NODE_VERSION: 22.22.0
   NPM_CONFIG_UPDATE_NOTIFIER: "false"
-  YARN_DISABLE_SELF_UPDATE_CHECK: "true"
 paths:
   - type: directory
     path: /app

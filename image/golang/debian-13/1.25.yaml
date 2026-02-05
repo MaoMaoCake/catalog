@@ -6,20 +6,20 @@ variant: runtime
 tags:
   - "1"
   - "1.25"
-  - 1.25.6
+  - 1.25.7
   - 1-debian13
   - 1.25-debian13
-  - 1.25.6-debian13
+  - 1.25.7-debian13
 platforms:
   - linux/amd64
   - linux/arm64
 dates:
   release: "2025-08-12"
 vars:
-  DIGEST: sha256:ebdc68da75a60d77172159bcef439a630de5d0bde9a1da18062e14f9041c76ce
+  DIGEST: sha256:632d8adcfa45328142a2d5c83ff2790a7a84d125feb446724717fe14182eb874
   MAJOR_MINOR_VERSION: "1.25"
   MAJOR_VERSION: "1"
-  VERSION: 1.25.6
+  VERSION: 1.25.7
 contents:
   packages:
     - '!libelogind0'
@@ -32,7 +32,7 @@ contents:
     - findutils
     - tzdata
   artifacts:
-    - name: dhi.io/pkg-golang:1.25.6-debian13@sha256:ebdc68da75a60d77172159bcef439a630de5d0bde9a1da18062e14f9041c76ce
+    - name: dhi.io/pkg-golang:1.25.7-debian13@sha256:632d8adcfa45328142a2d5c83ff2790a7a84d125feb446724717fe14182eb874
       includes:
         - opt/docker/sbom
         - usr/local/go
@@ -59,7 +59,7 @@ os-release:
   bug-report-url: https://docker.com/support/
 work-dir: /go
 environment:
-  GOLANG_VERSION: 1.25.6
+  GOLANG_VERSION: 1.25.7
   GOPATH: /go
   GOTOOLCHAIN: local
   PATH: /go/bin:/usr/local/go/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin

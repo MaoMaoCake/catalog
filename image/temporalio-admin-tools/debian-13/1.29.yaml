@@ -8,13 +8,13 @@ tags:
   - 1.29.3
   - 1.29-debian13
   - 1.29.3-debian13
-  - 1.29.3-cli-1.5.1
-  - 1.29.3-cli-1.5.1-debian13
+  - 1.29.3-cli-1.6.0
+  - 1.29.3-cli-1.6.0-debian13
 platforms:
   - linux/amd64
   - linux/arm64
 vars:
-  CLI_VERSION: 1.5.1
+  CLI_VERSION: 1.6.0
   DEBIAN_EPOCH_MAJOR_MINOR_VERSION: "1.29"
   DEBIAN_EPOCH_MAJOR_VERSION: "1"
   DEBIAN_EPOCH_VERSION: 1.29.3
@@ -26,7 +26,7 @@ vars:
   SEMVER_MAJOR_MINOR_VERSION: "1.29"
   SEMVER_MAJOR_VERSION: "1"
   SEMVER_VERSION: 1.29.3
-  TEMPORALIO_SERVER_DIGEST: sha256:d3fbe0c6fbc50f61e87878ab24a6ebc5c5912ad2ec465ced3190d28f0399b5ae
+  TEMPORALIO_SERVER_DIGEST: sha256:99e63ad808d4a3e1ad917e68bd8130ab32fd4128c02028c1933b61b5dd61eab5
   VARIANT_SUFFIX: ""
   VERSION: 1.29.3
 contents:
@@ -46,7 +46,7 @@ contents:
           - bash
           - coreutils
         artifacts:
-          - name: dhi.io/temporalio-server:1.29.3-debian13@sha256:d3fbe0c6fbc50f61e87878ab24a6ebc5c5912ad2ec465ced3190d28f0399b5ae
+          - name: dhi.io/temporalio-server:1.29.3-debian13@sha256:99e63ad808d4a3e1ad917e68bd8130ab32fd4128c02028c1933b61b5dd61eab5
             includes:
               - usr/local/bin/temporal
             uid: 0
@@ -131,7 +131,7 @@ contents:
           uid: 0
           gid: 0
   artifacts:
-    - name: dhi.io/temporalio-server:1.29.3-debian13@sha256:d3fbe0c6fbc50f61e87878ab24a6ebc5c5912ad2ec465ced3190d28f0399b5ae
+    - name: dhi.io/temporalio-server:1.29.3-debian13@sha256:99e63ad808d4a3e1ad917e68bd8130ab32fd4128c02028c1933b61b5dd61eab5
       includes:
         - etc/temporal/schema/**
         - usr/local/bin/tdbg

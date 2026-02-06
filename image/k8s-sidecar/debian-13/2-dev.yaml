@@ -6,21 +6,21 @@ variant: dev
 tags:
   - 2-dev
   - 2.5-dev
-  - 2.5.0-dev
+  - 2.5.1-dev
   - 2-debian13-dev
   - 2.5-debian13-dev
-  - 2.5.0-debian13-dev
+  - 2.5.1-debian13-dev
 platforms:
   - linux/amd64
   - linux/arm64
 vars:
-  COMMIT_SHA: 4df442cbc46cdb75a9c4b46b50e9a1b86ed2c4a7
+  COMMIT_SHA: 1574c267ad4e7ec0ef249560e590c2ea492a0380
   PYTHON_BUILD_REF: dhi/python:3.14.3-debian13-dev@sha256:d234c828d1ce953bb72747a8a21929bff3f9dcbcf62241bc2d79798ecdb1742d
   PYTHON_REF: dhi/python:3.14.3-debian13@sha256:c1c98a9135f408a8accf6c78984b3d5c553378db04bea4fb0729ddfa9593e5cc
   SEMVER_MAJOR_MINOR_VERSION: "2.5"
   SEMVER_MAJOR_VERSION: "2"
-  SEMVER_VERSION: 2.5.0
-  VERSION: 2.5.0
+  SEMVER_VERSION: 2.5.1
+  VERSION: 2.5.1
 contents:
   packages:
     - '!gawk'
@@ -53,15 +53,15 @@ contents:
           - coreutils
           - git
         files:
-          - url: git+https://github.com/kiwigrid/k8s-sidecar.git#2.5.0
-            checksum: 4df442cbc46cdb75a9c4b46b50e9a1b86ed2c4a7
+          - url: git+https://github.com/kiwigrid/k8s-sidecar.git#2.5.1
+            checksum: 1574c267ad4e7ec0ef249560e590c2ea492a0380
             path: ${source.dir}/k8s-sidecar
             spdx:
               name: k8s-sidecar
-              version: 2.5.0
+              version: 2.5.1
               packages:
                 - name: k8s-sidecar
-                  purl: pkg:github/kiwigrid/k8s-sidecar@2.5.0
+                  purl: pkg:github/kiwigrid/k8s-sidecar@2.5.1
                   license: MIT
             uid: 0
             gid: 0

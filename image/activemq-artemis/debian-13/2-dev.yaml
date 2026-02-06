@@ -19,7 +19,7 @@ vars:
   ACTIVEMQ_ARTEMIS_MAJOR_MINOR_VERSION: "2.51"
   ACTIVEMQ_ARTEMIS_MAJOR_VERSION: "2"
   ARCH: '#{ target.arch == "amd64" ? "x64" : "aarch64" }'
-  COMMIT_SHA: 670b373d575d845e698cf31681229f69168b09df
+  COMMIT_SHA: cd0950de6c6dd122364377d7fa133c6b9eb23f5a
   DEBIAN_REFERENCE: dhi/debian-base:trixie-debian13@sha256:1244523a2f7b6c096c6f98ce0349df6798c775c57322c51f8a4982daf60c256c
   JRE_PATH: /opt/java/openjdk/21-jre
   JRE_REF: dhi/eclipse-temurin:21.0.9.10-debian13@sha256:0261fc5162735dbbd5a002ecd8e17957652aa80314c8af19d4c1f2805a92000a
@@ -56,7 +56,7 @@ contents:
           - coreutils
         files:
           - url: git+https://github.com/apache/activemq-artemis.git#2.51.0
-            checksum: 670b373d575d845e698cf31681229f69168b09df
+            checksum: cd0950de6c6dd122364377d7fa133c6b9eb23f5a
             path: ${source.dir}/activemq-artemis
             spdx:
               name: activemq-artemis

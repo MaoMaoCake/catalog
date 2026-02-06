@@ -18,7 +18,7 @@ vars:
   BASE_TAG: 20250419-glibc-debian13
   COMMIT_SHA: 477e3147cbce062bce7a9ecaef06c6612b6c1623
   GOLANG_REFERENCE: dhi/golang:1.25.7-debian13-dev@sha256:d241d31631f6bcfdef4f42f70083bb06d51e6401d9ce172a05b9ba37f27c2940
-  NODE_REFERENCE: dhi/pkg-node:24.13.0-debian13@sha256:970e9e7958af2e0a77cfc97113960f63a555ad4a9ede947328fb0477b2373015
+  NODE_REFERENCE: dhi/pkg-node:24.13.0-debian13@sha256:0da74fb921bf97c7195b679a895ccad64ea448512fb7d078efe6ceb9ac25b920
   SEMVER_MAJOR_MINOR_VERSION: "1.12"
   SEMVER_MAJOR_VERSION: "1"
   SEMVER_VERSION: 1.12.2
@@ -64,7 +64,7 @@ contents:
             uid: 0
             gid: 0
         artifacts:
-          - name: dhi.io/pkg-node:24.13.0-debian13@sha256:970e9e7958af2e0a77cfc97113960f63a555ad4a9ede947328fb0477b2373015
+          - name: dhi.io/pkg-node:24.13.0-debian13@sha256:0da74fb921bf97c7195b679a895ccad64ea448512fb7d078efe6ceb9ac25b920
             includes:
               - opt/nodejs
               - opt/npm

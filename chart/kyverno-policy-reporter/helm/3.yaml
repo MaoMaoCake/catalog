@@ -15,7 +15,7 @@ vars:
   DHI_SKIP_CONTEXT_COPY: "true"
   HELM_REFERENCE: dhi/helm:3.20.0-debian13-dev@sha256:83f437b3254d4db06d42aa7e1e8e6043ae1feacadf709e6b12b925345c91468a
   POLICY_REPORTER_IMAGE_TAG: 3.7.0
-  POLICY_REPORTER_REFERENCE: dhi/kyverno-policy-reporter:3.7.0-debian13@sha256:a28b72ef0c73cc1c89fe9f410ad6ee27cc746d4a8238be0fbb8dc48694c608c9
+  POLICY_REPORTER_REFERENCE: dhi/kyverno-policy-reporter:3.7.0-debian13@sha256:bc48bc7d4b00031ddac18f8576dfd5df4f2091d158df5e435adda2a04ae0eefc
   POLICY_REPORTER_UI_IMAGE_TAG: 2.5.1
   POLICY_REPORTER_UI_REFERENCE: dhi/kyverno-policy-reporter-ui:2.5.1-debian13@sha256:a0d18037019970911916ba6b57d85ff65ca86c367338eb881abe88923e3b363a
   SEMVER_MAJOR_MINOR_VERSION: "3.7"
@@ -52,7 +52,7 @@ contents:
               description: Docker Hardened Images Helm chart for Kyverno Policy Reporter
               images:
                 - name: kyverno-policy-reporter
-                  ref: dhi/kyverno-policy-reporter:3.7.0-debian13@sha256:a28b72ef0c73cc1c89fe9f410ad6ee27cc746d4a8238be0fbb8dc48694c608c9
+                  ref: dhi/kyverno-policy-reporter:3.7.0-debian13@sha256:bc48bc7d4b00031ddac18f8576dfd5df4f2091d158df5e435adda2a04ae0eefc
                 - name: kyverno-policy-reporter-ui
                   ref: dhi/kyverno-policy-reporter-ui:2.5.1-debian13@sha256:a0d18037019970911916ba6b57d85ff65ca86c367338eb881abe88923e3b363a
                 - name: trivy

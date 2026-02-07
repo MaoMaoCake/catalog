@@ -12,8 +12,8 @@ platforms:
   - linux/arm64
 vars:
   COMMIT_SHA: 1574c267ad4e7ec0ef249560e590c2ea492a0380
-  PYTHON_BUILD_REF: dhi/python:3.14.3-alpine3.23-dev@sha256:b036f8007f4bb87465fd6ca88fe10e84c56bff2909ccaa8ff90291f13ee21fa4
-  PYTHON_REF: dhi/python:3.14.3-alpine3.23@sha256:a226e00d4e2bf0505bc19518542cf9d01f9c17f8f40663cbf940e09a58cef3e7
+  PYTHON_BUILD_REF: dhi/python:3.14.3-alpine3.23-dev@sha256:df781b2cc49632813f3251004dd28f925cad2ae3a149d9b42b370ff72b053401
+  PYTHON_REF: dhi/python:3.14.3-alpine3.23@sha256:511069423c36f143f6be03e88ff6d98c1e057e54a8992164037bd64b73732025
   SEMVER_MAJOR_MINOR_VERSION: "2.5"
   SEMVER_MAJOR_VERSION: "2"
   SEMVER_VERSION: 2.5.1
@@ -29,7 +29,7 @@ contents:
     - tzdata
   builds:
     - name: k8s-sidecar
-      uses: dhi.io/python:3.14.3-alpine3.23-dev@sha256:b036f8007f4bb87465fd6ca88fe10e84c56bff2909ccaa8ff90291f13ee21fa4
+      uses: dhi.io/python:3.14.3-alpine3.23-dev@sha256:df781b2cc49632813f3251004dd28f925cad2ae3a149d9b42b370ff72b053401
       contents:
         files:
           - url: git+https://github.com/kiwigrid/k8s-sidecar.git#2.5.1
@@ -92,7 +92,7 @@ contents:
           uid: 0
           gid: 0
   artifacts:
-    - name: dhi.io/python:3.14.3-alpine3.23@sha256:a226e00d4e2bf0505bc19518542cf9d01f9c17f8f40663cbf940e09a58cef3e7
+    - name: dhi.io/python:3.14.3-alpine3.23@sha256:511069423c36f143f6be03e88ff6d98c1e057e54a8992164037bd64b73732025
       includes:
         - opt/**
         - usr/**

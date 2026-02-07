@@ -17,8 +17,8 @@ platforms:
 vars:
   ARCH: '#{ target.arch == "amd64" ? "x86_64" : "aarch64" }'
   COMMIT_SHA: 24b9402fd6904e74dff78d06be313fc8b701b937
-  PYTHON_DEV_REFERENCE: dhi/python:3.14.3-debian13-sfw-dev@sha256:1d47d7ea2e2aa36cd675f1d08a2287cb35d58dbb328149fae92d2f2b765b59dd
-  PYTHON_REFERENCE: dhi/python:3.14.3-debian13@sha256:c1c98a9135f408a8accf6c78984b3d5c553378db04bea4fb0729ddfa9593e5cc
+  PYTHON_DEV_REFERENCE: dhi/python:3.14.3-debian13-sfw-dev@sha256:0490f3145435f070d283244016f24d72f740f920fd45c5fa80b21adb44db738b
+  PYTHON_REFERENCE: dhi/python:3.14.3-debian13@sha256:5c16260e902c076877cc7c5b4f33dea2e96f2b8a43dc980d80a5ae7cdff372cc
   SEMVER_MAJOR_MINOR_VERSION: "2025.12"
   SEMVER_MAJOR_VERSION: "2025"
   SEMVER_VERSION: 2025.12.18
@@ -32,7 +32,7 @@ contents:
     - base-files
   builds:
     - name: fetch-mcp
-      uses: dhi.io/python:3.14.3-debian13-sfw-dev@sha256:1d47d7ea2e2aa36cd675f1d08a2287cb35d58dbb328149fae92d2f2b765b59dd
+      uses: dhi.io/python:3.14.3-debian13-sfw-dev@sha256:0490f3145435f070d283244016f24d72f740f920fd45c5fa80b21adb44db738b
       environment:
         UV_COMPILE_BYTECODE: "1"
       contents:
@@ -93,7 +93,7 @@ contents:
           uid: 0
           gid: 0
   artifacts:
-    - name: dhi.io/python:3.14.3-debian13-sfw-dev@sha256:1d47d7ea2e2aa36cd675f1d08a2287cb35d58dbb328149fae92d2f2b765b59dd
+    - name: dhi.io/python:3.14.3-debian13-sfw-dev@sha256:0490f3145435f070d283244016f24d72f740f920fd45c5fa80b21adb44db738b
       uid: 0
       gid: 0
 accounts:

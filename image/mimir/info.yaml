@@ -1,0 +1,8 @@
+metadata:
+  display-name: Grafana Mimir
+  short-description: Mimir is an open source, horizontally scalable, highly available, multi-tenant TSDB for long-term storage for Prometheus.
+  featured: false
+  home-url: https://grafana.com/oss/mimir/
+  categories:
+    - developer-tools
+    - monitoring-and-observability

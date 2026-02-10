@@ -37,9 +37,9 @@ contents:
           - make
           - sed
         files:
-          - url: git+https://github.com/grafana/mimir.git#v2.10.0 #todo
-            checksum: 5773eb8b0bdd4439a6c065e54f777e4f77d419a1 #todo
-            path: ${source.dir}/cmd/mimir #todo
+          - url: git+https://github.com/grafana/mimir.git#mimir-2.17.5
+            checksum: 72e8a204adffdff936234ea9a580ed4589012080
+            path: ${source.dir}/mimir
             spdx:
               name: mimir
               version: 2.17.5

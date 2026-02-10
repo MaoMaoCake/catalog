@@ -1,0 +1,141 @@
+# syntax=dhi.io/build:2-debian13
+
+name: Mimir 2.x
+image: dhi.io/mimir
+variant: runtime
+tags:
+  - "2"
+  - "2.17"
+  - 2.17.5
+  - 2-debian13
+  - 2.17-debian13
+  - 2.17.5-debian13
+platforms:
+  - linux/amd64
+  - linux/arm64
+vars:
+  BASE_DIGEST: sha256:74fc43fa240887b8159970e434244039aab0c6efaaa9cf044004cdc22aa2a34d
+  BASE_TAG: 20250419-debian13
+  COMMIT_SHA: 5773eb8b0bdd4439a6c065e54f777e4f77d419a1
+  DEBIAN_EPOCH_MAJOR_MINOR_VERSION: "2.17"
+  DEBIAN_EPOCH_MAJOR_VERSION: "2"
+  DEBIAN_EPOCH_VERSION: 2.17.5
+  FIPS_SUFFIX: ""
+  GO_DIGEST: sha256:d241d31631f6bcfdef4f42f70083bb06d51e6401d9ce172a05b9ba37f27c2940
+  GO_VERSION: 1.25.7
+  VERSION: 2.17.5
+contents:
+  packages:
+    - '!base-files'
+  builds:
+    - name: mimir
+      uses: dhi.io/golang:1.25.7-debian13-dev@sha256:d241d31631f6bcfdef4f42f70083bb06d51e6401d9ce172a05b9ba37f27c2940
+      contents:
+        packages:
+          - bash
+          - hostname
+          - make
+          - sed
+        files:
+          - url: git+https://github.com/grafana/mimir.git#v2.10.0 #todo
+            checksum: 5773eb8b0bdd4439a6c065e54f777e4f77d419a1 #todo
+            path: ${source.dir}/cmd/mimir #todo
+            spdx:
+              name: mimir
+              version: 2.17.5
+              packages:
+                - name: mimir
+                  purl: pkg:dhi/mimir@2.17.5
+                  license: AGPL-3.0
+            uid: 0
+            gid: 0
+      pipeline:
+        - name: go dependencies
+          uses: go/bump@v1
+          work-dir: ${source.dir}/mimir
+          with:
+            deps:
+              - github.com/go-viper/mapstructure/v2@v2.4.0
+              - github.com/expr-lang/expr@v1.17.7
+            download: true
+        - name: install
+          work-dir: ${source.dir}/mimir
+          runs: |
+            set -eux -o pipefail
+
+            go mod vendor
+
+            make mimir
+
+            mkdir -p "${target.dir}/opt/mimir"
+            cp "bin/linux/mimir-${target.arch}" "${target.dir}/opt/mimir/mimir"
+
+            mkdir -p "${target.dir}/etc/mimir"
+            cp "tools/packaging/mimir.yaml" "${target.dir}/etc/mimir/config.yaml"
+      outputs:
+        - source: ${target.dir}/opt/mimir
+          target: /opt/mimir
+          uid: 0
+          gid: 0
+        - source: ${target.dir}/etc/mimir
+          target: /etc/mimir
+          uid: 0
+          gid: 0
+        - source: /opt/docker/sbom/mimir
+          target: /opt/docker/sbom/mimir
+          uid: 0
+          gid: 0
+  artifacts:
+    - name: dhi.io/static:20250419-debian13@sha256:74fc43fa240887b8159970e434244039aab0c6efaaa9cf044004cdc22aa2a34d
+      includes:
+        - bin
+        - etc
+        - home
+        - lib
+        - lib64
+        - opt
+        - sbin
+        - tmp
+        - usr
+        - var
+      excludes:
+        - etc/group
+        - etc/os-release
+        - etc/passwd
+        - var/lib/dpkg/status
+      uid: 0
+      gid: 0
+accounts:
+  run-as: nonroot
+  users:
+    - name: nonroot
+      uid: 65532
+      gid: 65532
+  groups:
+    - name: nonroot
+      gid: 65532
+      members:
+        - nonroot
+os-release:
+  name: Docker Hardened Images (Debian)
+  id: debian
+  version-id: "13"
+  version-codename: trixie
+  pretty-name: Docker Hardened Images/Debian GNU/Linux 13 (trixie)
+  home-url: https://docker.com/products/hardened-images/
+  bug-report-url: https://docker.com/support/
+paths:
+  - type: directory
+    path: /var/mimir
+    uid: 65532
+    gid: 65532
+    mode: "0755"
+annotations:
+  org.opencontainers.image.description: A minimal Mimir image
+  org.opencontainers.image.licenses: AGPL-3.0
+entrypoint:
+  - /opt/mimir/mimir
+cmd:
+  - -config.file=/etc/mimir.yaml
+ports:
+  - 8080/tcp

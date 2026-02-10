@@ -65,13 +65,13 @@ contents:
 
             go mod vendor
 
-            make mimir
+            make exes
 
             mkdir -p "${target.dir}/opt/mimir"
             cp "bin/linux/mimir-${target.arch}" "${target.dir}/opt/mimir/mimir"
 
             mkdir -p "${target.dir}/etc/mimir"
-            cp "tools/packaging/mimir.yaml" "${target.dir}/etc/mimir/config.yaml"
+
       outputs:
         - source: ${target.dir}/opt/mimir
           target: /opt/mimir
